@@ -6,7 +6,7 @@ const Provider = ({ children }) => {
   const context = {};
 
   return (
-    <Context.Provider value={context}> {children}</Context.Provider>
+    <Context.Provider value={context}>{children}</Context.Provider>
   );
 };
 
