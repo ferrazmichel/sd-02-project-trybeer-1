@@ -1,17 +1,17 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-
-import Provider from './context/Provider';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Login from './pages/Login';
-import './App.css';
 
-function App() {
+function App () {
   return (
-    <Provider>
+    <div className="login_page">    
+    <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Login} />
+        <Route path="/" component={Login} />
       </Switch>
-    </Provider>
+    </BrowserRouter>
+    <p>TEST APPP</p>
+    </div>
   );
 }
 

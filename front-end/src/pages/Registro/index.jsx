@@ -4,8 +4,8 @@ import './style.css';
 
 const Registro = () => {
   return (
-    <div className="registro_page">
-
+    <div className="registro_page login_page">
+      aaaaaaaa
     </div>
   );
 };
