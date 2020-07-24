@@ -1,33 +1,61 @@
 import React, { useState } from 'react';
 
 import './style.css';
+import { useEffect } from 'react';
 
-const add = (setCount) => {
-  setCount(curr => curr + 1);
+const add = (count, setCount, setCarShop, product, setUpdateCarShop) => {
+  const { id, price } = product;
+  const curr = count + 1;
+  setCount(curr);
+  setCarShop((currCar) => {
+    currCar[id] = { price, count: curr };
+    return currCar;
+  });
+  setUpdateCarShop(curr => !curr);
 };
 
-const remove = (count, setCount) => {
+const remove = (count, setCount, setCarShop, product, setUpdateCarShop) => {
+  const { id, price } = product;
+  const curr = count - 1;
   if (count > 0) {
-    setCount(curr => curr - 1);
+    setCount(curr);
+    setCarShop((currCar) => {
+      currCar[id] = { price, count: curr };
+      return currCar;
+    });
   }
+  setUpdateCarShop(curr => !curr);
 };
 
 const Product = (props) => {
   const [count, setCount] = useState(0);
-  const { name, price, volume } = props.product;
+  const { product, setCarShop, index, setUpdateCarShop } = props;
+  const { id, name, price, volume } = product;
+
+  useEffect(() => {
+    const products = JSON.parse(localStorage.getItem('products'));
+    if (products[id]) {
+      setCount(products[id].count);
+    }
+  }, []);
+
   return (
     <div className="product_comp">
-      <p className="price">{price.toFixed(2)} R$</p>
-      <img src="https://oimparcial.com.br/app/uploads/2020/06/cerveja-puro-malte-1024x512.jpg" alt="product" />
-      <p className="name">{name} {volume}ml</p>
+      <p className="price" data-testid={`${index}-product-price`}>{price.toFixed(2)} R$</p>
+      <img
+        src="https://oimparcial.com.br/app/uploads/2020/06/cerveja-puro-malte-1024x512.jpg"
+        alt="product"
+        data-testid={`${index}-product-img`}
+      />
+      <p className="name" data-testid={`${index}-product-name`}>{name} {volume}ml</p>
       <div className="counter">
-        <button type="button" onClick={() => add(setCount)}>
+        <button type="button" onClick={() => add(count, setCount, setCarShop, product, setUpdateCarShop)} data-testid={`${index}-product-plus`}>
           <span className="material-icons">
             add
           </span>
         </button>
-        <p>{count}</p>
-        <button type="button" onClick={() => remove(count, setCount)}>
+        <p data-testid={`${index}-product-qtd`}>{count}</p>
+        <button type="button" onClick={() => remove(count, setCount, setCarShop, product, setUpdateCarShop)} data-testid={`${index}-product-minus`}>
           <span className="material-icons">
             remove
           </span>
