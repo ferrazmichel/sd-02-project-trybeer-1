@@ -12,7 +12,7 @@ async function register(body) {
 
     const hash = await createHash(body.password);
 
-    await users.create({ ...body, password: hash });
+    await users.register({ ...body, password: hash });
 
     return { error: null };
   } catch (err) {
