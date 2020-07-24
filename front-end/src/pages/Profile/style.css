@@ -1,0 +1,71 @@
+
+
+.profile_form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.prof_contain {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  height: 33%;
+}
+
+.prof_label {
+  align-self: flex-start;
+  padding-bottom: 2%;
+}
+
+.red_background {
+  background-color: brown;
+  color: white;
+}
+
+.green_background {
+  background-color: #1CD118;
+  color: black;
+}
+
+.profile_submit {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 30px;
+  margin-bottom: 10px;
+  width: 80%;
+}
+
+.profile_font {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 28px;
+}
+
+.profile_input {
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  height: 60%;
+}
+
+.prof_contain_submit {
+  align-items: flex-end;
+  display: flex;
+  height: 50%;
+  justify-content: center;
+  width: 100%;
+}
+
+.profile_container_all {
+  display: flex;
+  height: 50%;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+}
