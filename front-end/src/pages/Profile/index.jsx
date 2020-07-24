@@ -3,6 +3,49 @@ import React, { useEffect, useState } from 'react';
 import { nameAndEmail, postName } from './services';
 import './style.css';
 
+const renderButton = (disable) => (
+  <div className="prof_contain_submit profile_font">
+    <button
+      data-testid="profile-save-btn"
+      type="submit"
+      disabled={disable}
+      className={`profile_submit profile_font ${disable ? 'red_background' : 'green_background'}`}
+    >
+      Salvar
+    </button>
+  </div>
+);
+
+const renderInputName = (setName, setDisable, name) => (
+  <div className="prof_contain">
+    <label className="prof_label profile_font">Nome</label>
+    <input
+      type="text"
+      onChange={({ target }) => {
+        setName(target.value);
+        setDisable(false);
+      }}
+      value={name}
+      className="profile_input"
+      data-testid="profile-name-input"
+      required
+    />
+  </div>
+);
+
+const renderInputEmail = (email) => (
+  <div className="prof_contain" >
+    <label className="prof_label profile_font">Email</label>
+    <input
+      type="text"
+      defaultValue={email}
+      data-testid="profile-email-input"
+      className="profile_input"
+      readOnly
+    />
+  </div>
+);
+
 const Profile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -29,41 +72,10 @@ const Profile = () => {
       {error ? <h2>{error.message}</h2> :
         <form className="profile_form" onSubmit={(e) => handleSubmit(e)}>
           <div className="profile_container_all">
-            <div className="prof_contain">
-              <label className="prof_label profile_font">Nome</label>
-              <input
-                type="text"
-                onChange={({ target }) => {
-                  setName(target.value);
-                  setDisable(false);
-                }}
-                value={name}
-                className="profile_input"
-                data-testid="profile-name-input"
-                required
-              />
-            </div>
-            <div className="prof_contain" >
-              <label className="prof_label profile_font">Email</label>
-              <input
-                type="text"
-                defaultValue={email}
-                data-testid="profile-email-input"
-                className="profile_input"
-                readOnly
-              />
-            </div>
+            {renderInputName(setName, setDisable, name)}
+            {renderInputEmail(email)}
           </div>
-          <div className="prof_contain_submit profile_font">
-              <button
-                data-testid="profile-save-btn"
-                type="submit"
-                disabled={disable}
-                className={`profile_submit profile_font ${disable ? 'red_background' : 'green_background'}`}
-              >
-                Salvar
-              </button> 
-          </div>
+          {renderButton(disable)}
         </form>
       }
     </div>
