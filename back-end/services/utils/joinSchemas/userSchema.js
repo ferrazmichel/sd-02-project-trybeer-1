@@ -50,6 +50,4 @@ const userSchema = Joi.object({
   role,
 }).unknown(false);
 
-module.exports = {
-  userSchema,
-};
+module.exports = userSchema;

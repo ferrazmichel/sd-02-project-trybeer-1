@@ -9,7 +9,7 @@ const register = async (req, res) => {
     handleError(error);
   }
 
-  res.status(201).json({ message: "Usuário criado com sucesso!" });
+  res.status(201).json({ message: "User created with sucess!", error: null });
 };
 
 module.exports = {
