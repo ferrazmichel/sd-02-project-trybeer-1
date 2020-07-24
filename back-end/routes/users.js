@@ -10,6 +10,6 @@ const { validate } = require('../middlewares');
 
 const router = express.Router();
 
-router.post('/', validate(userSchema), rescue(users.register));
+router.post('/register', validate(userSchema), rescue(users.register));
 
 module.exports = router;
