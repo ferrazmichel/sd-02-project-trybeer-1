@@ -9,7 +9,7 @@
 .products_page > .products {
   display: grid;
   height: 75%;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
   overflow: scroll;
 }
 
@@ -18,14 +18,14 @@
   border: none;
   bottom: 2%;
   color: white;
-  height: 10%;
   font-size: 2em;
-  font-weight: bold;
+  font-weight: 700;
+  height: 10%;
   margin: 2% auto;
   position: fixed;
   width: 80%;
 }
 
-.products_page > .ver_carrinho > span:nth-child(2) {
+.products_page > .ver_carrinho > span:nth-child( 2 ) {
   margin-left: 4%;
 }

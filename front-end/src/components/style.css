@@ -1,13 +1,13 @@
 .header_comp {
   align-items: center;
-  background-color: #100F0F;
+  background-color: #100f0f;
   display: flex;
   height: 10%;
   width: 100%;
 }
 
 .header_comp > .menu {
-  background-color: #100F0F;
+  background-color: #100f0f;
   border-color: white;
   border-radius: 3px;
   border-style: solid;
@@ -28,14 +28,14 @@
   width: 100%;
 }
 
-.header_comp > .title > h1 {
+.header_comp > .title > p {
   color: white;
   height: 60%;
   margin: 0;
 }
 
 .lateral {
-  background-color: #100F0F;
+  background-color: #100f0f;
   display: flex;
   height: 100vh;
   left: 0;
@@ -45,7 +45,7 @@
   z-index: 2;
 }
 
-.lateral > .sidebar,
+.lateral > .sidebar ,
 .lateral > .sidebar > ul {
   height: 100%;
   margin: 0;
@@ -57,7 +57,7 @@
   list-style: none;
 }
 
-.lateral .sidebar > ul > li  {
+.lateral > .sidebar > ul > li {
   align-items: center;
   border: solid  white 1px;
   box-sizing: border-box;
@@ -69,7 +69,7 @@
   width: 100%;
 }
 
-.lateral .sidebar > ul > li > a {
+.lateral > .sidebar a {
   color: white;
   font-size: 1.2em;
   text-decoration: none;

@@ -8,19 +8,18 @@ const calculeTotal = (carShop) =>
   .reduce((acc, id) => acc + carShop[id].price * carShop[id].count, 0)
   .toFixed(2);
 
+const products = [
+  {id:'1', name: 'cerva1', price: 2.20, volume: 500 },
+  {id:'2', name: 'cerva2', price: 2.20, volume: 500 },
+  {id:'3', name: 'cerva3', price: 2.20, volume: 500 },
+  {id:'4', name: 'cerva4', price: 2.20, volume: 500 },
+  {id:'5', name: 'cerva5', price: 2.20, volume: 500 }
+];
 
 const Products = () => {
-  const products = [
-    {id:'1', name: 'cerva1', price: 2.20, volume: 500 },
-    {id:'2', name: 'cerva2', price: 2.20, volume: 500 },
-    {id:'3', name: 'cerva3', price: 2.20, volume: 500 },
-    {id:'4', name: 'cerva4', price: 2.20, volume: 500 },
-    {id:'5', name: 'cerva5', price: 2.20, volume: 500 }
-  ];
   const [carShop, setCarShop] = useState(JSON.parse(localStorage.getItem('products')) || {});
   const [updateCarShop, setUpdateCarShop] = useState(false);
   const [total, setTotal] = useState(0);
-
 
   useEffect(() => {
     setTotal(calculeTotal(carShop));

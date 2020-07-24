@@ -27,6 +27,24 @@ const remove = (count, setCount, setCarShop, product, setUpdateCarShop) => {
   setUpdateCarShop(curr => !curr);
 };
 
+const counter = (count, setCount, setCarShop, product, setUpdateCarShop, index) => {
+  return (
+    <div className="counter">
+      <button type="button" onClick={() => add(count, setCount, setCarShop, product, setUpdateCarShop)} data-testid={`${index}-product-plus`}>
+        <span className="material-icons">
+          add
+        </span>
+      </button>
+      <p data-testid={`${index}-product-qtd`}>{count}</p>
+      <button type="button" onClick={() => remove(count, setCount, setCarShop, product, setUpdateCarShop)} data-testid={`${index}-product-minus`}>
+        <span className="material-icons">
+          remove
+        </span>
+      </button>
+    </div>
+  );
+};
+
 const Product = (props) => {
   const [count, setCount] = useState(0);
   const { product, setCarShop, index, setUpdateCarShop } = props;
@@ -34,9 +52,7 @@ const Product = (props) => {
 
   useEffect(() => {
     const products = JSON.parse(localStorage.getItem('products'));
-    if (products[id]) {
-      setCount(products[id].count);
-    }
+    if (products[id]) { setCount(products[id].count); }
   }, []);
 
   return (
@@ -48,19 +64,7 @@ const Product = (props) => {
         data-testid={`${index}-product-img`}
       />
       <p className="name" data-testid={`${index}-product-name`}>{name} {volume}ml</p>
-      <div className="counter">
-        <button type="button" onClick={() => add(count, setCount, setCarShop, product, setUpdateCarShop)} data-testid={`${index}-product-plus`}>
-          <span className="material-icons">
-            add
-          </span>
-        </button>
-        <p data-testid={`${index}-product-qtd`}>{count}</p>
-        <button type="button" onClick={() => remove(count, setCount, setCarShop, product, setUpdateCarShop)} data-testid={`${index}-product-minus`}>
-          <span className="material-icons">
-            remove
-          </span>
-        </button>
-      </div>
+      {counter(count, setCount, setCarShop, product, setUpdateCarShop, index)}
     </div>
   );
 };

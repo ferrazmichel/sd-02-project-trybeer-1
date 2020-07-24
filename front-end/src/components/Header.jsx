@@ -26,7 +26,7 @@ const Header = (props) => {
   const [sideShow, setSideShow] = useState(false);
 
   return (
-    <>
+    <React.Fragment>
       {sideShow && sidebar()}
       <div className="header_comp">
         <button
@@ -40,10 +40,10 @@ const Header = (props) => {
           </span>
         </button>
         <div className="title">
-        <h1 data-testid="top-title">{title}</h1>
+        <p data-testid="top-title">{title}</p>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
