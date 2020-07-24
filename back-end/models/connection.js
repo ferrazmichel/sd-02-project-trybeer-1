@@ -1,17 +1,17 @@
-const mysqlx = require("@mysql/xdevapi");
+const mysqlx = require('@mysql/xdevapi');
 
 const getSession = () =>
   mysqlx.getSession({
-    user: "root",
-    password: "password",
-    host: "localhost",
+    user: 'root',
+    password: 'password',
+    host: 'localhost',
     port: 33060,
-    schema: "Trybeer",
+    schema: 'Trybeer',
   });
 
 const connection = async () =>
   getSession()
-    .then((session) => session.getSchema("Trybeer"))
+    .then((session) => session.getSchema('Trybeer'))
     .catch((err) => {
       console.error(err);
       process.exit(1);

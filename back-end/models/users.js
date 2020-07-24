@@ -1,11 +1,11 @@
-const { connection } = require("./connection");
+const { connection } = require('./connection');
 
 const find = async ({ key, value }) =>
   connection()
     .then((db) =>
       db
-        .getTable("users")
-        .select(["id", "name", "email", "password", "role"])
+        .getTable('users')
+        .select(['id', 'name', 'email', 'password', 'role'])
         .where(`${key} = :${key}`)
         .bind(key, value)
         .execute()
@@ -16,8 +16,8 @@ const find = async ({ key, value }) =>
 const register = async ({ name, email, password, role }) =>
   connection().then((db) =>
     db
-      .getTable("users")
-      .insert(["name", "email", "password", "role"])
+      .getTable('users')
+      .insert(['name', 'email', 'password', 'role'])
       .values(name, email, password, role)
       .execute()
   );

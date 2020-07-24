@@ -1,8 +1,8 @@
-const Boom = require("@hapi/boom");
+const Boom = require('@hapi/boom');
 
 function handleError(error) {
-  if (error === "exist-user") {
-    throw Boom.badRequest("Email já cadastrado");
+  if (error === 'exist-user') {
+    throw Boom.badRequest('Email já cadastrado');
   }
 }
 

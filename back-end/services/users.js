@@ -1,13 +1,13 @@
-const { users } = require("../models");
+const { users } = require('../models');
 
-const { createHash } = require("./utils/bcrypt");
+const { createHash } = require('./utils/bcrypt');
 
 async function register(body) {
   try {
-    const user = await users.find({ key: "email", value: body.email });
+    const user = await users.find({ key: 'email', value: body.email });
 
     if (user) {
-      return { error: "exist-user" };
+      return { error: 'exist-user' };
     }
 
     const hash = await createHash(body.password);
