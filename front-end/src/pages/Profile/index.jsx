@@ -59,7 +59,7 @@ const Profile = () => {
                 data-testid="profile-save-btn"
                 type="submit"
                 disabled={disable}
-                className={`profile_submit ${disable ? 'red_background' : 'green_background'}`}
+                className={`profile_submit profile_font ${disable ? 'red_background' : 'green_background'}`}
               >
                 Salvar
               </button> 

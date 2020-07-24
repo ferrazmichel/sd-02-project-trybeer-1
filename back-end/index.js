@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/users', routes.users);
-app.use('/profile', routes.profile)
+app.use('/profile', routes.profile);
 
 // app.use(middlewares.error);
 

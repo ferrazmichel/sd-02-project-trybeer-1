@@ -1,18 +1,16 @@
-
-
 .profile_form {
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 100vh;
+  justify-content: center;
 }
 
 .prof_contain {
   display: flex;
   flex-direction: column;
-  padding: 5%;
   height: 33%;
+  padding: 5%;
 }
 
 .prof_label {
@@ -26,30 +24,26 @@
 }
 
 .green_background {
-  background-color: #1CD118;
+  background-color: #1cd118;
   color: black;
 }
 
 .profile_submit {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
   font-size: 26px;
-  line-height: 30px;
   margin-bottom: 10px;
   width: 80%;
 }
 
 .profile_font {
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
   line-height: 28px;
 }
 
 .profile_input {
-  background: #FFFFFF;
-  border: 1px solid #000000;
+  background: white;
+  border: 1px solid black;
   box-sizing: border-box;
   height: 60%;
 }
@@ -64,8 +58,8 @@
 
 .profile_container_all {
   display: flex;
-  height: 50%;
   flex-direction: column;
-  justify-content: flex-end;
+  height: 50%;
+  justify-content: flex-start;
   width: 100%;
 }
