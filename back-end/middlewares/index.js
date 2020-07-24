@@ -1,5 +1,5 @@
-const error = require("./error");
-const validate = require("./validate");
+const error = require('./error');
+const validate = require('./validate');
 
 module.exports = {
   error,
