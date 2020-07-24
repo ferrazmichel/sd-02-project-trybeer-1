@@ -1,0 +1,26 @@
+.products_page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.products_page > .products {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: scroll;
+}
+
+.products_page > .ver_carrinho {
+  position: fixed;
+  bottom: 2%;
+  background-color: chartreuse;
+  color: white;
+  width: 80%;
+  height: 10%;
+  margin: 2% auto;
+  font-size: 2em;
+  border: none;
+  font-weight: bold;
+}
