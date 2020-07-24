@@ -36,13 +36,13 @@
 
 .lateral {
   background-color: #100F0F;
+  display: flex;
   height: 100vh;
+  left: 0;
   position: absolute;
   top: 9vh;
-  left: 0;
-  z-index: 2;
   width: 30vw;
-  display: flex;
+  z-index: 2;
 }
 
 .lateral > .sidebar,
