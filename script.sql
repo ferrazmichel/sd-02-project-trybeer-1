@@ -10,8 +10,8 @@ volume int not null
 
 create table users (
 id int primary key auto_increment,
-user varchar(100) not null,
-mail varchar(100) not null,
+name varchar(100) not null,
+email varchar(100) not null,
 password  varchar(100) not null,
 role varchar(100) not null
 ) engine=InnoDB;
@@ -30,6 +30,7 @@ insert into products (product, price, volume) value
 ('Skol Beats Senses', 3.57, 269),
 ('Stella Artoi s', 3.49, 275);
 
-insert into users (user, mail, password, role) value
+insert into users (name, email, password, role) value
 ('tryber', 'tryber@gamil.com', '123456', 'admin'),
 ('Taylor Swift', 'taylorswift@email.com', 'senha', 'client');
+

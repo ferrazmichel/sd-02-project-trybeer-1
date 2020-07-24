@@ -9,10 +9,10 @@ function errorBoom(err, res) {
   const response = res.status(statusCode);
 
   if (data) {
-    return response.json({ error: { message, erros: data } });
+    return response.json({ error: { message, ...data } });
   }
 
-  return response.json({ error: { message, erros: null } });
+  return response.json({ error: { message, details: null } });
 }
 
 function error(err, _req, res, _next) {
@@ -20,7 +20,9 @@ function error(err, _req, res, _next) {
     return errorBoom(err, res);
   }
 
-  return res.status(500).json({ error: { message: err.message, erros: null } });
+  return res
+    .status(500)
+    .json({ error: { message: err.message, details: null } });
 }
 
 module.exports = error;

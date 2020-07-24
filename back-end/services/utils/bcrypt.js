@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt");
 
-async function createHash(element) {
+async function createHash(string) {
   const saltRounds = 10;
-  return bcrypt.hash(element, saltRounds);
+  return bcrypt.hash(string, saltRounds);
 }
 
 module.exports = {

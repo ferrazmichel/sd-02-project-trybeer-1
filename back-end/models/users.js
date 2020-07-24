@@ -1,7 +1,7 @@
-const connection = require("./connection");
+const { connection } = require("./connection");
 
-const find = async ({ key, value }) => {
-  return connection()
+const find = async ({ key, value }) =>
+  connection()
     .then((db) =>
       db
         .getTable("users")
@@ -12,17 +12,15 @@ const find = async ({ key, value }) => {
     )
     .then((results) => results.fetchAll())
     .then((user) => user[0]);
-};
 
-const register = async ({ name, email, password, role }) => {
-  return connection().then((db) =>
+const register = async ({ name, email, password, role }) =>
+  connection().then((db) =>
     db
       .getTable("users")
       .insert(["name", "email", "password", "role"])
       .values(name, email, password, role)
       .execute()
   );
-};
 
 module.exports = {
   find,

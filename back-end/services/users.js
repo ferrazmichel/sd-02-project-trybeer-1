@@ -4,7 +4,7 @@ const { createHash } = require("./utils/bcrypt");
 
 async function register(body) {
   try {
-    const user = await users.find({ email: body.email });
+    const user = await users.find({ key: "email", value: body.email });
 
     if (user) {
       return { error: "exist-user" };
