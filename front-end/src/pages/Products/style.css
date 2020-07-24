@@ -8,8 +8,8 @@
 
 .products_page > .products {
   display: grid;
-  height: 75%;
   grid-template-columns: 50% 50%;
+  height: 75%;
   overflow: scroll;
 }
 
