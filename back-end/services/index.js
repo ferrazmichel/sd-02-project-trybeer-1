@@ -1,7 +1,5 @@
-const joinSchemas = require("./joinSchemas");
-const register = require("./register");
+const users = require("./users");
 
 module.exports = {
-  joinSchemas,
-  register,
+  users,
 };

@@ -4,9 +4,9 @@ const express = require("express");
 
 const bodyParser = require("body-parser");
 
-// const middlewares = require('./middlewares');
+const { error } = require("./middlewares");
 
-const { register } = require("./routes");
+const { users } = require("./routes");
 
 const app = express();
 
@@ -16,9 +16,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
-app.use("/register", register);
+app.use("/users", users);
 
-// app.use(middlewares.error);
+app.use(error);
 
 const PORT = process.env.PORT || 3001;
 
