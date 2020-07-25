@@ -1,4 +1,4 @@
-function errorBoom(err, res) {
+const errorBoom = (err, res) => {
   const {
     output: {
       payload: { statusCode, message },
@@ -13,9 +13,9 @@ function errorBoom(err, res) {
   }
 
   return response.json({ error: { message, details: null } });
-}
+};
 
-function error(err, _req, res, _next) {
+const error = (err, _req, res, _next) => {
   if (err.isBoom) {
     return errorBoom(err, res);
   }
@@ -23,6 +23,6 @@ function error(err, _req, res, _next) {
   return res
     .status(500)
     .json({ error: { message: err.message, details: null } });
-}
+};
 
 module.exports = error;
