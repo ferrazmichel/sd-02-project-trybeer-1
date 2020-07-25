@@ -1,3 +1,5 @@
+const Boom = require('@hapi/boom');
+
 const { users } = require('../services');
 
 const handleError = (error) => {

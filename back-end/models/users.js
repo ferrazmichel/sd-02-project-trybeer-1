@@ -8,10 +8,10 @@ const find = async ({ key, value }) => {
         .select(['id', 'name', 'email', 'password', 'role'])
         .where(`${key} = :${key}`)
         .bind(key, value)
-        .execute()
+        .execute(),
     )
     .then((results) => results.fetchAll())
-    .then((user) => user[0]);
+    .then((data) => data[0]);
 
   if (!user) return null;
 
@@ -26,7 +26,7 @@ const register = async ({ name, email, password, role }) =>
       .getTable('users')
       .insert(['name', 'email', 'password', 'role'])
       .values(name, email, password, role)
-      .execute()
+      .execute(),
   );
 
 module.exports = {
