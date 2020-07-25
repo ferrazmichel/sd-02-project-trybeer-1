@@ -1,8 +1,10 @@
 const { users } = require('../models');
 
-const { createHash } = require('./utils/bcrypt');
+const {
+  bcrypt: { createHash },
+} = require('./utils');
 
-async function register(body) {
+const register = async (body) => {
   try {
     const user = await users.find({ key: 'email', value: body.email });
 
@@ -18,7 +20,7 @@ async function register(body) {
   } catch (err) {
     throw err;
   }
-}
+};
 
 module.exports = {
   register,
