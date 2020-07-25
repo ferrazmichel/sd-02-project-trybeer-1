@@ -1,6 +1,6 @@
 const Boom = require('@hapi/boom');
 
-function validate(schema) {
+const validate = (schema) => {
   return async (req, _res, next) => {
     try {
       const { error } = schema.validate(req.body, {
