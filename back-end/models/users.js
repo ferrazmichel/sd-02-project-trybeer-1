@@ -1,11 +1,11 @@
-const { connection } = require("./connection");
+const { connection } = require('./connection');
 
 const find = async ({ key, value }) => {
   const user = await connection()
     .then((db) =>
       db
-        .getTable("users")
-        .select(["id", "name", "email", "password", "role"])
+        .getTable('users')
+        .select(['id', 'name', 'email', 'password', 'role'])
         .where(`${key} = :${key}`)
         .bind(key, value)
         .execute()

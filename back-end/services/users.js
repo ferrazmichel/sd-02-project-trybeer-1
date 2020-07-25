@@ -1,16 +1,16 @@
-const { users } = require("../models");
+const { users } = require('../models');
 
 const {
   bcrypt: { checkString },
   jsonWebToken: { signToken },
-} = require("./utils");
+} = require('./utils');
 
-async function login(body) {
+const login = async (body) => {
   try {
-    const user = await users.find({ key: "email", value: body.email });
+    const user = await users.find({ key: 'email', value: body.email });
 
     if (!user) {
-      return { error: "user-not-found", token: null };
+      return { error: 'user-not-found', token: null };
     }
 
     const { password, ...userWithoutPassword } = user;
@@ -21,7 +21,7 @@ async function login(body) {
     });
 
     if (!isCorrectPassword) {
-      return { error: "wrong-password", token: null };
+      return { error: 'wrong-password', token: null };
     }
 
     const token = signToken(userWithoutPassword);
@@ -30,7 +30,7 @@ async function login(body) {
   } catch (err) {
     throw err;
   }
-}
+};
 
 module.exports = {
   login,

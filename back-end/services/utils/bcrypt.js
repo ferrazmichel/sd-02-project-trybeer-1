@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 
 const checkString = async ({ string, hash }) => bcrypt.compare(string, hash);
 
