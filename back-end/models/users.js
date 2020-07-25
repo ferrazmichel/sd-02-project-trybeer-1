@@ -8,10 +8,10 @@ const find = async ({ key, value }) => {
         .select(['id', 'name', 'email', 'password', 'role'])
         .where(`${key} = :${key}`)
         .bind(key, value)
-        .execute()
+        .execute(),
     )
     .then((results) => results.fetchAll())
-    .then((user) => user[0]);
+    .then((data) => data[0]);
 
   if (!user) return null;
 
