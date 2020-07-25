@@ -2,7 +2,7 @@ const Boom = require("@hapi/boom");
 
 const { users } = require("../models");
 
-const { verifyToken } = require("../service/utils/jsonWebToken");
+const { verifyToken } = require("../services/utils/jsonWebToken");
 
 async function auth(req, _res, next) {
   try {

@@ -1,12 +1,12 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const express = require('express');
+const express = require("express");
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
-const { error } = require('./middlewares');
+const { error } = require("./middlewares");
 
-const { users } = require('./routes');
+const { users } = require("./routes");
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
-app.use('/users', users);
+app.use("/users", users);
 
 app.use(error);
 

@@ -15,7 +15,10 @@ async function login(body) {
 
     const { password, ...userWithoutPassword } = user;
 
-    const isCorrectPassword = checkString(body.password, password);
+    const isCorrectPassword = await checkString({
+      string: body.password,
+      hash: password,
+    });
 
     if (!isCorrectPassword) {
       return { error: "wrong-password", token: null };
