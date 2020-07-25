@@ -1,13 +1,17 @@
-const express = require('express');
+const express = require("express");
+
+const rescue = require("express-rescue");
+
+const { users } = require("../controllers");
+
 const {
-  users,
-} = require('../controllers');
+  userSchema: { loginSchema },
+} = require("../services/utils/joinSchemas");
+
+const { validate } = require("../middlewares");
 
 const router = express.Router();
 
-router
-  .route('/')
-  .get((req, res) => res.send('test'))
-  .post(users.login);
+router.post("/login", validate(loginSchema), rescue(users.login));
 
 module.exports = router;
