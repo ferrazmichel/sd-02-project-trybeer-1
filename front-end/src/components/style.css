@@ -30,6 +30,7 @@
 
 .header_comp > .title > p {
   color: white;
+  font-size: 2em;
   height: 60%;
   margin: 0;
 }
