@@ -1,13 +1,8 @@
-import React from 'react';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
-import './style.css';
+const Register = () => {};
 
-const Registro = () => {
-  return (
-    <div className="registro_page login_page">
-      aaaaaaaa
-    </div>
-  );
-};
-
-export default Registro;
+export default Register;
