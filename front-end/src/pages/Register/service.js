@@ -1,52 +1,45 @@
-function handleConfirm(event, setConfirm, password) {
-  const confirm = event.target.value;
+function handleConfirm({ value, setConfirm, password }) {
+  const validFormat = value.match(/^.*(.*\d){6,}/) ? true : false;
+  const matchPassword = value === password;
+  const valid = validFormat && matchPassword;
 
-  setConfirm({
-    valid:
-      confirm.match(/^.*(.*\d){6,}/) && event.target.value === password.value,
-    value: confirm,
-  });
+  setConfirm({ valid, value });
 }
 
-function handleEmail(event, setEmail) {
-  const email = event.target.value;
-  console.log(email.match(/\S+@\S+\.\S+/));
-  setEmail({
-    valid: email.match(/\S+@\S+\.\S+/),
-    value: email,
-  });
+function handleEmail({ value, setEmail }) {
+  const valid = value.match(/\S+@\S+\.\S+/) ? true : false;
+
+  setEmail({ valid, value });
 }
 
-function handleName(event, setName) {
-  const name = event.target.value;
+function handleName({ value, setName }) {
+  const validFormat = value.match(/^[^\s][a-zA-Z\s]*[a-zA-z]$/) ? true : false;
+  const validLenght = value.length >= 12;
+  const valid = validFormat && validLenght;
 
-  setName({
-    valid: name.match(/^[^\s][a-zA-Z\s]*[a-zA-z]$/) && name.length >= 12,
-    value: name,
-  });
+  setName({ valid, value });
 }
 
-function handlePassword(event, setPassword) {
-  const password = event.target.value;
+function handlePassword({ value, setPassword }) {
+  const valid = value.match(/^.*(.*\d){6,}/) ? true : false;
 
-  setPassword({
-    valid: event.target.value.match(/^.*(.*\d){6,}/),
-    value: password,
-  });
+  setPassword({ valid, value });
 }
 
-function handleRole(event, setRole) {
-  if (event.target.checked) {
+function handleRole({ value, setRole }) {
+  if (value) {
     setRole("admin");
   } else {
     setRole("client");
   }
 }
 
-function handleSubmit(event, email, history) {
+function handleSubmit({ event, body, history }) {
   event.preventDefault();
-  setLocalStorage(email);
-  history.push("/recipes/meals");
+  console.log(event);
+  console.log(body);
+  // setLocalStorage(email);
+  // history.push("/recipes/meals");
 }
 
 function setLocalStorage(email) {
