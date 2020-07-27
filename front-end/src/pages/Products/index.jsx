@@ -36,6 +36,9 @@ const buttonRender = (total, hist) => {
   )
 };
 
+const fetch = async (baseURL) =>
+  axios.create({ baseURL });
+
 const Products = () => {
   const [carShop, setCarShop] = useState(JSON.parse(localStorage.getItem('products')) || {});
   const [updateCarShop, setUpdateCarShop] = useState(false);
@@ -43,9 +46,12 @@ const Products = () => {
   const hist = useHistory();
   const obj = { setCarShop, setUpdateCarShop };
 
-  useEffect(async () => {
-    const api = axios.create({ baseURL: 'https://localhost:3001/products' });
-    console.log(api);
+  useEffect(() => {
+    async function fetchMyAPI() {
+      let response = await fetch('https://localhost:3001/products');
+    }
+
+    fetchMyAPI();
   }, []);
 
   useEffect(() => {
