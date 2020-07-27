@@ -11,10 +11,10 @@ import {
 
 function Register() {
   const history = useHistory();
-  const [email, setEmail] = useState({ email: null, error: null });
-  const [name, setName] = useState({ name: null, error: null });
-  const [password, setPassword] = useState({ password: null, error: null });
-  const [confirm, setConfirm] = useState({ confirm: null, error: null });
+  const [confirm, setConfirm] = useState({ value: null, error: null });
+  const [email, setEmail] = useState({ value: null, error: null });
+  const [name, setName] = useState({ value: null, error: null });
+  const [password, setPassword] = useState({ value: null, error: null });
   const [role, setRole] = useState("client");
 
   return (
@@ -24,7 +24,7 @@ function Register() {
           <Form.Control
             data-testid="name-input"
             isInvalid={name.error}
-            isValid={!name.error && name.name}
+            isValid={!name.error && name.value}
             onChange={(e) =>
               handleField({
                 field: "name",
@@ -49,7 +49,7 @@ function Register() {
           <Form.Control
             data-testid="email-input"
             isInvalid={email.error}
-            isValid={!email.error && email.email}
+            isValid={!email.error && email.value}
             onChange={(e) =>
               handleField({
                 field: "email",
@@ -74,16 +74,16 @@ function Register() {
           <Form.Control
             data-testid="password-input"
             isInvalid={password.error}
-            isValid={!password.error && password.password}
+            isValid={!password.error && password.value}
             onChange={(e) => {
               handleField({
                 field: "password",
                 value: e.target.value,
                 callback: setPassword,
               });
-              confirm.confirm &&
+              confirm.value &&
                 handleConfirm({
-                  value: confirm.confirm,
+                  value: confirm.value,
                   callback: setConfirm,
                   password: e.target.value,
                 });
@@ -105,12 +105,12 @@ function Register() {
           <Form.Control
             data-testid="confirm-input"
             isInvalid={confirm.error}
-            isValid={!confirm.error && confirm.confirm}
+            isValid={!confirm.error && confirm.value}
             onChange={(e) => {
               handleConfirm({
                 value: e.target.value,
                 callback: setConfirm,
-                password: password.password,
+                password: password.value,
               });
             }}
             placeholder="confirm password"
@@ -140,22 +140,22 @@ function Register() {
         data-testid="register-submit-btn"
         disabled={
           confirm.error ||
-          !confirm.confirm ||
+          !confirm.value ||
           email.error ||
-          !email.email ||
+          !email.value ||
           name.error ||
-          !name.name ||
+          !name.value ||
           password.error ||
-          !password.password
+          !password.value
         }
         onClick={(event) =>
           handleSubmit({
             event,
             body: {
-              confirm: confirm.confirm,
-              email: email.email,
-              name: name.name,
-              password: password.password,
+              confirm: confirm.value,
+              email: email.value,
+              name: name.value,
+              password: password.value,
               role,
             },
             history,

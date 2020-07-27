@@ -5,10 +5,10 @@ const handleConfirm = ({ value, password, callback }) => {
   const matchPassword = value === password;
 
   if (validFormat && matchPassword) {
-    callback({ confirm: value, error: null });
+    callback({ value, error: null });
   } else {
     callback({
-      confirm: value,
+      value,
       error: "Don't match password and/or invalid format",
     });
   }
@@ -18,9 +18,9 @@ const handleField = ({ field, value, callback }) => {
   const error = validate({ field, value });
 
   if (!error) {
-    callback({ [field]: value, error: null });
+    callback({ value, error: null });
   } else {
-    callback({ [field]: value, error: error.message });
+    callback({ value, error: error.message });
   }
 };
 
