@@ -8,6 +8,7 @@ import {
   handleRole,
   handleSubmit,
 } from "./service";
+import "./register.css";
 
 function Register() {
   const history = useHistory();
@@ -128,7 +129,7 @@ function Register() {
         </Form.Group>
         <Form.Group className="box box60-80-90 flex-column">
           <Form.Check
-            data-testid="checkbox-input"
+            id="checkbox"
             type="checkbox"
             label="Quero vender"
             onChange={(e) => handleRole({ value: e.target.checked, setRole })}

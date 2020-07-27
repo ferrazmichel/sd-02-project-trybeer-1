@@ -34,22 +34,9 @@ const handleRole = ({ value, setRole }) => {
 
 function handleSubmit({ event, body, history }) {
   event.preventDefault();
-  console.log(event);
   console.log(body);
-  // setLocalStorage(email);
-  // history.push("/recipes/meals");
-}
 
-function setLocalStorage(email) {
-  localStorage.setItem("user", JSON.stringify({ email: email.value }));
-  localStorage.setItem(
-    "recipe-status",
-    JSON.stringify({ meals: null, drinks: null })
-  );
-  localStorage.setItem(
-    "favorites-recipes",
-    JSON.stringify({ meals: null, drinks: null })
-  );
+  history.push(`home/${body.role}`);
 }
 
 export { handleConfirm, handleField, handleRole, handleSubmit };
