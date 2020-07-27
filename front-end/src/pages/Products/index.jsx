@@ -48,7 +48,7 @@ const Products = () => {
 
   useEffect(() => {
     async function fetchMyAPI() {
-      let response = await fetch('https://localhost:3001/products');
+      await fetch('https://localhost:3001/products');
     }
 
     fetchMyAPI();
