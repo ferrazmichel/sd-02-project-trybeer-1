@@ -45,6 +45,7 @@ const Products = () => {
 
   useEffect(async () => {
     const api = axios.create({ baseURL: 'https://localhost:3001/products' });
+    console.log(api);
   }, []);
 
   useEffect(() => {
