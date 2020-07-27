@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import './style.css';
 
 const onclickHandler = (setSideShow) => {
   setSideShow((curr) => !curr);
+};
+
+const logout = () => {
+  console.log('logout');
 };
 
 const sidebar = () => {
@@ -11,10 +15,10 @@ const sidebar = () => {
     <div className="lateral" ref={sidebar}>
       <nav className="sidebar">
         <ul>
-          <li><a href="#" data-testid="side-menu-item-products">Produtos</a></li>
-          <li><a href="#" data-testid="side-menu-item-my-orders">Meus pedidos</a></li>
-          <li><a href="#" data-testid="side-menu-item-my-profile">Meu perfil</a></li>
-          <li><a href="#" data-testid="side-menu-item-logout">Sair</a></li>
+          <li><Link to="/products" data-testid="side-menu-item-products">Produtos</Link></li>
+          <li><Link to="/orders" data-testid="side-menu-item-my-orders">Meus pedidos</Link></li>
+          <li><Link to="/profile" data-testid="side-menu-item-my-profile">Meus perfil</Link></li>
+          <li><Link to="/login" onClick={() => logout()} data-testid="side-menu-item-logout">Sair</Link></li>
         </ul>
       </nav>
     </div>

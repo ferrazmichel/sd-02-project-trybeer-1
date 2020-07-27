@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+
 import Header from '../../components/Header';
 import Product from './Product';
 import './style.css';
@@ -16,10 +19,35 @@ const products = [
   {id:'5', name: 'cerva5', price: 2.20, volume: 500 }
 ];
 
+const checkout = (hist) => {
+  hist.push('/checkout');
+};
+
+const buttonRender = (total, hist) => {
+  return (
+    <button className="ver_carrinho" onClick={() => checkout(hist)}>
+      <span data-testid="checkout-bottom-btn">
+        Ver carrinho
+      </span>
+      <span data-testid="checkout-bottom-btn-value">
+        {total}
+      </span>
+    </button>
+  )
+};
+
 const Products = () => {
   const [carShop, setCarShop] = useState(JSON.parse(localStorage.getItem('products')) || {});
   const [updateCarShop, setUpdateCarShop] = useState(false);
   const [total, setTotal] = useState(0);
+  const hist = useHistory();
+
+  useEffect(async () => {
+    const api = axios.create({
+      baseURL: 'https://localhost:3001/products'
+    });
+    console.log(api);
+  }, []);
 
   useEffect(() => {
     setTotal(calculeTotal(carShop));
@@ -31,17 +59,16 @@ const Products = () => {
       <Header title="Trybeer" />
       <div className="products">
         {products.map((product, index) => (
-          <Product key={product.id} product={product} index={index} setCarShop={setCarShop} setUpdateCarShop={setUpdateCarShop} />
+          <Product
+            key={product.id}
+            product={product}
+            index={index}
+            setCarShop={setCarShop}
+            setUpdateCarShop={setUpdateCarShop}
+          />
         ))}
       </div>
-      <button className="ver_carrinho">
-        <span data-testid="checkout-bottom-btn">
-          Ver carrinho
-        </span>
-        <span data-testid="checkout-bottom-btn-value">
-          {total}
-        </span>
-      </button>
+      {buttonRender(total, hist)}
     </div>
   );
 };

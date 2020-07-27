@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './style.css';
-import { useEffect } from 'react';
 
 const add = (count, setCount, setCarShop, product, setUpdateCarShop) => {
   const { id, price } = product;
@@ -23,6 +22,12 @@ const remove = (count, setCount, setCarShop, product, setUpdateCarShop) => {
       currCar[id] = { price, count: curr };
       return currCar;
     });
+  }
+  if (curr === 0) {
+    const json = JSON.parse(localStorage.getItem('products'));
+    delete json[id];
+    localStorage.setItem('products', JSON.stringify(json));
+    return;
   }
   setUpdateCarShop(curr => !curr);
 };
@@ -51,7 +56,7 @@ const Product = (props) => {
   const { id, name, price, volume } = product;
 
   useEffect(() => {
-    const products = JSON.parse(localStorage.getItem('products'));
+    const products = JSON.parse(localStorage.getItem('products') || {});
     if (products[id]) { setCount(products[id].count); }
   }, []);
 
