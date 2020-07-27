@@ -1,38 +1,36 @@
-function handleConfirm({ value, setConfirm, password }) {
-  const validFormat = value.match(/^.*(.*\d){6,}/) ? true : false;
+import validate from "./validate";
+
+const handleConfirm = ({ value, password, callback }) => {
+  const validFormat = value.match(/^.*(.*\d){6,}/);
   const matchPassword = value === password;
-  const valid = validFormat && matchPassword;
 
-  setConfirm({ valid, value });
-}
+  if (validFormat && matchPassword) {
+    callback({ confirm: value, error: null });
+  } else {
+    callback({
+      confirm: value,
+      error: "Don't match password and/or invalid format",
+    });
+  }
+};
 
-function handleEmail({ value, setEmail }) {
-  const valid = value.match(/\S+@\S+\.\S+/) ? true : false;
+const handleField = ({ field, value, callback }) => {
+  const error = validate({ field, value });
 
-  setEmail({ valid, value });
-}
+  if (!error) {
+    callback({ [field]: value, error: null });
+  } else {
+    callback({ [field]: value, error: error.message });
+  }
+};
 
-function handleName({ value, setName }) {
-  const validFormat = value.match(/^[^\s][a-zA-Z\s]*[a-zA-z]$/) ? true : false;
-  const validLenght = value.length >= 12;
-  const valid = validFormat && validLenght;
-
-  setName({ valid, value });
-}
-
-function handlePassword({ value, setPassword }) {
-  const valid = value.match(/^.*(.*\d){6,}/) ? true : false;
-
-  setPassword({ valid, value });
-}
-
-function handleRole({ value, setRole }) {
+const handleRole = ({ value, setRole }) => {
   if (value) {
     setRole("admin");
   } else {
     setRole("client");
   }
-}
+};
 
 function handleSubmit({ event, body, history }) {
   event.preventDefault();
@@ -54,11 +52,4 @@ function setLocalStorage(email) {
   );
 }
 
-export {
-  handleConfirm,
-  handleEmail,
-  handleName,
-  handlePassword,
-  handleRole,
-  handleSubmit,
-};
+export { handleConfirm, handleField, handleRole, handleSubmit };
