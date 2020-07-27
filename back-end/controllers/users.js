@@ -1,14 +1,14 @@
-const Boom = require('@hapi/boom');
+const Boom = require("@hapi/boom");
 
-const { users } = require('../services');
+const { users } = require("../services");
 
 const handleError = (error) => {
-  if (error === 'user-not-found') {
-    throw Boom.badRequest('User not exists');
+  if (error === "user-not-found") {
+    throw Boom.badRequest("User not exists");
   }
 
-  if (error === 'wrong-password') {
-    throw Boom.badRequest('Wrong Password');
+  if (error === "wrong-password") {
+    throw Boom.badRequest("Wrong Password");
   }
 };
 
