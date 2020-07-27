@@ -41,13 +41,10 @@ const Products = () => {
   const [updateCarShop, setUpdateCarShop] = useState(false);
   const [total, setTotal] = useState(0);
   const hist = useHistory();
-  const obj = { product, setCarShop, setUpdateCarShop };
+  const obj = { setCarShop, setUpdateCarShop };
 
   useEffect(async () => {
-    const api = axios.create({
-      baseURL: 'https://localhost:3001/products',
-    });
-    console.log(api);
+    const api = axios.create({ baseURL: 'https://localhost:3001/products' });
   }, []);
 
   useEffect(() => {
@@ -60,7 +57,7 @@ const Products = () => {
       <Header title="Trybeer" />
       <div className="products">
         {products.map((product, index) => (
-          <Product key={product.id} index={index} obj={obj} />
+          <Product key={product.id} index={index} obj={obj} product={product} />
         ))}
       </div>
       {buttonRender(total, hist)}

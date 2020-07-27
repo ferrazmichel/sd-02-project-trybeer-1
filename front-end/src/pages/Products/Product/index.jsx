@@ -52,8 +52,8 @@ const counter = (count, setCount, setCarShop, product, setUpdateCarShop, index) 
 
 const Product = (props) => {
   const [count, setCount] = useState(0);
-  const { index, obj } = props;
-  const { product, setCarShop, setUpdateCarShop } = obj;
+  const { index, obj, product } = props;
+  const { setCarShop, setUpdateCarShop } = obj;
   const { id, name, price, volume } = product;
 
   useEffect(() => {
