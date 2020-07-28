@@ -1,8 +1,36 @@
 const { users } = require('../models');
 
 const {
-  bcrypt: { createHash },
+  bcrypt: { checkString, createHash },
+  jsonWebToken: { signToken },
 } = require('./utils');
+
+const login = async (body) => {
+  try {
+    const user = await users.find({ key: 'email', value: body.email });
+
+    if (!user) {
+      return { error: 'userNotFound', token: null };
+    }
+
+    const { password, ...userWithoutPassword } = user;
+
+    const isCorrectPassword = await checkString({
+      string: body.password,
+      hash: password,
+    });
+
+    if (!isCorrectPassword) {
+      return { error: 'wrongPassowrd', token: null };
+    }
+
+    const token = signToken(userWithoutPassword);
+
+    return { error: null, token };
+  } catch (err) {
+    throw err;
+  }
+};
 
 const register = async (body) => {
   try {
@@ -23,5 +51,6 @@ const register = async (body) => {
 };
 
 module.exports = {
+  login,
   register,
 };

@@ -42,6 +42,11 @@ const role = Joi.string().required().messages({
   'string.empty': 'Role is not allowed to be empty',
 });
 
+const loginSchema = Joi.object({
+  email,
+  password,
+}).unknown(false);
+
 const registerSchema = Joi.object({
   confirm,
   email,
@@ -51,5 +56,6 @@ const registerSchema = Joi.object({
 }).unknown(false);
 
 module.exports = {
+  loginSchema,
   registerSchema,
 };

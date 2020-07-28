@@ -6,6 +6,22 @@ const handleError = {
   existUser: () => {
     throw Boom.badRequest('Email already registered');
   },
+  userNotFound: () => {
+    throw Boom.badRequest('User not exists');
+  },
+  wrongPassowrd: () => {
+    throw Boom.badRequest('Wrong Password');
+  },
+};
+
+const login = async (req, res) => {
+  const { error, token } = await users.login(req.body);
+
+  if (error) {
+    handleError[error]();
+  }
+
+  res.status(200).json({ token, error: null });
 };
 
 const register = async (req, res) => {
@@ -19,5 +35,6 @@ const register = async (req, res) => {
 };
 
 module.exports = {
+  login,
   register,
 };
