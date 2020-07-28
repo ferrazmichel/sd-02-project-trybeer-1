@@ -35,16 +35,15 @@ const render = ({ history, products, setUpdate, total, update }) => {
     <React.Fragment>
       <Header title="Trybeer" />
       <div className="products">
-        {products &&
-          products.map((product, index) => (
-            <Product
-              index={index}
-              key={product.id}
-              product={product}
-              setUpdate={setUpdate}
-              update={update}
-            />
-          ))}
+        {products.map((product, index) => (
+          <Product
+            index={index}
+            key={product.id}
+            product={product}
+            setUpdate={setUpdate}
+            update={update}
+          />
+        ))}
       </div>
       {buttonRender({ total, history })}
     </React.Fragment>
@@ -52,7 +51,7 @@ const render = ({ history, products, setUpdate, total, update }) => {
 };
 
 const Products = () => {
-  // const [products, setProducts] = useState(null);
+  // const [products, setProducts] = useState([]);
 
   const [total, setTotal] = useState(0);
 
@@ -61,8 +60,7 @@ const Products = () => {
   const history = useHistory();
 
   useEffect(() => {
-    // const data = await getProducts();
-    // data && setProducts(data);
+    // setProducts(await getProducts());
     setTotal(calculeTotal());
   }, [update]);
 
