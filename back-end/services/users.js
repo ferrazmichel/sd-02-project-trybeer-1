@@ -9,7 +9,7 @@ const register = async (body) => {
     const user = await users.find({ key: 'email', value: body.email });
 
     if (user) {
-      return { error: 'exist-user' };
+      return { error: 'existUser' };
     }
 
     const hash = await createHash(body.password);
