@@ -1,32 +1,43 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './style.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./style.css";
 
 const onclickHandler = (setSideShow) => {
-  setSideShow((curr) => !curr);
-};
-
-const logout = () => {
-  console.log('logout');
+  setSideShow((currentState) => !currentState);
 };
 
 const sidebar = () => {
   return (
-    <div className="lateral" ref={sidebar}>
+    <div className="lateral">
       <nav className="sidebar">
         <ul>
-          <li><Link to="/products" data-testid="side-menu-item-products">Produtos</Link></li>
-          <li><Link to="/orders" data-testid="side-menu-item-my-orders">Meus pedidos</Link></li>
-          <li><Link to="/profile" data-testid="side-menu-item-my-profile">Meus perfil</Link></li>
-          <li><Link to="/login" onClick={() => logout()} data-testid="side-menu-item-logout">Sair</Link></li>
+          <li>
+            <Link to="/products" data-testid="side-menu-item-products">
+              Produtos
+            </Link>
+          </li>
+          <li>
+            <Link to="/orders" data-testid="side-menu-item-my-orders">
+              Meus pedidos
+            </Link>
+          </li>
+          <li>
+            <Link to="/profile" data-testid="side-menu-item-my-profile">
+              Meus perfil
+            </Link>
+          </li>
+          <li>
+            <Link to="/logout" data-testid="side-menu-item-logout">
+              Sair
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>
   );
 };
 
-const Header = (props) => {
-  const { title } = props;
+const Header = ({ title }) => {
   const [sideShow, setSideShow] = useState(false);
 
   return (
@@ -34,17 +45,15 @@ const Header = (props) => {
       {sideShow && sidebar()}
       <div className="header_comp">
         <button
-          type="button"
+          data-testid="top-button-header"
           className="menu"
-          data-testid="top-hamburguer"
+          type="button"
           onClick={() => onclickHandler(setSideShow)}
         >
-          <span className="material-icons">
-            menu
-          </span>
+          <span className="material-icons">menu</span>
         </button>
         <div className="title">
-        <p data-testid="top-title">{title}</p>
+          <h1 data-testid="top-title">{title}</h1>
         </div>
       </div>
     </React.Fragment>
