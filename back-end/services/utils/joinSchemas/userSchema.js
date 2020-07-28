@@ -1,5 +1,14 @@
 const Joi = require('@hapi/joi');
 
+<<<<<<< HEAD
+=======
+const confirm = Joi.string().valid(Joi.ref('password')).required().messages({
+  'any.only': 'Confirm password and password must match',
+  'string.base': 'Confirm must be a type of string',
+  'string.empty': 'Confirm is not allowed to be empty',
+});
+
+>>>>>>> master
 const email = Joi.string().email().required().messages({
   'any.required': 'Email is required',
   'string.base': 'Email must be a type of string',
@@ -7,6 +16,22 @@ const email = Joi.string().email().required().messages({
   'string.empty': 'Email is not allowed to be empty',
 });
 
+<<<<<<< HEAD
+=======
+const name = Joi.string()
+  .regex(/^[^\s][a-zA-Z\s]*[a-zA-z]$/)
+  .min(12)
+  .required()
+  .messages({
+    'any.required': 'Name is required',
+    'string.base': 'Name must be a type of string',
+    'string.empty': 'Name is not allowed to be empty',
+    'string.min': 'Name length must be at least 12 characters long',
+    'string.pattern.base':
+      'Name must not contain any numbers, special characters or space in the start or in the end',
+  });
+
+>>>>>>> master
 const password = Joi.string()
   .pattern(/^.*(.*\d){6,}/)
   .required()
@@ -17,6 +42,7 @@ const password = Joi.string()
     'string.pattern.base': 'Password must contain at least 6 numbers',
   });
 
+<<<<<<< HEAD
 const loginSchema = Joi.object({
   email,
   password,
@@ -24,4 +50,22 @@ const loginSchema = Joi.object({
 
 module.exports = {
   loginSchema,
+=======
+const role = Joi.string().required().messages({
+  'any.required': 'Role is required',
+  'string.base': 'Role must be a type of string',
+  'string.empty': 'Role is not allowed to be empty',
+});
+
+const registerSchema = Joi.object({
+  confirm,
+  email,
+  name,
+  password,
+  role,
+}).unknown(false);
+
+module.exports = {
+  registerSchema,
+>>>>>>> master
 };

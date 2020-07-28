@@ -51,17 +51,17 @@ Para que seu projeto seja corretamente avaliado, siga as orientações a seguir:
 
 - Sua aplicação deve ter, no mínimo, os produtos abaixo cadastrados. O arquivo `images.tar.gz`, na raiz do projeto, contém imagens para estes produtos.
 
-  - Skol Lata 250ml, R$ 2.20;
-  - Heineken 600ml, R$ 7.50;
-  - Antarctica Pilsen 300ml, R$ 2.49;
-  - Brahma 600ml, R$ 7.50;
-  - Skol 269ml, R$ 2.19;
-  - Skol Beats Senses 313ml, R$ 4.49;
-  - Becks 330ml, R$ 4.99;
-  - Brahma Duplo Malte 350ml, R$ 2.79;
-  - Becks 600ml, R$ 8.89;
-  - Skol Beats Senses 269ml, R$ 3.57;
-  - Stella Artois 275ml, R$ 3.49.
+  - Skol Lata 250ml, R\$ 2.20;
+  - Heineken 600ml, R\$ 7.50;
+  - Antarctica Pilsen 300ml, R\$ 2.49;
+  - Brahma 600ml, R\$ 7.50;
+  - Skol 269ml, R\$ 2.19;
+  - Skol Beats Senses 313ml, R\$ 4.49;
+  - Becks 330ml, R\$ 4.99;
+  - Brahma Duplo Malte 350ml, R\$ 2.79;
+  - Becks 600ml, R\$ 8.89;
+  - Skol Beats Senses 269ml, R\$ 3.57;
+  - Stella Artois 275ml, R\$ 3.49.
 
 - O front-end deve ser iniciado com `npm start` na pasta `front-end` e escutar a porta `3000`. A API deve ser iniciada com `npm start` dentro da pasta `back-end` e escutar a porta `3001`.
 
@@ -218,7 +218,7 @@ Esta tela possui o nome `Cliente - Produtos` no protótipo.
 
 41. Ao clicar no botão `-`, a quantidade do produto deve diminuir em 1, limitado a 0;
 
-43. Caso a pessoa atualize o browser, o carrinho deve ser mantido;
+42. Caso a pessoa atualize o browser, o carrinho deve ser mantido;
 
 43. O preço unitário deve seguir o padrão `R$ 00,00`;
 
@@ -250,7 +250,9 @@ Esta tela possui o nome `Cliente - Checkout` no protótipo.
 
 52. Caso a pessoa atualize o browser, o carrinho deve ser mantido;
 
-54. Deve ter uma lista dos produtos selecionados com a seguinte estrutura: `quantidade do produto -- nome do produto -- valor total do produto`, sendo o valor total calculado por **quantidade * preço unitário**;
+53. Mostre o `número do pedido` e sua `data de realização`. Para a data de realização do pedido, mostre apenas o dia e o mês;
+
+54. Deve ter uma lista dos produtos selecionados com a seguinte estrutura: `quantidade do produto -- nome do produto -- valor total do produto`, sendo o valor total calculado por **quantidade \* preço unitário**;
 
 55. Ao lado de cada produto deve haver um botão que, quando clicado, exclui este produto do carrinho;
 
@@ -292,7 +294,7 @@ Esta tela possui o nome `Cliente - Detalhes de Pedido` no protótipo.
 
 70. Mostre o `número do pedido` e a `data de realização`. Para a data de realização do pedido, mostre apenas o dia e o mês;
 
-71. Deve ter uma lista dos produtos selecionados com a seguinte estrutura: `quantidade do produto -- nome do produto -- valor total do produto`. Sendo o valor total calculado por **quantidade * preço unitário**;
+71. Deve ter uma lista dos produtos selecionados com a seguinte estrutura: `quantidade do produto -- nome do produto -- valor total do produto`. Sendo o valor total calculado por **quantidade \* preço unitário**;
 
 72. Abaixo da lista, mostre o `valor total do pedido`. O valor total do pedido é calculado a partir da **soma de todos os valores totais dos produtos**.
 
@@ -366,7 +368,7 @@ Essa página corresponde às páginas `Admin - Detalhes de Pedido - Pendente` e 
 
     - Valor total do produto.
 
-94. O `preço total` do produto é calculado usando **quantidade * preço unitário**;
+94. O `preço total` do produto é calculado usando **quantidade \* preço unitário**;
 
 95. Mostre também o `valor total do pedido`. O valor total do pedido é calculado a partir da **soma de todos os valores totais dos produtos**;
 
@@ -471,7 +473,7 @@ Se ainda houver alguma dúvida sobre como entregar seu projeto, [aqui tem um vid
 
 ### REVISANDO UM PULL REQUEST
 
-⚠⚠⚠
+⚠⚠ ⚠
 
 À medida que você e os outros alunos forem entregando os projetos, vocês serão alertados **via Slack** para também fazer a revisão dos _Pull Requests_ dos seus colegas. Fiquem atentos às mensagens do _"Pull Reminders"_ no _Slack_!
 

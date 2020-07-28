@@ -20,6 +20,16 @@ const find = async ({ key, value }) => {
   return { id, name, email, password, role };
 };
 
+const register = async ({ name, email, password, role }) =>
+  connection().then((db) =>
+    db
+      .getTable('users')
+      .insert(['name', 'email', 'password', 'role'])
+      .values(name, email, password, role)
+      .execute(),
+  );
+
 module.exports = {
   find,
+  register,
 };
