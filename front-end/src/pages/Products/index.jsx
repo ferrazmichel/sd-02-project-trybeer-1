@@ -36,6 +36,26 @@ const buttonRender = (total, hist) => {
   )
 };
 
+const render = (products, setCarShop, setUpdateCarShop, total, hist) => {
+  return (
+    <React.Fragment>
+      <Header title="Trybeer" />
+      <div className="products">
+        {products.map((product, index) => (
+          <Product
+            key={product.id}
+            index={index}
+            product={product}
+            setCarShop={setCarShop}
+            setUpdateCarShop={setUpdateCarShop}
+          />
+          ))}
+      </div>
+      {buttonRender(total, hist)}
+    </React.Fragment>
+  )
+}
+
 const fetch = async (baseURL) =>
   axios.create({ baseURL });
 
@@ -44,7 +64,6 @@ const Products = () => {
   const [updateCarShop, setUpdateCarShop] = useState(false);
   const [total, setTotal] = useState(0);
   const hist = useHistory();
-  const obj = { setCarShop, setUpdateCarShop };
 
   useEffect(() => {
     async function fetchMyAPI() {
@@ -61,13 +80,7 @@ const Products = () => {
 
   return (
     <div className="products_page">
-      <Header title="Trybeer" />
-      <div className="products">
-        {products.map((product, index) => (
-          <Product key={product.id} index={index} obj={obj} product={product} />
-        ))}
-      </div>
-      {buttonRender(total, hist)}
+      {render(products, setCarShop, setUpdateCarShop, total, hist)}
     </div>
   );
 };
