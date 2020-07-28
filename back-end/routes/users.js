@@ -1,13 +1,17 @@
 const express = require('express');
+
+const rescue = require('express-rescue');
+
+const { users } = require('../controllers');
+
 const {
-  users,
-} = require('../controllers');
+  userSchema: { registerSchema },
+} = require('../services/utils/joinSchemas');
+
+const { validate } = require('../middlewares');
 
 const router = express.Router();
 
-router
-  .route('/')
-  .get((req, res) => res.send('test'))
-  .post(users.login);
+router.post('/register', validate(registerSchema), rescue(users.register));
 
 module.exports = router;

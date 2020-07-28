@@ -1,14 +1,27 @@
 require('dotenv').config();
+
 const express = require('express');
+
 const bodyParser = require('body-parser');
-const routes = require('./routes');
-// const middlewares = require('./middlewares');
+
+const { error } = require('./middlewares');
+
+const { users } = require('./routes');
 
 const app = express();
+
+app.use(express.json());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(bodyParser.json());
 
-app.use('/users', routes.users);
+app.use('/users', users);
 
-// app.use(middlewares.error);
+app.use(error);
 
-app.listen(3000, () => console.log('Listening on 5000'));
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Ouvindo a porta ${PORT}`);
+});
