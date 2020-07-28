@@ -10,7 +10,7 @@ const login = async (body) => {
     const user = await users.find({ key: 'email', value: body.email });
 
     if (!user) {
-      return { error: 'user-not-found', token: null };
+      return { error: 'userNotFound', token: null };
     }
 
     const { password, ...userWithoutPassword } = user;
@@ -21,7 +21,7 @@ const login = async (body) => {
     });
 
     if (!isCorrectPassword) {
-      return { error: 'wrong-password', token: null };
+      return { error: 'wrongPassowrd', token: null };
     }
 
     const token = signToken(userWithoutPassword);
