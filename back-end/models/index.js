@@ -3,5 +3,5 @@ const products = require('./products');
 
 module.exports = {
   users,
-  products
+  products,
 };
