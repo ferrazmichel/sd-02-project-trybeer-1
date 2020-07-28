@@ -11,4 +11,6 @@ app.use('/users', routes.users);
 
 // app.use(middlewares.error);
 
-app.listen(5000, () => console.log('Listening on 5000'));
+const Port = 3001;
+
+app.listen(Port, () => console.log(`Listening on ${Port}`));
