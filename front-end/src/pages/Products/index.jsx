@@ -1,86 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
-
-import Header from '../../components/Header';
-import Product from './Product';
-import './style.css';
-
-const calculeTotal = (carShop) =>
-  Object.keys(carShop)
-  .reduce((acc, id) => acc + carShop[id].price * carShop[id].count, 0)
-  .toFixed(2);
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import Header from "../../components/Header";
+import Product from "./Product";
+// import { getProducts } from "./service";
+import "./style.css";
 
 const products = [
-  {id:'1', name: 'cerva1', price: 2.20, volume: 500 },
-  {id:'2', name: 'cerva2', price: 2.20, volume: 500 },
-  {id:'3', name: 'cerva3', price: 2.20, volume: 500 },
-  {id:'4', name: 'cerva4', price: 2.20, volume: 500 },
-  {id:'5', name: 'cerva5', price: 2.20, volume: 500 }
+  { id: "1", name: "cerva1", price: 2.2, volume: 500 },
+  { id: "2", name: "cerva2", price: 2.2, volume: 500 },
+  { id: "3", name: "cerva3", price: 2.2, volume: 500 },
+  { id: "4", name: "cerva4", price: 2.2, volume: 500 },
+  { id: "5", name: "cerva5", price: 2.2, volume: 500 },
 ];
 
-const checkout = (hist) => {
-  hist.push('/checkout');
+const calculeTotal = () => {
+  const products = JSON.parse(localStorage.getItem("products") || "{}");
+
+  return Object.keys(products)
+    .reduce((acc, id) => acc + products[id].price * products[id].count, 0)
+    .toFixed(2);
 };
 
-const buttonRender = (total, hist) => {
+const buttonRender = ({ total, history }) => {
   return (
-    <button className="ver_carrinho" onClick={() => checkout(hist)}>
-      <span data-testid="checkout-bottom-btn">
-        Ver carrinho
-      </span>
-      <span data-testid="checkout-bottom-btn-value">
-        {total}
-      </span>
+    <button className="ver_carrinho" onClick={() => history.push("/checkout")}>
+      <span data-testid="checkout-bottom-btn">Ver carrinho</span>
+      <span data-testid="checkout-bottom-btn-value">{total}</span>
     </button>
-  )
+  );
 };
 
-const render = (products, setCarShop, setUpdateCarShop, total, hist) => {
+const render = ({ history, products, setUpdate, total, update }) => {
   return (
     <React.Fragment>
       <Header title="Trybeer" />
       <div className="products">
-        {products.map((product, index) => (
-          <Product
-            key={product.id}
-            index={index}
-            product={product}
-            setCarShop={setCarShop}
-            setUpdateCarShop={setUpdateCarShop}
-          />
+        {products &&
+          products.map((product, index) => (
+            <Product
+              index={index}
+              key={product.id}
+              product={product}
+              setUpdate={setUpdate}
+              update={update}
+            />
           ))}
       </div>
-      {buttonRender(total, hist)}
+      {buttonRender({ total, history })}
     </React.Fragment>
-  )
-}
-
-const fetch = async (baseURL) =>
-  axios.create({ baseURL });
+  );
+};
 
 const Products = () => {
-  const [carShop, setCarShop] = useState(JSON.parse(localStorage.getItem('products')) || {});
-  const [updateCarShop, setUpdateCarShop] = useState(false);
+  // const [products, setProducts] = useState(null);
+
   const [total, setTotal] = useState(0);
-  const hist = useHistory();
+
+  const [update, setUpdate] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
-    async function fetchMyAPI() {
-      await fetch('https://localhost:3001/products');
-    }
-
-    fetchMyAPI();
-  }, []);
-
-  useEffect(() => {
-    setTotal(calculeTotal(carShop));
-    localStorage.setItem('products', JSON.stringify(carShop));
-  }, [updateCarShop]);
+    // const data = await getProducts();
+    // data && setProducts(data);
+    setTotal(calculeTotal());
+  }, [update]);
 
   return (
     <div className="products_page">
-      {render(products, setCarShop, setUpdateCarShop, total, hist)}
+      {render({ history, products, setUpdate, total })}
     </div>
   );
 };

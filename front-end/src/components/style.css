@@ -28,7 +28,7 @@
   width: 100%;
 }
 
-.header_comp > .title > p {
+.header_comp > .title > h1 {
   color: white;
   font-size: 2em;
   height: 60%;
@@ -46,11 +46,18 @@
   z-index: 2;
 }
 
-.lateral > .sidebar , .lateral > .sidebar > ul {
+.lateral > .sidebar,
+.lateral > .sidebar > ul {
   height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
+}
+
+.lateral > .sidebar a {
+  color: white;
+  font-size: 1.2em;
+  text-decoration: none;
 }
 
 .lateral > .sidebar > ul {
@@ -59,7 +66,7 @@
 
 .lateral > .sidebar > ul > li {
   align-items: center;
-  border: solid  white 1px;
+  border: solid white 1px;
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
@@ -69,8 +76,6 @@
   width: 100%;
 }
 
-.lateral > .sidebar a {
-  color: white;
-  font-size: 1.2em;
-  text-decoration: none;
+.lateral > .sidebar > ul > li:hover {
+  background-color: grey;
 }
