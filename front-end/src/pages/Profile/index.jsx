@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { getData, putData } from '../../services/Request';
 import './style.css';
+import Header from '../../components/Header';
 
 const URL = 'http://localhost:3001/users/profile';
 
@@ -63,7 +64,7 @@ const Profile = () => {
   const [email, setEmail] = useState('');
   const [disable, setDisable] = useState(true);
   const [error, setError] = useState('');
-
+  
   useEffect(() => {
     const request = async () => {
       const { data } = await getData(URL);
@@ -80,10 +81,12 @@ const Profile = () => {
   };
 
   return (
-    <div> {error
-      ? <h2>{error}</h2>
-      : renderForm(handleSubmit, setName, setDisable, name, email, disable)
-    }
+    <div>
+      <Header title="Profile" />
+      {error
+        ? <h2>{error}</h2>
+        : renderForm(handleSubmit, setName, setDisable, name, email, disable)
+      }
     </div>
   );
 };
