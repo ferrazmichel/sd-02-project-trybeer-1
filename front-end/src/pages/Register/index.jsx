@@ -149,8 +149,8 @@ function Register() {
           password.error ||
           !password.value
         }
-        onClick={(event) =>
-          handleSubmit({
+        onClick={async (event) =>
+          await handleSubmit({
             event,
             body: {
               confirm: confirm.value,
