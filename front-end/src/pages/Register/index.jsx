@@ -2,41 +2,13 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import getField from "../../components/getField";
+import { handleField, handleSubmit } from '../commonService';
 import {
   handleConfirm,
-  handleField,
   handleRole,
-  handleSubmit,
 } from "./service";
 import "./register.css";
-
-const getField = ({ state, field, callback }) => (
-  <Form.Group className="box box60-80-90 flex-column">
-    <Form.Control
-      data-testid="name-input"
-      isInvalid={state.error}
-      isValid={!state.error && state.value}
-      onChange={(e) =>
-        handleField({
-          field,
-          value: e.target.value,
-          callback,
-        })
-      }
-      placeholder={field}
-      required="required"
-      type="string"
-    />
-    <Form.Control.Feedback
-      as="p"
-      data-testid="name-invalid"
-      style={{ display: !state.error ? "none" : "block" }}
-      type="invalid"
-    >
-      {state.error}
-    </Form.Control.Feedback>
-  </Form.Group>
-);
 
 const passwordField = ({ password, confirm, setPassword, setConfirm }) => (
   <Form.Group className="box box60-80-90 flex-column">
