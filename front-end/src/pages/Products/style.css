@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.products_page > .products > p {
+  width: 100%;
+}
+
 .products_page > .products {
   display: grid;
   grid-template-columns: 50% 50%;

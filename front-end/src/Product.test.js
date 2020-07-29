@@ -1,46 +1,33 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
-import { render, cleanup, fireEvent, wait } from '@testing-library/react';
+import renderWithRouter from './services/renderWithRouter';
+import { fireEvent, wait, cleanup } from '@testing-library/react';
 import axios from 'axios';
 
 import { Provider } from './context';
 import Products from './pages/Products';
 import { productsMock } from './services/mock';
 
-jest.mock('axios');
-
-axios.get
-  .mockImplementationOnce(() => Promise.resolve({
-    status: 200,
-    ok: true,
-    json: () => {
-      return Promise.resolve(productsMock)
-    },
-  }));
 
 beforeEach(() => {
+  cleanup();
   localStorage.clear();
 });
 
 afterEach(() => {
-  cleanup;
+  cleanup();
   localStorage.clear();
 });
 
 describe('Products page', () => {
   test.skip('page render', async () => {
-    const history = createMemoryHistory();
-    const { getByTestId } = render(
+    const { getByTestId } = act(() => render(
       <Provider>
-        <Router history={history}>
-          <Products />
-        </Router>
+        <Products />
       </Provider>
-    );
+    ));
 
-    await wait();
-    axios.get.mockImplementationOnce(() => Promise.resolve(data)).then(console);
+    // await wait();
+    // axios.get.mockImplementationOnce(() => Promise.resolve(data)).then(console);
 
     for (let i = 0; i < productsMock.length; i++) {
       const { id, name, price, volume, img } = productsMock[0];
@@ -61,13 +48,10 @@ describe('Products page', () => {
   });
 
   test('render Header', () => {
-    const history = createMemoryHistory();
-    const { getByTestId } = render(
+    const { getByTestId, history } = renderWithRouter(
       <Provider>
-        <Router history={history}>
-          <Products />
-        </Router>
-      </Provider>
+        <Products />
+      </Provider>,
     );
 
     expect(getByTestId('top-hamburguer').tagName).toBe('BUTTON');

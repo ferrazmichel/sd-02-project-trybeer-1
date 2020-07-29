@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+
+import Message from '../../components/Message';
 import Header from "../../components/Header";
 import Product from "./Product";
 import { getProducts } from "./service";
@@ -50,15 +52,21 @@ const Products = () => {
 
   const [update, setUpdate] = useState(false);
 
+  const [error, setError] = useState();
+
   const history = useHistory();
 
   useEffect(() => {
-    getProducts().then((data) => setProducts(data));
+    getProducts().then(({ data, error }) => {
+      setProducts(data);
+      setError(error);
+    });
     setTotal(calculeTotal());
   }, [update]);
 
   return (
     <div className="products_page">
+      {error && <Message  message={error} type="ALERT" inifinity />}
       {render({ history, products, setUpdate, total, update })}
     </div>
   );
