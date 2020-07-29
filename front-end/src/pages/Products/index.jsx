@@ -55,7 +55,6 @@ const Products = () => {
 
   useEffect(() => {
     getProducts().then((res) => {
-      console.log(res)
       setProducts(res);
     })
     setTotal(calculeTotal());

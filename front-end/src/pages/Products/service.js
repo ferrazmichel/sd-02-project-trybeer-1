@@ -7,7 +7,7 @@ const getProducts = async () => {
   if (data.error) {
     return [];
   }
-  return data.products;
+  return data.json().products;
 };
 
 export { getProducts };
