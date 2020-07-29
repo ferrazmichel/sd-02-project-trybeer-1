@@ -3,7 +3,7 @@ const mysqlx = require('@mysql/xdevapi');
 const getSession = () =>
   mysqlx.getSession({
     user: 'root',
-    password: process.env.DB_PASSWORD,
+    password: process.env.DB_PASSWORD || '',
     host: 'localhost',
     port: 33060,
     schema: process.env.DB_SCHEMA,

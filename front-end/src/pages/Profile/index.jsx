@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import { nameAndEmail, postName } from './services';
+import { getData, putData } from '../../services/Request';
 import './style.css';
+
+const URL = 'http://localhost:3001/users/profile';
 
 const renderButton = (disable) => (
   <div className="prof_contain_submit profile_font">
@@ -23,7 +25,7 @@ const renderInputName = (setName, setDisable, name) => (
       type="text"
       onChange={({ target }) => {
         setName(target.value);
-        setDisable(false);
+        setDisable(!/^([a-z ]{12,})+$/i.test(target.value));
       }}
       value={name}
       className="profile_input"
@@ -46,6 +48,16 @@ const renderInputEmail = (email) => (
   </div>
 );
 
+const renderForm = (handleSubmit, setName, setDisable, name, email, disable) => (
+  <form className="profile_form" onSubmit={(e) => handleSubmit(e)}>
+    <div className="profile_container_all">
+      {renderInputName(setName, setDisable, name)}
+      {renderInputEmail(email)}
+    </div>
+    {renderButton(disable)}
+  </form>
+);
+
 const Profile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -54,7 +66,7 @@ const Profile = () => {
 
   useEffect(() => {
     const request = async () => {
-      const { data } = await nameAndEmail();
+      const { data } = await getData(URL);
       if (data.error) return setError(data.error);
       setName(data.name);
       setEmail(data.email);
@@ -64,20 +76,14 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    return postName({ name, email }).catch((error) => setError);
+    return putData(URL, { name, email }).catch((error) => setError(error));
   };
 
   return (
-    <div>
-      {error ? <h2>{error.message}</h2> :
-        <form className="profile_form" onSubmit={(e) => handleSubmit(e)}>
-          <div className="profile_container_all">
-            {renderInputName(setName, setDisable, name)}
-            {renderInputEmail(email)}
-          </div>
-          {renderButton(disable)}
-        </form>
-      }
+    <div> {error
+      ? <h2>{error}</h2>
+      : renderForm(handleSubmit, setName, setDisable, name, email, disable)
+    }
     </div>
   );
 };

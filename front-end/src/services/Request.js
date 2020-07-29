@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const headers = {
-  Authentication: localStorage.getItem("token"),
-};
+const putData = async (endpoint, { name, email }) =>
+  axios.put(endpoint, { name, email }, { headers: { Authorization: localStorage.getItem("token") } })
+    .catch(({ message }) => ({ error: message }));
 
 const getData = async (endpoint) =>
-  axios.get(endpoint, headers).catch(({ message }) => ({ error: message }));
+  axios.get(endpoint, { headers: { Authorization: localStorage.getItem("token") } })
+    .catch(({ message }) => ({ error: message }));
 
-export { getData };
+export { getData, putData };

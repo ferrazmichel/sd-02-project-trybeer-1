@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/users', users);
-app.use('/profile', profile);
 
 app.use(error);
 
