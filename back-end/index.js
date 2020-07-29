@@ -1,16 +1,16 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const path = require("path");
+const cors = require('cors');
 
-const express = require("express");
+const express = require('express');
 
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 
-const cors = require("cors");
+const path = require('path');
 
-const { error } = require("./middlewares");
+const { error } = require('./middlewares');
 
-const { users, products } = require("./routes");
+const { products, users } = require('./routes');
 
 const app = express();
 
@@ -22,11 +22,11 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.use("/users", users);
+app.use('/images', express.static(path.join(__dirname, '/images')));
 
-app.use("/products", products);
+app.use('/users', users);
 
-app.use("/images", express.static(path.join(__dirname, "uploads")));
+app.use('/products', products);
 
 app.use(error);
 

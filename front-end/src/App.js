@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/products" component={Products} />
+          <PrivateRoute exact path="/products" component={Products} />
           <PrivateRoute path="/profile" component={Profile} />
           <PrivateRoute path="/register" component={Register} />
         </Switch>
