@@ -5,8 +5,7 @@ const rescue = require('express-rescue');
 const { users } = require('../controllers');
 
 const {
-  userSchema: { loginSchema },
-  userSchema: { registerSchema },
+  userSchema: { loginSchema, registerSchema },
 } = require('../services/utils/joinSchemas');
 
 const { validate } = require('../middlewares');
