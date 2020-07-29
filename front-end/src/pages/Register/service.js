@@ -1,4 +1,4 @@
-import validate from "./validate";
+import validate from "../../services/validate";
 import { postData } from "../../services/Request";
 
 const handleConfirm = ({ value, password, callback }) => {

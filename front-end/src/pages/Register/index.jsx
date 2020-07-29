@@ -10,58 +10,30 @@ import {
 } from "./service";
 import "./register.css";
 
-const nameField = ({ name, setName }) => (
+const getField = ({ state, field, callback }) => (
   <Form.Group className="box box60-80-90 flex-column">
     <Form.Control
       data-testid="name-input"
-      isInvalid={name.error}
-      isValid={!name.error && name.value}
+      isInvalid={state.error}
+      isValid={!state.error && state.value}
       onChange={(e) =>
         handleField({
-          field: "name",
+          field,
           value: e.target.value,
-          callback: setName,
+          callback,
         })
       }
-      placeholder="name"
+      placeholder={field}
       required="required"
       type="string"
     />
     <Form.Control.Feedback
       as="p"
       data-testid="name-invalid"
-      style={{ display: !name.error ? "none" : "block" }}
+      style={{ display: !state.error ? "none" : "block" }}
       type="invalid"
     >
-      {name.error}
-    </Form.Control.Feedback>
-  </Form.Group>
-);
-
-const emailField = ({ email, setEmail }) => (
-  <Form.Group className="box box60-80-90 flex-column">
-    <Form.Control
-      data-testid="email-input"
-      isInvalid={email.error}
-      isValid={!email.error && email.value}
-      onChange={(e) =>
-        handleField({
-          field: "email",
-          value: e.target.value,
-          callback: setEmail,
-        })
-      }
-      placeholder="e-mail"
-      required="required"
-      type="email"
-    />
-    <Form.Control.Feedback
-      as="p"
-      data-testid="email-invalid"
-      style={{ display: !email.error ? "none" : "block" }}
-      type="invalid"
-    >
-      {email.error}
+      {state.error}
     </Form.Control.Feedback>
   </Form.Group>
 );
@@ -139,6 +111,40 @@ const roleField = ({ setRole }) => (
   </Form.Group>
 );
 
+const buttonSubmit = ({ confirm, email, name, password, role, history }) => (
+  <Button
+    className="box box40"
+    data-testid="register-submit-btn"
+    disabled={
+      confirm.error ||
+      !confirm.value ||
+      email.error ||
+      !email.value ||
+      name.error ||
+      !name.value ||
+      password.error ||
+      !password.value
+    }
+    onClick={async (event) =>
+      await handleSubmit({
+        event,
+        body: {
+          confirm: confirm.value,
+          email: email.value,
+          name: name.value,
+          password: password.value,
+          role,
+        },
+        history,
+      })
+    }
+    type="submit"
+    variant="outline-danger"
+  >
+    Cadastrar
+  </Button>
+);
+
 function Register() {
   const history = useHistory();
   const [confirm, setConfirm] = useState({ value: null, error: null });
@@ -150,43 +156,13 @@ function Register() {
   return (
     <section className="box box60-90 flex-column flex-font">
       <Form className="box box90 flex-column">
-        {nameField({ name, setName })}
-        {emailField({ email, setEmail })}
+        {getField({ state: name, callback: setName, field: "name" })}
+        {getField({ state: email, callback: setEmail, field: "email" })}
         {passwordField({ password, confirm, setPassword, setConfirm })}
         {confirmField({ confirm, setConfirm, password })}
         {roleField({ setRole })}
       </Form>
-      <Button
-        className="box box40"
-        data-testid="register-submit-btn"
-        disabled={
-          confirm.error ||
-          !confirm.value ||
-          email.error ||
-          !email.value ||
-          name.error ||
-          !name.value ||
-          password.error ||
-          !password.value
-        }
-        onClick={async (event) =>
-          await handleSubmit({
-            event,
-            body: {
-              confirm: confirm.value,
-              email: email.value,
-              name: name.value,
-              password: password.value,
-              role,
-            },
-            history,
-          })
-        }
-        type="submit"
-        variant="outline-danger"
-      >
-        Cadastrar
-      </Button>
+      {buttonSubmit({ confirm, email, name, password, role, history })}
     </section>
   );
 }
