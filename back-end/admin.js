@@ -18,7 +18,7 @@ const createAdmin = async (body) => {
 
 createAdmin({
   name: 'tryber',
-  email: 'tryber@gamil.com',
+  email: 'tryber@gmail.com',
   password: '123456',
   role: 'admin',
 });

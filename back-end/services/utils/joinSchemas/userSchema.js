@@ -2,6 +2,7 @@ const Joi = require('@hapi/joi');
 
 const confirm = Joi.string().valid(Joi.ref('password')).required().messages({
   'any.only': 'Confirm password and password must match',
+  'any.required': 'Confirm is required',
   'string.base': 'Confirm must be a type of string',
   'string.empty': 'Confirm is not allowed to be empty',
 });
@@ -47,6 +48,11 @@ const loginSchema = Joi.object({
   password,
 }).unknown(false);
 
+const profileSchema = Joi.object({
+  name,
+  email,
+}).unknown(false);
+
 const registerSchema = Joi.object({
   confirm,
   email,
@@ -57,5 +63,6 @@ const registerSchema = Joi.object({
 
 module.exports = {
   loginSchema,
+  profileSchema,
   registerSchema,
 };

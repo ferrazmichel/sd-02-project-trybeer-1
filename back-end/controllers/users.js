@@ -14,6 +14,12 @@ const handleError = {
   },
 };
 
+const find = async (req, res) => {
+  const user = await users.find(req.user);
+
+  res.status(200).json(user);
+};
+
 const login = async (req, res) => {
   const { error, token } = await users.login(req.body);
 
@@ -34,7 +40,19 @@ const register = async (req, res) => {
   res.status(201).json({ message: 'User created with sucess!', error: null });
 };
 
+const update = async (req, res) => {
+  const { error } = await users.update(req.body);
+
+  if (error) {
+    handleError[error]();
+  }
+
+  res.status(200).json({ message: 'User update with sucess!', error: null });
+};
+
 module.exports = {
+  find,
   login,
   register,
+  update,
 };

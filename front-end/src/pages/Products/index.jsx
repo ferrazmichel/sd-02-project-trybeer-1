@@ -5,7 +5,6 @@ import Product from "./Product";
 import { getProducts } from "./service";
 import "./style.css";
 
-
 const calculeTotal = () => {
   const products = JSON.parse(localStorage.getItem("products") || "{}");
 
@@ -54,9 +53,7 @@ const Products = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getProducts().then((res) => {
-      setProducts(res);
-    })
+    getProducts().then((data) => setProducts(data));
     setTotal(calculeTotal());
   }, [update]);
 
