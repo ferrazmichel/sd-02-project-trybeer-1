@@ -20,9 +20,9 @@ app.use(bodyParser.json());
 
 app.use('/images', express.static(path.join(__dirname, 'uploads')));
 
-app.use('/users', users);
-
 app.use('/products', products);
+
+app.use('/users', users);
 
 app.use(error);
 
