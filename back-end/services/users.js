@@ -1,15 +1,16 @@
-const { users } = require('../models');
+const { users } = require("../models");
 
 const {
   bcrypt: { checkString, createHash },
   jsonWebToken: { signToken },
-} = require('./utils');
+} = require("./utils");
 
 const login = async (body) => {
   try {
-    const user = await users.find({ key: 'email', value: body.email });
+    const user = await users.find({ key: "email", value: body.email });
+
     if (!user) {
-      return { error: 'userNotFound', token: null };
+      return { error: "userNotFound", token: null };
     }
 
     const { password, ...userWithoutPassword } = user;
@@ -20,12 +21,12 @@ const login = async (body) => {
     });
 
     if (!isCorrectPassword) {
-      return { error: 'wrongPassowrd', token: null };
+      return { error: "wrongPassowrd", token: null };
     }
 
     const token = signToken(userWithoutPassword);
 
-    return { error: null, token };
+    return { error: null, token, user };
   } catch (err) {
     throw err;
   }
@@ -33,10 +34,10 @@ const login = async (body) => {
 
 const register = async (body) => {
   try {
-    const user = await users.find({ key: 'email', value: body.email });
+    const user = await users.find({ key: "email", value: body.email });
 
     if (user) {
-      return { error: 'existUser' };
+      return { error: "existUser" };
     }
 
     const hash = await createHash(body.password);
@@ -50,7 +51,10 @@ const register = async (body) => {
 };
 
 const getUser = async (body) => {
-  const { password, role, id, ...user } = await users.find({ key: 'email', value: body.email });
+  const { password, role, id, ...user } = await users.find({
+    key: "email",
+    value: body.email,
+  });
   return user;
 };
 
