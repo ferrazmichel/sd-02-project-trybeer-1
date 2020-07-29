@@ -57,10 +57,10 @@ const Products = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getProducts().then(({ data, error }) => {
-      setProducts(data);
-      setError(error);
-    });
+    // getProducts().then(({ data, error }) => {
+    //   setProducts(data);
+    //   setError(error);
+    // });
     setTotal(calculeTotal());
   }, [update]);
 

@@ -7,6 +7,7 @@ import { Provider } from './context';
 import Products from './pages/Products';
 import { productsMock } from './services/mock';
 
+jest.mock('axios');
 
 beforeEach(() => {
   cleanup();
@@ -19,15 +20,15 @@ afterEach(() => {
 });
 
 describe('Products page', () => {
-  test.skip('page render', async () => {
-    const { getByTestId } = act(() => render(
+  test('page render', async () => {
+    const { getByTestId } = renderWithRouter(
       <Provider>
         <Products />
       </Provider>
-    ));
+    );
 
-    // await wait();
-    // axios.get.mockImplementationOnce(() => Promise.resolve(data)).then(console);
+    await wait();
+    axios.get.mockResolvedValue({ data: productsMock })
 
     for (let i = 0; i < productsMock.length; i++) {
       const { id, name, price, volume, img } = productsMock[0];
@@ -47,7 +48,7 @@ describe('Products page', () => {
     // expect(localStorage.getItem('products')).toBe("{}");
   });
 
-  test('render Header', () => {
+  test.skip('test component Header', () => {
     const { getByTestId, history } = renderWithRouter(
       <Provider>
         <Products />
