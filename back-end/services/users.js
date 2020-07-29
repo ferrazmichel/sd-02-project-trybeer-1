@@ -5,6 +5,14 @@ const {
   jsonWebToken: { signToken },
 } = require('./utils');
 
+const find = async (body) => {
+  const { password, role, id, ...user } = await users.find({
+    key: 'email',
+    value: body.email,
+  });
+  return user;
+};
+
 const login = async (body) => {
   const user = await users.find({ key: 'email', value: body.email });
 
@@ -42,16 +50,11 @@ const register = async (body) => {
   return { error: null };
 };
 
-const getUser = async (body) => {
-  const { password, role, id, ...user } = await users.find({ key: 'email', value: body.email });
-  return user;
-};
-
-const putUser = async (body) => users.update(body);
+const update = async (body) => users.update(body);
 
 module.exports = {
+  find,
   login,
   register,
-  getUser,
-  putUser,
+  update,
 };

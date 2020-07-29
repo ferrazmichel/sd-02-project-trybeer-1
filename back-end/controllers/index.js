@@ -3,6 +3,6 @@ const users = require('./users');
 
 
 module.exports = {
-  users,
   products,
+  users,
 };
