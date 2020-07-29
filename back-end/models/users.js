@@ -8,7 +8,7 @@ const find = async ({ key, value }) => {
         .select(['id', 'name', 'email', 'password', 'role'])
         .where(`${key} = :${key}`)
         .bind(key, value)
-        .execute()
+        .execute(),
     )
     .then((results) => results.fetchAll())
     .then((data) => data[0]);
@@ -25,7 +25,7 @@ const register = async ({ name, email, password, role }) =>
       .getTable('users')
       .insert(['name', 'email', 'password', 'role'])
       .values(name, email, password, role)
-      .execute()
+      .execute(),
   );
 
 const update = async ({ name, email }) =>
@@ -36,7 +36,7 @@ const update = async ({ name, email }) =>
       .set('name', name)
       .where('email = :email')
       .bind('email', email)
-      .execute()
+      .execute(),
   );
 
 module.exports = {

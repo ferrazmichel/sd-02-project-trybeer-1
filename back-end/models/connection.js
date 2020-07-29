@@ -1,9 +1,9 @@
-const mysqlx = require("@mysql/xdevapi");
+const mysqlx = require('@mysql/xdevapi');
 
 const config = {
-  user: "root",
-  password: process.env.DB_PASSWORD || "",
-  host: "localhost",
+  user: 'root',
+  password: process.env.DB_PASSWORD || '',
+  host: 'localhost',
   port: 33060,
 };
 
