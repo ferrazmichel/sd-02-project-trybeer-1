@@ -67,8 +67,8 @@ const Profile = () => {
 
   useEffect(() => {
     const request = async () => {
-      const { data } = await getData(URL);
-      if (data.error) return setError(data.error);
+      const { data, error } = await getData(URL);
+      if (error) return setError(error.message);
       setName(data.name);
       setEmail(data.email);
     }
@@ -81,7 +81,7 @@ const Profile = () => {
   };
 
   return (
-    <div> <Header title="Profile" />
+    <div> <Header title="Meu perfil" />
       {error
         ? <h2>{error}</h2>
         : renderForm(handleSubmit, setName, setDisable, name, email, disable)
