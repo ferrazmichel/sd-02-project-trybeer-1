@@ -81,7 +81,7 @@ const Profile = () => {
   };
 
   return (
-    <div> <Header title="Profile" />
+    <div> <Header title="Meu perfil" />
       {error
         ? <h2>{error}</h2>
         : renderForm(handleSubmit, setName, setDisable, name, email, disable)

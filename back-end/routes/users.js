@@ -23,6 +23,6 @@ router.post('/register', validate(registerSchema), rescue(users.register));
 
 router
   .route('/token')
-  .get(auth, rescue(users.validToken))
+  .get(auth, rescue(users.validToken));
 
 module.exports = router;
