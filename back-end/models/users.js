@@ -1,4 +1,4 @@
-const { connection } = require('./connection');
+const { connection, getSession } = require('./connection');
 
 const find = async ({ key, value }) => {
   const user = await connection()
@@ -12,7 +12,6 @@ const find = async ({ key, value }) => {
     )
     .then((results) => results.fetchAll())
     .then((data) => data[0]);
-
   if (!user) return null;
 
   const [id, name, email, password, role] = user;
@@ -29,7 +28,17 @@ const register = async ({ name, email, password, role }) =>
       .execute(),
   );
 
+const update = async ({ name, email }) =>
+  getSession()
+    .then((session) =>
+      session.sql('UPDATE users SET name=? WHERE email=?')
+        .bind(name)
+        .bind(email)
+        .execute(),
+    );
+
 module.exports = {
   find,
   register,
+  update,
 };
