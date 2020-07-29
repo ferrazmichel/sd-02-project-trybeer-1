@@ -6,19 +6,11 @@ const {
 } = require('./utils');
 
 const login = async (body) => {
-<<<<<<< HEAD
   const user = await users.find({ key: 'email', value: body.email });
 
   if (!user) {
     return { error: 'userNotFound', token: null };
   }
-=======
-  try {
-    const user = await users.find({ key: 'email', value: body.email });
-    if (!user) {
-      return { error: 'userNotFound', token: null };
-    }
->>>>>>> master
 
   const { password, ...userWithoutPassword } = user;
 

@@ -10,8 +10,6 @@ const path = require('path');
 
 const { error } = require('./middlewares');
 
-const { users } = require('./routes');
-
 const { products, users } = require('./routes');
 
 const app = express();

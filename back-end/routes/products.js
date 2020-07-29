@@ -2,7 +2,7 @@ const express = require('express');
 
 const rescue = require('express-rescue');
 
-const { products } = require('../controllers');
+const { auth, products } = require('../controllers');
 
 const router = express.Router();
 
