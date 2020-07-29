@@ -55,7 +55,13 @@ const registerSchema = Joi.object({
   role,
 }).unknown(false);
 
+const profileSchema = Joi.object({
+  name,
+  email,
+}).unknown(false);
+
 module.exports = {
   loginSchema,
   registerSchema,
+  profileSchema,
 };

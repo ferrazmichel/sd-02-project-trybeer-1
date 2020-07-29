@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const cors = require('cors');
+
 const express = require('express');
 
 const bodyParser = require('body-parser');
@@ -7,6 +9,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const { error } = require('./middlewares');
+
+const { users } = require('./routes');
 
 const { products, users } = require('./routes');
 
@@ -17,6 +21,8 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.use('/images', express.static(path.join(__dirname, 'uploads')));
 

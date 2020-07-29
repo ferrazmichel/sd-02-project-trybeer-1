@@ -6,11 +6,19 @@ const {
 } = require('./utils');
 
 const login = async (body) => {
+<<<<<<< HEAD
   const user = await users.find({ key: 'email', value: body.email });
 
   if (!user) {
     return { error: 'userNotFound', token: null };
   }
+=======
+  try {
+    const user = await users.find({ key: 'email', value: body.email });
+    if (!user) {
+      return { error: 'userNotFound', token: null };
+    }
+>>>>>>> master
 
   const { password, ...userWithoutPassword } = user;
 
@@ -42,7 +50,16 @@ const register = async (body) => {
   return { error: null };
 };
 
+const getUser = async (body) => {
+  const { password, role, id, ...user } = await users.find({ key: 'email', value: body.email });
+  return user;
+};
+
+const putUser = async (body) => users.update(body);
+
 module.exports = {
   login,
   register,
+  getUser,
+  putUser,
 };
