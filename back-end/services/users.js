@@ -54,7 +54,7 @@ const getUser = async (body) => {
   return user;
 };
 
-const putUser = async (body) =>  users.update(body);
+const putUser = async (body) => users.update(body);
 
 module.exports = {
   login,

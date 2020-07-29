@@ -40,7 +40,7 @@ const getUser = async (req, res) => {
 };
 
 const putUser = async (req, res) => {
-  await users.putUser(req.body)
+  await users.putUser(req.body);
   res.status(200).json();
 };
 

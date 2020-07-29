@@ -6,7 +6,7 @@ const { users } = require('../controllers');
 
 const {
   userSchema: {
-    loginSchema, registerSchema, profileSchema
+    loginSchema, registerSchema, profileSchema,
   },
 } = require('../services/utils/joinSchemas');
 

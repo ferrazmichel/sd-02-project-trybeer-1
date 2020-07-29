@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const { error } = require('./middlewares');
-const { users, profile } = require('./routes');
+const { users } = require('./routes');
 
 const { products } = require('./routes');
 
