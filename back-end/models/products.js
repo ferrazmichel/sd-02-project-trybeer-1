@@ -16,7 +16,7 @@ const list = async () => {
         price,
         volume,
         urlImage,
-      }))
+      })),
     );
 
   if (!products) return null;
