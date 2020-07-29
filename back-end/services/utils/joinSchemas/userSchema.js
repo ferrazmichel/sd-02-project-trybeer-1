@@ -2,6 +2,7 @@ const Joi = require('@hapi/joi');
 
 const confirm = Joi.string().valid(Joi.ref('password')).required().messages({
   'any.only': 'Confirm password and password must match',
+  'any.required': 'Confirm is required',
   'string.base': 'Confirm must be a type of string',
   'string.empty': 'Confirm is not allowed to be empty',
 });

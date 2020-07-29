@@ -29,11 +29,13 @@ const register = async ({ name, email, password, role }) =>
   );
 
 const update = async ({ name, email }) =>
-  getSession().then((session) =>
-    session
-      .sql('UPDATE users SET name=? WHERE email=?')
-      .bind(name)
-      .bind(email)
+  connection().then((db) =>
+    db
+      .getTable('users')
+      .update()
+      .set('name', name)
+      .where('email = :email')
+      .bind('email', email)
       .execute()
   );
 
