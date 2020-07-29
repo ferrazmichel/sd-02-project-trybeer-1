@@ -15,19 +15,20 @@ const display = (exist) => {
   return exist ? 'flex' : 'none';
 };
 
-const createTimeout = (inifinity, setExist) => {
-  inifinity && setTimeout(() => {
-    setExist(false);
-  }, 3000);
+const createTimeout = (infinity, setExist) => {
+  if (!infinity) {
+    setTimeout(() => {
+      setExist(false);
+    }, 1000);
+  }
 };
 
 const Message = (props) => {
-  const { message, type, inifinity } = props;
+  const { message, type, infinity } = props;
   const [exist, setExist] = useState(true);
 
   useEffect(() => {
-    console.log('inifity', inifinity)
-    // createTimeout(inifinity, setExist);
+    createTimeout(infinity, setExist);
   }, []);
 
   return (

@@ -24,9 +24,9 @@ app.use(cors());
 
 app.use('/images', express.static(path.join(__dirname, '/images')));
 
-app.use('/products', products);
-
 app.use('/users', users);
+
+app.use('/products', products);
 
 app.use(error);
 

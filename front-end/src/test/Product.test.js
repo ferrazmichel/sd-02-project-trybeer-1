@@ -21,6 +21,8 @@ afterEach(() => {
 
 describe('Products page', () => {
   test('page render', async () => {
+    axios.get.mockResolvedValue({ data: productsMock });
+
     const { getByTestId } = renderWithRouter(
       <Provider>
         <Products />
@@ -28,7 +30,6 @@ describe('Products page', () => {
     );
 
     await wait();
-    axios.get.mockResolvedValue({ data: productsMock })
 
     for (let i = 0; i < productsMock.length; i++) {
       const { id, name, price, volume, img } = productsMock[0];
@@ -38,14 +39,13 @@ describe('Products page', () => {
       expect(getByTestId(`${i}-product-qtd`).innerHTML).toBe('0');
     }
 
-    // expect(getByTestId("checkout-bottom-btn").innerHTML).toBe('Ver carrinho');
-    // expect(getByTestId("checkout-bottom-btn-value").innerHTML).toBe('R$ 0.00');
-
-    // fireEvent.click(getByTestId('0-product-plus'));
-    // expect(localStorage.getItem('products')).toBe("{\"1\":{\"price\":2.2,\"count\":1}}");
-    // expect(getByTestId('0-product-qtd').innerHTML).toBe('1');
-    // fireEvent.click(getByTestId('0-product-minus'));
-    // expect(localStorage.getItem('products')).toBe("{}");
+    expect(getByTestId("checkout-bottom-btn").innerHTML).toBe('Ver carrinho');
+    expect(getByTestId("checkout-bottom-btn-value").innerHTML).toBe('R$ 0.00');
+    fireEvent.click(getByTestId('0-product-plus'));
+    expect(localStorage.getItem('products')).toBe("{\"1\":{\"price\":2.2,\"count\":1}}");
+  //   expect(getByTestId('0-product-qtd').innerHTML).toBe('1');
+  //   fireEvent.click(getByTestId('0-product-minus'));
+  //   expect(localStorage.getItem('products')).toBe("{}");
   });
 
   test.skip('test component Header', () => {

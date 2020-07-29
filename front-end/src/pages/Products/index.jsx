@@ -19,7 +19,7 @@ const buttonRender = ({ total, history }) => {
   return (
     <button className="ver_carrinho" onClick={() => history.push("/checkout")}>
       <span data-testid="checkout-bottom-btn">Ver carrinho</span>
-      <span data-testid="checkout-bottom-btn-value">{total}</span>
+      <span data-testid="checkout-bottom-btn-value">R$ {total}</span>
     </button>
   );
 };
@@ -57,16 +57,16 @@ const Products = () => {
   const history = useHistory();
 
   useEffect(() => {
-    // getProducts().then(({ data, error }) => {
-    //   setProducts(data);
-    //   setError(error);
-    // });
+    getProducts().then(({ data, error }) => {
+      setProducts(data);
+      setError(error);
+    });
     setTotal(calculeTotal());
   }, [update]);
 
   return (
     <div className="products_page">
-      {error && <Message  message={error} type="ALERT" inifinity />}
+      {error && <Message message={error} type="ALERT" />}
       {render({ history, products, setUpdate, total, update })}
     </div>
   );
