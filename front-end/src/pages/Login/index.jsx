@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import getField from "../../components/getField";
-import { handleSubmit } from "../commonService";;
+import { handleSubmit } from "./service";
 
 
 const buttonSubmit = ({ email, password, history }) => (

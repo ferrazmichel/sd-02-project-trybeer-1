@@ -1,15 +1,4 @@
-import validate from "./validate";
 import { postData } from "../../services/Request";
-
-const handleField = ({ field, value, callback }) => {
-  const error = validate({ field, value });
-
-  if (!error) {
-    callback({ value, error: null });
-  } else {
-    callback({ value, error: error.message });
-  }
-};
 
 const URL = "http://localhost:3001/users/login";
 
@@ -38,4 +27,4 @@ async function handleSubmit({ event, body, history }) {
   }
 }
 
-export { handleField, handleSubmit };
+export { handleSubmit };
