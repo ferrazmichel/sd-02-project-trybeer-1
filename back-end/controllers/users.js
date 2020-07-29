@@ -50,9 +50,12 @@ const update = async (req, res) => {
   res.status(200).json({ message: 'User update with sucess!', error: null });
 };
 
+const validToken = async (_req, res) => res.status(200).json();
+
 module.exports = {
   find,
   login,
   register,
   update,
+  validToken,
 };
