@@ -12,4 +12,7 @@ const getData = async (endpoint) =>
     .get(endpoint, { headers })
     .catch((error) => ({ ...error.response.data, message: error.message }));
 
-export { getData, putData };
+const validToken = async (endpoint) =>
+  axios.get(endpoint, { headers: { Authorization: localStorage.getItem("token") } });
+
+export { getData, putData, validToken };

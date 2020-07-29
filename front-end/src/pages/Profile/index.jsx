@@ -67,8 +67,8 @@ const Profile = () => {
 
   useEffect(() => {
     const request = async () => {
-      const { data } = await getData(URL);
-      if (data.error) return setError(data.error);
+      const { data, error } = await getData(URL);
+      if (error) return setError(error.message);
       setName(data.name);
       setEmail(data.email);
     }
