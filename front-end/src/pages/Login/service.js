@@ -18,7 +18,7 @@ const getUserAndSaveToken = async (body) => {
     endpoint: URL,
     body,
   });
-
+  console.log(data);
   if (data.error) {
     return console.log(data.error);
   }
@@ -33,7 +33,9 @@ async function handleSubmit({ event, body, history }) {
 
   const { user } = await getUserAndSaveToken(body);
 
-  history.push(`/home/${user.role}`);
+  if (user) {
+    history.push(`/home/${user.role}`);
+  }
 }
 
 export { handleField, handleSubmit };

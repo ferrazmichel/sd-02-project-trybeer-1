@@ -75,8 +75,7 @@ const counter = ({ count, index, product, setCount, setUpdate }) => {
 
 const Product = ({ index, product, setUpdate, update }) => {
   const [count, setCount] = useState(0);
-  // Lauro lyra tera que se as propriedades de products estarão chegando
-  const { id, name, price, volume, url } = product;
+  const { id, name, price, volume, urlImage } = product;
 
   useEffect(() => {
     const products = JSON.parse(localStorage.getItem("products") || "{}");
@@ -90,7 +89,7 @@ const Product = ({ index, product, setUpdate, update }) => {
       <p className="price" data-testid={`${index}-product-price`}>
         R$ {price.toFixed(2)}
       </p>
-      <img src={url} alt="product" data-testid={`${index}-product-img`} />
+      <img src={urlImage} alt="product" data-testid={`${index}-product-img`} />
       <p className="name" data-testid={`${index}-product-name`}>
         {name} {volume}ml
       </p>

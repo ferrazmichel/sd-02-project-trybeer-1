@@ -1,23 +1,22 @@
 const mysqlx = require('@mysql/xdevapi');
 
-const getSession = () =>
-  mysqlx.getSession({
-    user: 'root',
-    password: process.env.DB_PASSWORD || '',
-    host: 'localhost',
-    port: 33060,
-    schema: process.env.DB_SCHEMA,
-  });
+const config = {
+  user: 'root',
+  password: process.env.DB_PASSWORD || '',
+  host: 'localhost',
+  port: 33060,
+};
 
-const connection = async () =>
-  getSession()
-    .then((session) => session.getSchema('Trybeer'))
+function connection() {
+  return mysqlx
+    .getSession(config)
+    .then((session) => session.getSchema(process.env.DB_SCHEMA))
     .catch((err) => {
       console.error(err);
       process.exit(1);
     });
+}
 
 module.exports = {
   connection,
-  getSession,
 };
