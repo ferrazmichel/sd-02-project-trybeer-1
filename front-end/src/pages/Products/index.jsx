@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+
+import Message from '../../components/Message';
 import Header from "../../components/Header";
 import Product from "./Product";
 import { getProducts } from "./service";
@@ -17,7 +19,7 @@ const buttonRender = ({ total, history }) => {
   return (
     <button className="ver_carrinho" onClick={() => history.push("/checkout")}>
       <span data-testid="checkout-bottom-btn">Ver carrinho</span>
-      <span data-testid="checkout-bottom-btn-value">{total}</span>
+      <span data-testid="checkout-bottom-btn-value">R$ {total}</span>
     </button>
   );
 };
@@ -42,6 +44,7 @@ const render = ({ history, products, setUpdate, total, update }) => {
   );
 };
 
+
 const Products = () => {
   const [products, setProducts] = useState([]);
 
@@ -49,16 +52,22 @@ const Products = () => {
 
   const [update, setUpdate] = useState(false);
 
+  const [error, setError] = useState();
+
   const history = useHistory();
 
   useEffect(() => {
-    getProducts().then((data) => setProducts(data));
+    getProducts().then(({ data, error }) => {
+      setProducts(data);
+      setError(error);
+    });
     setTotal(calculeTotal());
   }, [update]);
 
   return (
     <div className="products_page">
-      {render({ history, products, setUpdate, total })}
+      {error && <Message message={error} type="ALERT" />}
+      {render({ history, products, setUpdate, total, update })}
     </div>
   );
 };

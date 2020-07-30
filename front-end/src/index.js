@@ -1,13 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "./context";
-import App from "./App";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from './context';
+import App from './App';
+import './App.css';
 
 ReactDOM.render(
-  <Provider>
+<Provider>
+  <BrowserRouter>
     <App />
-  </Provider>,
-  document.getElementById("root")
-);
+  </BrowserRouter>
+</Provider>, document.getElementById('root'));
