@@ -1,7 +1,8 @@
 {
   "extends": "airbnb",
+  "parser": "babel-eslint",
   "rules": {
-    "parser": 0,
+    "strict": 0,
     "no-console": "off",
     "no-alert": "off",
     "prefer-arrow-callback": "off",
