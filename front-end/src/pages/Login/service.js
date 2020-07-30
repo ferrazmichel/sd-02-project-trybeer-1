@@ -3,18 +3,19 @@ import { postData } from "../../services/Request";
 const URL = "http://localhost:3001/users/login";
 
 const getUserAndSaveToken = async (body) => {
-  const data = await postData({
+  const { data, error } = await postData({
     endpoint: URL,
     body,
   });
-  console.log(data);
-  if (data.error) {
-    return console.log(data.error);
+
+  if (error) {
+    console.error(error);
+    return { user: null };
   }
 
-  localStorage.setItem("token", data.data.token);
+  localStorage.setItem("token", data.token);
 
-  return { user: data.data.user };
+  return { user: data.user };
 };
 
 async function handleSubmit({ event, body, history }) {

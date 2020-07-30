@@ -1,3 +1,5 @@
+import { postData } from "../../services/Request";
+
 const handleConfirm = ({ value, password, callback }) => {
   const validFormat = value.match(/^.*(.*\d){6,}/);
   const matchPassword = value === password;
@@ -20,4 +22,22 @@ const handleRole = ({ value, setRole }) => {
   }
 };
 
-export { handleConfirm, handleRole };
+const URL = "http://localhost:3001/users/register";
+
+const postUser = async (body) => {
+  const { error } = await postData({ endpoint: URL, body });
+  console.error(error);
+  return { error };
+};
+
+async function handleSubmit({ event, body, history }) {
+  event.preventDefault();
+
+  const { error } = await postUser(body);
+
+  if (!error) {
+    history.push(`home/${body.role}`);
+  }
+}
+
+export { handleConfirm, handleRole, handleSubmit };
