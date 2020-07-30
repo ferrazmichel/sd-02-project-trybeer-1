@@ -13,7 +13,7 @@ const getProducts = async () => {
     return { data: [] };
   }
 
-  return { data: data?.products }
+  return { data: data.products }
 };
 
 export { getProducts };
