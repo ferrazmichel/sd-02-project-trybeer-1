@@ -19,7 +19,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   if (!isTokenValidated) return <div />;
   return (<Route {...rest}
     render={(props) => {
-      return auth ? <Component {...props} /> : <Redirect to="/login" />
+      return auth ? <Component {...props} /> : <Redirect to="/" />
     }} />)
 }
 
