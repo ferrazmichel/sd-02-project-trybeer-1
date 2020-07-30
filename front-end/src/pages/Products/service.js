@@ -10,7 +10,11 @@ const getProducts = async () => {
     return [];
   }
 
-  return data.products;
+  if (!data) {
+    return { data: [] };
+  }
+
+  return { data: data.products };
 };
 
 export { getProducts };

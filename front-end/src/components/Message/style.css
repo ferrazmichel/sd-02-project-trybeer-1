@@ -1,0 +1,31 @@
+.message_comp {
+  align-items: center;
+  background-color: #363636;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px -3px rgba(0, 0, 0, 0.6);
+  display: flex;
+  height: 10%;
+  justify-content: flex-start;
+  padding: 0 5%;
+  position: absolute;
+  top: 5%;
+  width: 80%;
+}
+
+.message_comp > button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  margin-right: 4%;
+  padding: 0;
+}
+
+.message_comp > button > .material-icons {
+  color: white;
+  font-size: 1.3em;
+}
+
+.message_comp > strong {
+  font-size: 1.2em;
+}

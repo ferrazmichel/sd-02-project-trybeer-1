@@ -32,7 +32,7 @@ const LinkProfile = () => (
 
 const LinkOut = () => (
   <li>
-    <Link to="/logout" data-testid="side-menu-item-logout">
+    <Link to="/login" data-testid="side-menu-item-logout">
       Sair
     </Link>
   </li>
@@ -61,7 +61,7 @@ const Header = ({ title }) => {
       {sideShow && sidebar()}
       <div className="header_comp">
         <button
-          data-testid="top-button-header"
+          data-testid="top-hamburguer"
           className="menu"
           type="button"
           onClick={() => onclickHandler(setSideShow)}
