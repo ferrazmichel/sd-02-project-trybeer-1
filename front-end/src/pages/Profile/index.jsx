@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { getData, putData } from '../../services/Request';
+import { getData, patchData } from '../../services/Request';
 import './style.css';
 import Header from '../../components/Header';
 
@@ -77,7 +77,7 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    return putData(URL, { name, email }).catch((error) => setError(error));
+    return patchData(URL, { name, email }).catch((error) => setError(error));
   };
 
   return (

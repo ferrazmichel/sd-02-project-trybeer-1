@@ -2,10 +2,10 @@ import axios from "axios";
 
 const headers = { Authorization: localStorage.getItem("token") };
 
-const putData = async (endpoint, { name, email }) =>
+const patchData = async (endpoint, { name, email }) =>
   axios
-    .put(endpoint, { name, email }, { headers })
-    .catch((error) => ({ ...error.response.data, error: error.message }));
+    .patch(endpoint, { name, email }, { headers })
+    .catch((error) => ({ ...error.response.data, message: error.message }));
 
 const getData = async (endpoint) =>
   axios
@@ -20,4 +20,4 @@ const postData = async ({ endpoint, body }) =>
     .post(endpoint, body)
     .catch((error) => ({ ...error.response.data, error: error.message }));
 
-export { getData, putData, postData, validToken };
+export { getData, patchData, postData, validToken };
