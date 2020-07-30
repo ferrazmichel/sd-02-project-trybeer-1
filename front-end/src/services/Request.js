@@ -23,11 +23,9 @@ const getData = async (endpoint) =>
   axios.get(endpoint, { headers }).catch((error) => handleError({ error }));
 
 const validToken = async (endpoint) =>
-  axios
-    .get(endpoint, {
-      headers,
-    })
-    .catch((error) => handleError({ error }));
+  axios.get(endpoint, {
+    headers,
+  });
 
 const postData = async ({ endpoint, body }) =>
   axios.post(endpoint, body).catch((error) => handleError({ error }));
