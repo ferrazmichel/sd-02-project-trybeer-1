@@ -3,10 +3,10 @@ import { getData } from "../../services/Request";
 const URL = "http://localhost:3001/products";
 
 const getProducts = async () => {
-  const { data , error } = await getData(URL);
+  const { data , message } = await getData(URL);
 
-  if (error) {
-    return { error, data: [] };
+  if (message) {
+    return { message, data: [] };
   }
 
   if (!data) {

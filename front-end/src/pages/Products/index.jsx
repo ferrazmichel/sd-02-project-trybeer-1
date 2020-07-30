@@ -7,6 +7,7 @@ import Product from "./Product";
 import { getProducts } from "./service";
 import "./style.css";
 
+
 const calculeTotal = () => {
   const products = JSON.parse(localStorage.getItem("products") || "{}");
 
