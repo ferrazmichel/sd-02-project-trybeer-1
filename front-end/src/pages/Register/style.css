@@ -70,7 +70,8 @@
   width: 20%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and ( max-width : 800px ) {
+
   .register_page_form {
     width: 70%;
   }
@@ -80,7 +81,8 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and ( max-width : 500px ) {
+
   .register_page_form {
     width: 100%;
   }
