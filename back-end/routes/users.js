@@ -25,4 +25,7 @@ router
   .route('/token')
   .get(auth, rescue(users.validToken));
 
+router
+.route('/checkout')
+.get(auth, rescue(users.postSale))
 module.exports = router;
