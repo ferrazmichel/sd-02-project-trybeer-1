@@ -1,9 +1,9 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { handleField } from '../pages/commonService';
+import { handleField } from "../services/Validate";
 
-const getField = ({ state, field, callback }) => (
-  <Form.Group className="box box60-80-90 flex-column">
+const FormGroup = ({ state, field, callback }) => (
+  <Form.Group className="form_group_component">
     <Form.Control
       data-testid="name-input"
       isInvalid={state.error}
@@ -17,7 +17,7 @@ const getField = ({ state, field, callback }) => (
       }
       placeholder={field}
       required="required"
-      type="string"
+      type={field === "password" ? "password" : "string"}
     />
     <Form.Control.Feedback
       as="p"
@@ -30,4 +30,4 @@ const getField = ({ state, field, callback }) => (
   </Form.Group>
 );
 
-export default getField;
+export default FormGroup;

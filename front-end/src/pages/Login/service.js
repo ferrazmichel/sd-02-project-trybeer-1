@@ -3,27 +3,32 @@ import { postData } from "../../services/Request";
 const URL = "http://localhost:3001/users/login";
 
 const getUserAndSaveToken = async (body) => {
-  const data = await postData({
+  const { data, error } = await postData({
     endpoint: URL,
     body,
   });
-  console.log(data);
-  if (data.error) {
-    return console.log(data.error);
+
+  if (error) {
+    return { error };
   }
 
-  localStorage.setItem("token", data.data.token);
+  localStorage.setItem("token", data.token);
 
-  return { user: data.data.user };
+  return { user: data.user };
 };
 
-async function handleSubmit({ event, body, history }) {
+async function handleSubmit({ event, body, history, setError }) {
   event.preventDefault();
 
-  const { user } = await getUserAndSaveToken(body);
+  const { user, error } = await getUserAndSaveToken(body);
+
+  if (error) {
+    setError(error.message);
+    return;
+  }
 
   if (user) {
-    history.push(`/home/${user.role}`);
+    history.push(`${user.role === "admin" ? "/home/admin" : "/products"}`);
   }
 }
 
