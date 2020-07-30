@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormGroup from "../../components/FormGroup";
 import { handleSubmit } from "./service";
+import Message from "../../components/Message";
 import "./style.css";
 
 const RegisterButton = ({ history }) => (
@@ -18,7 +19,7 @@ const RegisterButton = ({ history }) => (
   </Button>
 );
 
-const SubmitButton = ({ email, password, history }) => (
+const SubmitButton = ({ email, password, history, setError }) => (
   <Button
     className="login_page_submit_button"
     data-testid="login-submit-btn"
@@ -31,6 +32,7 @@ const SubmitButton = ({ email, password, history }) => (
           password: password.value,
         },
         history,
+        setError,
       })
     }
     type="submit"
@@ -44,14 +46,23 @@ const Login = () => {
   const history = useHistory();
   const [email, setEmail] = useState({ value: null, error: null });
   const [password, setPassword] = useState({ value: null, error: null });
+  const [error, setError] = useState();
 
   return (
     <section className="login_page">
+      {error && (
+        <Message message={error} setError={setError} type="ALERT" infinity />
+      )}
       <Form className="login_page_form">
         <FormGroup state={email} callback={setEmail} field="email" />
         <FormGroup state={password} callback={setPassword} field="password" />
       </Form>
-      <SubmitButton email={email} password={password} history={history} />
+      <SubmitButton
+        email={email}
+        password={password}
+        history={history}
+        setError={setError}
+      />
       <RegisterButton history={history} />
     </section>
   );

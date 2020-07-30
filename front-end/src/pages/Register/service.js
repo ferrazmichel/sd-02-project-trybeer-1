@@ -26,7 +26,7 @@ const URL = "http://localhost:3001/users/register";
 
 const postUser = async (body) => {
   const { error } = await postData({ endpoint: URL, body });
-  console.error(error);
+  console.error(error.message);
   return { error };
 };
 

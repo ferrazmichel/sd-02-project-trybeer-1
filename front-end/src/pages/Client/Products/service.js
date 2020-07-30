@@ -1,4 +1,4 @@
-import { getData } from "../../services/Request";
+import { getData } from "../../../services/Request";
 
 const URL = "http://localhost:3001/products";
 
@@ -7,7 +7,7 @@ const getProducts = async () => {
 
   if (error) {
     console.error(error);
-    return [];
+    return { error: error.message, data: [] };
   }
 
   if (!data) {

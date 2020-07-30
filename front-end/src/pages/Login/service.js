@@ -9,8 +9,7 @@ const getUserAndSaveToken = async (body) => {
   });
 
   if (error) {
-    console.error(error);
-    return { user: null };
+    return { error };
   }
 
   localStorage.setItem("token", data.token);
@@ -18,13 +17,18 @@ const getUserAndSaveToken = async (body) => {
   return { user: data.user };
 };
 
-async function handleSubmit({ event, body, history }) {
+async function handleSubmit({ event, body, history, setError }) {
   event.preventDefault();
 
-  const { user } = await getUserAndSaveToken(body);
+  const { user, error } = await getUserAndSaveToken(body);
+
+  if (error) {
+    setError(error.message);
+    return;
+  }
 
   if (user) {
-    history.push(`/home/${user.role}`);
+    history.push(`${user.role === "admin" ? "/home/admin" : "/products"}`);
   }
 }
 

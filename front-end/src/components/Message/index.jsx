@@ -2,41 +2,32 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 
 const types = {
-  ALERT: '#f9735e',
-  SUCCESS: '#49b76d',
-  NEUTRAL: 'white',
+  ALERT: "#f9735e",
+  SUCCESS: "#49b76d",
+  NEUTRAL: "white",
 };
 
-const close = (setExist) => {
-  setExist(false);
-};
-
-const display = (exist) => {
-  return exist ? 'flex' : 'none';
-};
-
-const createTimeout = (infinity, setExist) => {
+const createTimeout = (infinity, setError) => {
   if (!infinity) {
     setTimeout(() => {
-      setExist(false);
+      setError(false);
     }, 1000);
   }
 };
 
 const Message = (props) => {
-  const { message, type, infinity } = props;
-  const [exist, setExist] = useState(true);
+  const { message, type, setError, infinity } = props;
 
   useEffect(() => {
-    createTimeout(infinity, setExist);
+    createTimeout(infinity, setError);
   }, []);
 
   return (
-    <div className="message_comp" style={{display: `${display(exist)}`}}>
-      <button type="button" onClick={() => close(setExist)}>
+    <div className="message_comp">
+      <button type="button" onClick={() => setError(false)}>
         <span className="material-icons">close</span>
       </button>
-      <strong style={{color: `${types[type]}`}}>{message}</strong>
+      <strong style={{ color: `${types[type]}` }}>{message}</strong>
     </div>
   );
 };
