@@ -2,10 +2,13 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "rules": {
+    "no-unused-expressions": 0,
+    "babel/no-unused-expressions": 1,
     "strict": 0,
     "no-console": "off",
     "no-alert": "off",
     "prefer-arrow-callback": "off",
+    "plugins": ["babel"],
     "func-names": "off",
     "no-unused-vars": [ "error", { "argsIgnorePattern": "^_", "ignoreRestSiblings": true } ],
     "react/jsx-filename-extension": [
