@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { postData } from '../../services/Request';
 import Message from '../../components/Message';
 
-const URL = 'http://localhost:3001/users/checkout';
+const URL = 'http://localhost:3001/sales/checkout';
 const getLocalStorage = () => Object.values(JSON.parse(localStorage.getItem('products')));
 
 const formatBrl = (value) => value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
@@ -14,17 +14,21 @@ const Checkout = () => {
   const [street, setStreet] = useState('');
   const [homeNumber, setHomeNumber] = useState('');
   const [error, setError] = useState('');
+  const [products, setProducts] = useState([]);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     return postData({ endpoint: URL, body: { products, adress: { street, homeNumber } } })
-      .catch((error) => setError(error.message));
+      .catch((error) => setError(error));
   };
 
-  const products = getLocalStorage()
-    .map((product) => ({ ...product, total: product.count * product.price }));
+  useEffect(() => {
+    setProducts(getLocalStorage()
+      .map((product) => ({ ...product, total: product.count * product.price })))
+  }, [])
 
-  if (total === 0) setTotal(products.reduce((acc, curr) => acc + curr.total, 0));
-
+  if (total === 0 && products.length > 0) setTotal(products.reduce((acc, curr) => acc + curr.total, 0));
+  
   return (
     <React.Fragment>
       <Header title="Finalizar Pedido" />
@@ -44,7 +48,7 @@ const Checkout = () => {
           <p data-testid="order-total-value">Total:{formatBrl(total)}</p>
         </div>
         <div>
-          <form onClick={(e) => handleSubmit(e)}>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <h3>Endereço</h3>
             <label htmlFor="street">Rua:</label>
             <input

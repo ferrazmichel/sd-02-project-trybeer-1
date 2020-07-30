@@ -27,7 +27,7 @@ const validToken = async (endpoint) =>
 
 const postData = async ({ endpoint, body }) =>
   axios
-    .post(endpoint, body)
+    .post(endpoint, body, { headers })
     .catch(handleError);
 
 export { getData, patchData, postData, validToken };
