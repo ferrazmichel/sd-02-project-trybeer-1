@@ -15,7 +15,7 @@
   width: 50%;
 }
 
-.login_page_register_button, .login_page_submit_button {
+.login_page_register_button , .login_page_submit_button {
   margin: 1%;
   width: 20%;
 }
@@ -26,8 +26,7 @@
     width: 70%;
   }
 
-  .login_page_register_button,
-  .login_page_submit_button {
+  .login_page_register_button , .login_page_submit_button {
     width: 30%;
   }
 }
@@ -38,7 +37,7 @@
     width: 100%;
   }
 
-  .login_page_register_button, .login_page_submit_button {
+  .login_page_register_button , .login_page_submit_button {
     width: 40%;
   }
 }
