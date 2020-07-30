@@ -10,7 +10,11 @@ const putData = async (endpoint, { name, email }) =>
 const getData = async (endpoint) =>
   axios
     .get(endpoint, { headers })
-    .catch((error) => ({ ...error.response?.data, error: error.message }));
+    .then( 
+      (response) => { console.log({ ...response}) },
+      (error) => { console.log({...error}) }
+    );
+    // .catch((error) => ({ ...error.response?.data, error: error.message }));
 
 const validToken = async (endpoint) =>
   axios.get(endpoint, { headers: { Authorization: localStorage.getItem("token") } });
