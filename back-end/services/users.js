@@ -33,7 +33,7 @@ const login = async (body) => {
 
   const token = signToken(userWithoutPassword);
 
-  return { error: null, token };
+  return { error: null, token, user };
 };
 
 const register = async (body) => {

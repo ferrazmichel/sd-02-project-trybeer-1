@@ -21,13 +21,13 @@ const find = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { error, token } = await users.login(req.body);
+  const { error, token, user } = await users.login(req.body);
 
   if (error) {
     handleError[error]();
   }
 
-  res.status(200).json({ token, error: null });
+  res.status(200).json({ token, user, error: null });
 };
 
 const register = async (req, res) => {
