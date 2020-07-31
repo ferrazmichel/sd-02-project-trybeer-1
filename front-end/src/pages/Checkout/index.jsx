@@ -29,33 +29,33 @@ const Checkout = ({ history }) => {
     e.preventDefault();
     return postSale({ endpoint: URL, body: { products, adress: { street, homeNumber } } })
       .then(() => setMessage({ message: 'Venda realizada com Sucesso', type: 'SUCCESS', setError: setMessage }))
-      .catch(() => setMessage({ message: 'Não foi possível cadastrar a venda', type: 'ALERT', setError: setMessage }))
+      .catch(() => setMessage({ message: 'Não foi possível cadastrar a venda', type: 'ALERT', setError: setMessage }));
   };
 
   useEffect(() => {
     setRedirect(message.type);
-  }, [message])
+  }, [message]);
 
   useEffect(() => {
     setProducts(getLocalStorage()
-      .map((product) => ({ ...product, total: product.count * product.price })))
-  }, [])
+      .map((product) => ({ ...product, total: product.count * product.price })));
+  }, []);
 
   useEffect(() => {
     setTotal(products.reduce((acc, curr) => acc + curr.total, 0));
-  }, [products])
+  }, [products]);
 
   if (redirect === 'SUCCESS' && Object.keys(message).length === 0) {
     localStorage.removeItem('products');
-    history.push('/products')
+    history.push('/products');
   }
 
   return (
-    <React.Fragment>
+    <>
       <Header title="Finalizar Pedido" />
       {message.type && <Message {...message} />}
-      <div>
-        <div>
+      <div className="checkout_container">
+        <div className="checkout_container_products">
           <h3>Produtos</h3>
           {
             products.map((product, index) => (
@@ -75,7 +75,7 @@ const Checkout = ({ history }) => {
           }
           <p data-testid="order-total-value">Total:{formatBrl(total)}</p>
         </div>
-        <div>
+        <div className="checkout_container_form">
           <form onSubmit={(e) => handleSubmit(e)}>
             <h3>Endereço</h3>
             <label htmlFor="street">Rua:</label>
@@ -105,8 +105,8 @@ const Checkout = ({ history }) => {
           </form>
         </div>
       </div>
-    </React.Fragment>
-  )
+    </>
+  );
 };
 
 export default Checkout;
