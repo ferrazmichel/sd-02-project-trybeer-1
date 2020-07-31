@@ -1,4 +1,76 @@
+header > h1 {
+  font-size: 100%;
+}
+
+header > h2 {
+  font-size: 80%;
+}
+
 .register_page {
+  align-items: center;
+  background-color: #fdd692;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  font-size: 50px;
+  height: 100%;
+  width: 100%;
+}
+
+.register_page > form {
+  align-items: center;
+  background-color: #242423;
+  border-radius: 70px 20px 70px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  justify-content: center;
+  margin: 1% 0%;
+  padding: 1%;
+  width: 50%;
+}
+
+.register_page > header {
+  align-items: center;
+  color: #333533;
+  display: flex;
+  flex-direction: column;
+  font-family: "Permanent Marker", cursive;
+  margin: 1% 0%;
+  width: 60%;
+}
+
+@media screen and (max-width: 800px) {
+  .register_page {
+    font-size: 40px;
+  }
+
+  .register_page > form {
+    border-radius: 50px 20px 50px 20px;
+    width: 70%;
+  }
+
+  .register_page > header {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .register_page {
+    font-size: 30px;
+  }
+
+  .register_page > form {
+    border-radius: 30px 10px 30px 10px;
+    width: 90%;
+  }
+
+  .register_page > header {
+    width: 100%;
+  }
+}
+
+/* .register_page {
   align-items: center;
   background-color: #100f0f;
   display: flex;
@@ -16,6 +88,14 @@
 }
 
 .form_group_check {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  width: 60%;
+}
+
+.form_gro.form_group_check {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -90,4 +170,4 @@
   .register_page_submit_button {
     width: 40%;
   }
-}
+} */

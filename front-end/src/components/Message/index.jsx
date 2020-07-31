@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./style.css";
 
 const types = {
-  ALERT: "#f9735e",
+  ALERT: "#e71d36",
   SUCCESS: "#49b76d",
   NEUTRAL: "white",
 };

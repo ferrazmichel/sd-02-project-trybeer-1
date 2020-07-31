@@ -1,11 +1,12 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { handleField } from "../services/Validate";
+import { handleField } from "../../services/Validate";
+import "./style.css";
 
-const FormGroup = ({ state, field, callback }) => (
-  <Form.Group className="form_group_component">
+const FormGroup = ({ callback, field, state, testId }) => (
+  <Form.Group className="formgroup_component">
     <Form.Control
-      data-testid="name-input"
+      data-testid={testId}
       isInvalid={state.error}
       isValid={!state.error && state.value}
       onChange={(e) =>

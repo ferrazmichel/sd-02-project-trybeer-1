@@ -1,43 +1,71 @@
+header > h1 {
+  font-size: 100%;
+}
+
+header > h2 {
+  font-size: 80%;
+}
+
 .login_page {
   align-items: center;
-  background-color: #100f0f;
+  background-color: #fdd692;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: 100%;
+  font-size: 50px;
   width: 100%;
 }
 
-.login_page_form {
+.login_page > form {
   align-items: center;
+  background-color: #242423;
+  border-radius: 70px 20px 70px 20px;
   display: flex;
   flex-direction: column;
-  margin-top: 5%;
+  height: 350px;
+  justify-content: center;
+  margin: 1% 0%;
+  padding: 1%;
   width: 50%;
 }
 
-.login_page_register_button , .login_page_submit_button {
-  margin: 1%;
-  width: 20%;
+.login_page > header {
+  align-items: center;
+  color: #333533;
+  display: flex;
+  flex-direction: column;
+  font-family: "Permanent Marker", cursive;
+  margin: 1% 0%;
+  width: 60%;
 }
 
-@media screen and ( max-width : 800px ) {
+@media screen and (max-width: 800px) {
+  .login_page {
+    font-size: 40px;
+  }
 
-  .login_page_form {
+  .login_page > form {
+    border-radius: 50px 20px 50px 20px;
     width: 70%;
   }
 
-  .login_page_register_button , .login_page_submit_button {
-    width: 30%;
+  .login_page > header {
+    width: 80%;
   }
 }
 
-@media screen and ( max-width : 500px ) {
-
-  .login_page_form {
-    width: 100%;
+@media screen and (max-width: 500px) {
+  .login_page {
+    font-size: 30px;
   }
 
-  .login_page_register_button , .login_page_submit_button {
-    width: 40%;
+  .login_page > form {
+    border-radius: 30px 10px 30px 10px;
+    width: 90%;
+  }
+
+  .login_page > header {
+    width: 100%;
   }
 }
