@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
-import Message from '../../components/Message';
-import Header from "../../components/Header";
+import Message from "../../../components/Message";
+import Header from "../../../components/Header";
 import Product from "./Product";
 import { getProducts } from "./service";
 import "./style.css";
-
 
 const calculeTotal = () => {
   const products = JSON.parse(localStorage.getItem("products") || "{}");
@@ -45,7 +43,6 @@ const render = ({ history, products, setUpdate, total, update }) => {
   );
 };
 
-
 const Products = () => {
   const [products, setProducts] = useState([]);
 
@@ -67,7 +64,9 @@ const Products = () => {
 
   return (
     <div className="products_page">
-      {error && <Message message={error} type="ALERT" />}
+      {error && (
+        <Message message={error} setError={setError} type="ALERT" infinity />
+      )}
       {render({ history, products, setUpdate, total, update })}
     </div>
   );

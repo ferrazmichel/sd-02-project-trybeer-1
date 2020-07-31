@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import getField from "../../components/getField";
-import { handleField, handleSubmit } from '../commonService';
-import {
-  handleConfirm,
-  handleRole,
-} from "./service";
-import "./register.css";
+import FormGroup from "../../components/FormGroup";
+import { handleConfirm, handleRole, handleSubmit } from "./service";
+import { handleField } from "../../services/Validate";
+import "./style.css";
 
-const passwordField = ({ password, confirm, setPassword, setConfirm }) => (
-  <Form.Group className="box box60-80-90 flex-column">
+const PasswordField = ({ password, confirm, setPassword, setConfirm }) => (
+  <Form.Group className="form_group_component">
     <Form.Control
       data-testid="password-input"
       isInvalid={password.error}
@@ -44,8 +41,8 @@ const passwordField = ({ password, confirm, setPassword, setConfirm }) => (
   </Form.Group>
 );
 
-const confirmField = ({ confirm, setConfirm, password }) => (
-  <Form.Group className="box box60-80-90 flex-column">
+const ConfirmField = ({ confirm, setConfirm, password }) => (
+  <Form.Group className="form_group_component">
     <Form.Control
       data-testid="confirm-input"
       isInvalid={confirm.error}
@@ -72,8 +69,8 @@ const confirmField = ({ confirm, setConfirm, password }) => (
   </Form.Group>
 );
 
-const roleField = ({ setRole }) => (
-  <Form.Group className="box box60-80-90 flex-column">
+const RoleField = ({ setRole }) => (
+  <Form.Group className="form_group_check">
     <Form.Check
       id="checkbox"
       type="checkbox"
@@ -83,9 +80,12 @@ const roleField = ({ setRole }) => (
   </Form.Group>
 );
 
-const buttonSubmit = ({ confirm, email, name, password, role, history }) => (
+const SubmitButton = ({
+  data: { confirm, email, name, password, role },
+  history,
+}) => (
   <Button
-    className="box box40"
+    className="register_page_submit_button"
     data-testid="register-submit-btn"
     disabled={
       confirm.error ||
@@ -111,7 +111,7 @@ const buttonSubmit = ({ confirm, email, name, password, role, history }) => (
       })
     }
     type="submit"
-    variant="outline-danger"
+    variant="outline-success"
   >
     Cadastrar
   </Button>
@@ -126,15 +126,27 @@ function Register() {
   const [role, setRole] = useState("client");
 
   return (
-    <section className="box box60-90 flex-column flex-font">
-      <Form className="box box90 flex-column">
-        {getField({ state: name, callback: setName, field: "name" })}
-        {getField({ state: email, callback: setEmail, field: "email" })}
-        {passwordField({ password, confirm, setPassword, setConfirm })}
-        {confirmField({ confirm, setConfirm, password })}
-        {roleField({ setRole })}
+    <section className="register_page">
+      <Form className="register_page_form">
+        <FormGroup state={name} callback={setName} field="name" />
+        <FormGroup state={email} callback={setEmail} field="email" />
+        <PasswordField
+          password={password}
+          confirm={confirm}
+          setPassword={setPassword}
+          setConfirm={setConfirm}
+        />
+        <ConfirmField
+          confirm={confirm}
+          setConfirm={setConfirm}
+          password={password}
+        />
+        <RoleField setRole={setRole} />
       </Form>
-      {buttonSubmit({ confirm, email, name, password, role, history })}
+      <SubmitButton
+        data={{ confirm, email, name, password, role }}
+        history={history}
+      />
     </section>
   );
 }

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { getData, patchData } from '../../services/Request';
-import './style.css';
-import Header from '../../components/Header';
+import { getData, patchData } from "../../../services/Request";
+import "./style.css";
+import Header from "../../../components/Header";
 
-const URL = 'http://localhost:3001/users/profile';
+const URL = "http://localhost:3001/users/profile";
 
 const renderButton = (disable) => (
   <div className="prof_contain_submit profile_font">
@@ -12,7 +12,9 @@ const renderButton = (disable) => (
       data-testid="profile-save-btn"
       type="submit"
       disabled={disable}
-      className={`profile_submit profile_font ${disable ? 'red_background' : 'green_background'}`}
+      className={`profile_submit profile_font ${
+        disable ? "red_background" : "green_background"
+      }`}
     >
       Salvar
     </button>
@@ -37,7 +39,7 @@ const renderInputName = (setName, setDisable, name) => (
 );
 
 const renderInputEmail = (email) => (
-  <div className="prof_contain" >
+  <div className="prof_contain">
     <label className="prof_label profile_font">Email</label>
     <input
       type="text"
@@ -49,7 +51,14 @@ const renderInputEmail = (email) => (
   </div>
 );
 
-const renderForm = (handleSubmit, setName, setDisable, name, email, disable) => (
+const renderForm = (
+  handleSubmit,
+  setName,
+  setDisable,
+  name,
+  email,
+  disable
+) => (
   <form className="profile_form" onSubmit={(e) => handleSubmit(e)}>
     <div className="profile_container_all">
       {renderInputName(setName, setDisable, name)}
@@ -60,10 +69,10 @@ const renderForm = (handleSubmit, setName, setDisable, name, email, disable) => 
 );
 
 const Profile = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [disable, setDisable] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const request = async () => {
@@ -71,7 +80,7 @@ const Profile = () => {
       if (error) return setError(error.message);
       setName(data.name);
       setEmail(data.email);
-    }
+    };
     request();
   }, []);
 
@@ -81,11 +90,14 @@ const Profile = () => {
   };
 
   return (
-    <div> <Header title="Meu perfil" />
-      {error
-        ? <h2>{error}</h2>
-        : renderForm(handleSubmit, setName, setDisable, name, email, disable)
-      }
+    <div>
+      {" "}
+      <Header title="Meu perfil" />
+      {error ? (
+        <h2>{error}</h2>
+      ) : (
+        renderForm(handleSubmit, setName, setDisable, name, email, disable)
+      )}
     </div>
   );
 };

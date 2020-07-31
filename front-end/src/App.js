@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Profile from "./pages/Profile";
-import Products from "./pages/Products";
+import Profile from "./pages/Client/Profile";
+import Products from "./pages/Client/Products";
 import Register from "./pages/Register";
 import Checkout from "./pages/Checkout";
 import PrivateRoute from "./PrivateRoute";
@@ -14,7 +14,7 @@ function App() {
           <Route exact path="/" component={Login} />
           <PrivateRoute exact path="/products" component={Products} />
           <PrivateRoute path="/profile" component={Profile} />
-          <PrivateRoute path="/checkout" component={Checkout} />
+          <Route path="/checkout" component={Checkout} />
           <Route path="/register" component={Register} />
         </Switch>
     </div>

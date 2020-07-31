@@ -11,6 +11,16 @@ const email = Joi.string()
     "string.empty": "Email is not allowed to be empty",
   });
 
+const name = Joi.string()
+  .regex(/^[^\s][a-zA-Z\s]*[a-zA-z]$/)
+  .min(12)
+  .messages({
+    "string.empty": "Name is not allowed to be empty",
+    "string.min": "Name length must be at least 12 characters long",
+    "string.pattern.base":
+      "Name must not contain any numbers, special characters or space in the start or in the end",
+  });
+
 const password = Joi.string()
   .pattern(/^.*(.*\d){6,}/)
   .messages({
@@ -20,6 +30,7 @@ const password = Joi.string()
 
 const schemas = {
   email,
+  name,
   password,
 };
 
@@ -29,4 +40,14 @@ const validate = ({ field, value }) => {
   return error;
 };
 
-export default validate;
+const handleField = ({ field, value, callback }) => {
+  const error = validate({ field, value });
+
+  if (!error) {
+    callback({ value, error: null });
+  } else {
+    callback({ value, error: error.message });
+  }
+};
+
+export { handleField };

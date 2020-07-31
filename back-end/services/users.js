@@ -10,6 +10,7 @@ const find = async (body) => {
     key: 'email',
     value: body.email,
   });
+
   return user;
 };
 
@@ -33,7 +34,7 @@ const login = async (body) => {
 
   const token = signToken(userWithoutPassword);
 
-  return { error: null, token, user };
+  return { token, user: userWithoutPassword, error: null };
 };
 
 const register = async (body) => {
