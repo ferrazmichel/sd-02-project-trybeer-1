@@ -17,6 +17,22 @@ password  varchar(100) not null,
 role varchar(100) not null
 ) engine=InnoDB;
 
+create table orders (
+id int primary key auto_increment,
+user_id int,
+order_date TIMESTAMP,
+total_price double,
+FOREIGN KEY (user_id) REFERENCES users(id)
+) engine=InnoDB;
+
+create table orders_details (
+product_id int,
+orders_id int,
+PRIMARY KEY (product_id, orders_id),
+FOREIGN KEY (product_id) REFERENCES products(id),
+FOREIGN KEY (orders_id) REFERENCES orders(id)
+) engine=InnoDB;
+
 
 insert into products (product, price, volume, urlImage) value
 ('Skol Lata', 2.20, 250,'http://localhost:3001/images/1.png'),
