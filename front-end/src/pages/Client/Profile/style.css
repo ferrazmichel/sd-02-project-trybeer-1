@@ -29,8 +29,8 @@
 }
 
 .profile_submit {
-  font-size: 26px;
-  margin-bottom: 10px;
+  font-size: 2em;
+  margin-bottom: 1em;
   width: 80%;
 }
 
@@ -38,14 +38,14 @@
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: 600;
-  line-height: 28px;
+  line-height: 1.2em;
 }
 
 .profile_input {
   background: white;
   border: 1px solid black;
   box-sizing: border-box;
-  height: 60%;
+  height: 2.0em;
 }
 
 .prof_contain_submit {

@@ -8,8 +8,7 @@ const { auth } = require('../middlewares');
 
 const router = express.Router();
 
-router
-  .route('/checkout')
-  .post(auth, rescue(sales.postSale))
+router.post('/checkout', rescue(sales.postSale))
 
 module.exports = router;
+

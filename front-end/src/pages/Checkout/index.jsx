@@ -1,38 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
-import { postData } from '../../services/Request';
+import { postSale } from '../../services/Request';
 import Message from '../../components/Message';
+import { Redirect } from 'react-router-dom';
 
 const URL = 'http://localhost:3001/sales/checkout';
-const getLocalStorage = () => Object.values(JSON.parse(localStorage.getItem('products')));
+
+const getProducts = () => JSON.parse(localStorage.getItem('products')) || {};
+
+const getLocalStorage = () => Object.values(getProducts());
 
 const formatBrl = (value) => value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
+const removeToLocal = (id) => {
+  const products = getProducts();
+  delete products[id];
+  localStorage.setItem('products', JSON.stringify(products));
+}
 
-const Checkout = () => {
+const Checkout = ({ history }) => {
   const [total, setTotal] = useState(0);
   const [street, setStreet] = useState('');
   const [homeNumber, setHomeNumber] = useState('');
-  const [error, setError] = useState('');
   const [products, setProducts] = useState([]);
-  
+  const [message, setMessage] = useState({});
+  const [redirect, setRedirect] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    return postData({ endpoint: URL, body: { products, adress: { street, homeNumber } } })
-      .catch((error) => setError(error));
+    return postSale({ endpoint: URL, body: { products, adress: { street, homeNumber } } })
+      .then(() => setMessage({ message: 'Venda realizada com Sucesso', type: 'SUCCESS', setError: setMessage }))
+      .catch(() => setMessage({ message: 'Não foi possível cadastrar a venda', type: 'ALERT', setError: setMessage }))
   };
+
+  useEffect(() => {
+    setRedirect(message.type);
+  }, [message])
 
   useEffect(() => {
     setProducts(getLocalStorage()
       .map((product) => ({ ...product, total: product.count * product.price })))
   }, [])
 
-  if (total === 0 && products.length > 0) setTotal(products.reduce((acc, curr) => acc + curr.total, 0));
-  
+  useEffect(() => {
+    setTotal(products.reduce((acc, curr) => acc + curr.total, 0));
+  }, [products])
+
+  if (redirect === 'SUCCESS' && Object.keys(message).length === 0) {
+    localStorage.removeItem('products');
+    history.push('/products')
+  }
+
   return (
     <React.Fragment>
       <Header title="Finalizar Pedido" />
-      {error && <Message message={error} type="ALERT" />}
+      {message.type && <Message {...message} />}
       <div>
         <div>
           <h3>Produtos</h3>
@@ -42,6 +64,13 @@ const Checkout = () => {
                 <p data-testid={`${index}-product-qtd-input`} >{product.count}</p>
                 <p data-testid={`${index}-product-name`} >{product.product}</p>
                 <p data-testid={`${index}-product-total-value`}>{formatBrl(product.total)}</p>
+                <button onClick={() => {
+                  const newProducts = products.filter((produ) => produ.id !== product.id);
+                  setProducts(newProducts);
+                  removeToLocal(product.id);
+                }}>
+                  <span className="material-icons">delete</span>
+                </button>
               </div>
             ))
           }
@@ -70,7 +99,7 @@ const Checkout = () => {
             <button
               data-testid="checkout-finish-btn"
               type="submit"
-              disabled={!(street && homeNumber) && total > 0}
+              disabled={!(street && homeNumber) || (total <= 0)}
             >
               Finalizar Pedido
             </button>

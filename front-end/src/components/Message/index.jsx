@@ -11,7 +11,7 @@ const createTimeout = (infinity, setError) => {
   if (!infinity) {
     setTimeout(() => {
       setError(false);
-    }, 1000);
+    }, 3000);
   }
 };
 
