@@ -50,7 +50,7 @@ const Checkout = ({ history }) => {
     localStorage.removeItem('products');
     history.push('/products');
   }
-
+  const booleanButton = !(street && homeNumber) || (total <= 0);
   return (
     <React.Fragment>
       <Header title="Finalizar Pedido" />
@@ -74,10 +74,10 @@ const Checkout = ({ history }) => {
               </div>
             ))
           }
-          <div className="contain_total"><p className="total_text"data-testid="order-total-value">Total:{formatBrl(total)}</p></div>
+          <div className="contain_total"><p className="total_text" data-testid="order-total-value">Total:{formatBrl(total)}</p></div>
         </div>
         <div className="checkout_container_form">
-          <form className="checkout_form"onSubmit={(e) => handleSubmit(e)}>
+          <form className="checkout_form" onSubmit={(e) => handleSubmit(e)}>
             <h3>Endereço</h3>
             <label htmlFor="street">Rua:</label>
             <input
@@ -97,9 +97,10 @@ const Checkout = ({ history }) => {
               required
             />
             <button
+              className={`submit_checkout ${booleanButton ? 'red_background' : 'green_background'}`}
               data-testid="checkout-finish-btn"
               type="submit"
-              disabled={!(street && homeNumber) || (total <= 0)}
+              disabled={booleanButton}
             >
               Finalizar Pedido
             </button>
