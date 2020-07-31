@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
 import { postSale } from '../../services/Request';
 import Message from '../../components/Message';
+import './style.css';
 
 const URL = 'http://localhost:3001/sales/checkout';
 
@@ -51,7 +52,7 @@ const Checkout = ({ history }) => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <Header title="Finalizar Pedido" />
       {message.type && <Message {...message} />}
       <div className="checkout_container">
@@ -59,24 +60,24 @@ const Checkout = ({ history }) => {
           <h3>Produtos</h3>
           {
             products.map((product, index) => (
-              <div key={JSON.stringify(product)}>
-                <p data-testid={`${index}-product-qtd-input`} >{product.count}</p>
-                <p data-testid={`${index}-product-name`} >{product.product}</p>
-                <p data-testid={`${index}-product-total-value`}>{formatBrl(product.total)}</p>
-                <button onClick={() => {
+              <div className="products_box" key={JSON.stringify(product)}>
+                <div className="product_info"><p data-testid={`${index}-product-qtd-input`} >{product.count}</p></div>
+                <div className="product_info"><p data-testid={`${index}-product-name`} >{product.product}</p></div>
+                <div className="product_info"><p data-testid={`${index}-product-total-value`}>{formatBrl(product.total)}</p></div>
+                <div className="product_info"><button onClick={() => {
                   const newProducts = products.filter((produ) => produ.id !== product.id);
                   setProducts(newProducts);
                   removeToLocal(product.id);
                 }}>
                   <span className="material-icons">delete</span>
-                </button>
+                </button></div>
               </div>
             ))
           }
-          <p data-testid="order-total-value">Total:{formatBrl(total)}</p>
+          <div className="contain_total"><p className="total_text"data-testid="order-total-value">Total:{formatBrl(total)}</p></div>
         </div>
         <div className="checkout_container_form">
-          <form onSubmit={(e) => handleSubmit(e)}>
+          <form className="checkout_form"onSubmit={(e) => handleSubmit(e)}>
             <h3>Endereço</h3>
             <label htmlFor="street">Rua:</label>
             <input
@@ -105,7 +106,7 @@ const Checkout = ({ history }) => {
           </form>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 
