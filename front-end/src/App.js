@@ -10,10 +10,10 @@ function App() {
   return (
     <div className="app">
       <Switch>
-        <Route exact path="/" component={Login} />
         <PrivateRoute exact path="/products" component={Products} />
         <PrivateRoute path="/profile" component={Profile} />
         <Route path="/register" component={Register} />
+        <Route exact path="/" component={Login} />
       </Switch>
     </div>
   );
