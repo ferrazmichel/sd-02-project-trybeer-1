@@ -13,13 +13,14 @@ create table users (
 id int primary key auto_increment,
 name varchar(100) not null,
 email varchar(100) not null,
-password  varchar(100) not null,
+password varchar(100) not null,
 role varchar(100) not null
 ) engine=InnoDB;
 
 create table orders (
 id int primary key auto_increment,
 total double not null,
+status varchar(100) not null,
 date DATE not null,
 ) engine=InnoDB;
 
