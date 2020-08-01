@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { FormGroup, Message, SubmitButton } from "../../components";
 import { RegisterButton } from "./components";
+import { handleSubmit } from "./service";
 import "./style.css";
 
 const Login = () => {
@@ -41,7 +42,7 @@ const Login = () => {
         <SubmitButton
           body={body}
           isDisabled={isDisabled}
-          endpoint="login"
+          handleSubmit={handleSubmit}
           label="Signin"
           setError={setError}
           testId="signin-btn"

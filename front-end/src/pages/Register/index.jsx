@@ -74,8 +74,8 @@ const Register = () => {
         <SubmitButton
           body={body}
           isDisabled={isDisabled}
-          endpoint="register"
-          label="register"
+          handleSubmit={handleSubmit}
+          label="Create User"
           setError={setError}
           testId="signin-btn"
         />

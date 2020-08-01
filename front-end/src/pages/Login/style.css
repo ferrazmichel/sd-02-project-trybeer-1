@@ -12,7 +12,7 @@ header > h2 {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: inherit;
   font-size: 50px;
   width: 100%;
 }

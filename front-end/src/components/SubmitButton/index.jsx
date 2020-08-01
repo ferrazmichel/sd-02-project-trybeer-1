@@ -1,13 +1,12 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
-import { handleSubmit } from "./service";
 import "./style.css";
 
 const SubmitButton = ({
   body,
   isDisabled,
-  endpoint,
+  handleSubmit,
   label,
   testId,
   setError,
@@ -19,9 +18,7 @@ const SubmitButton = ({
       className="submit_button"
       data-testid={testId}
       disabled={isDisabled}
-      onClick={(event) =>
-        handleSubmit({ event, body, history, endpoint, setError })
-      }
+      onClick={(event) => handleSubmit({ event, body, history, setError })}
       type="submit"
       variant={isDisabled ? "outline-danger" : "outline-success"}
     >
