@@ -25,12 +25,13 @@ total_price double,
 FOREIGN KEY (user_id) REFERENCES users(id)
 ) engine=InnoDB;
 
-create table orders_details (
-product_id int,
-orders_id int,
-PRIMARY KEY (product_id, orders_id),
+create table orders_products (
+order_id int NOT NULL,
+product_id int NOT NULL,
+quantity int NOT NULL,
+PRIMARY KEY (product_id, order_id),
 FOREIGN KEY (product_id) REFERENCES products(id),
-FOREIGN KEY (orders_id) REFERENCES orders(id)
+FOREIGN KEY (order_id) REFERENCES orders(id)
 ) engine=InnoDB;
 
 
