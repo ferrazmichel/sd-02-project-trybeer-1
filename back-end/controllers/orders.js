@@ -13,10 +13,10 @@ const details = async (req, res) => {
 };
 
 const insert = async (req, res) => {
-  const { orderDate, totalPrice, quantity, address, number } = req.body;
+  const { orderDate, totalPrice, address, number, products } = req.body;
   const { id: userId } = req.user;
 
-  await orders.insert({ userId, orderDate, totalPrice, quantity, address, number });
+  await orders.insert({ userId, orderDate, totalPrice, address, number, products });
 
   res.status(201).json({ message: 'Compra concluída!' });
 };

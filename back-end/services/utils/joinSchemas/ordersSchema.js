@@ -1,12 +1,6 @@
 const Joi = require('@hapi/joi');
 const joiDate = Joi.extend(require('@hapi/joi-date'));
 
-const userId = Joi.string().required().messages({
-  'any.required': 'Id is required',
-  'string.base': 'Id must be a type of string',
-  'string.empty': 'Id cannot be an empty field'
-});
-
 const orderDate = joiDate.date().format('YYYY-MM-DD').utc().required().messages({
   'any.required': 'Date is required',
   'string.date': 'Date must be in date format',
@@ -18,13 +12,6 @@ const totalPrice = Joi.number().positive().required().messages({
   'any.required': 'Price is required',
   'number.base': 'Price must be a number',
   'number.empty': 'Price is not allowed to be empty',
-});
-
-const quantity = Joi.number().positive().required().messages({
-  'number.positive': 'Quantity must be a positive value',
-  'any.required': 'Quantity is required',
-  'number.base': 'Quantity must be a number',
-  'number.empty': 'Quantity is not allowed to be empty',
 });
 
 const address = Joi.string()
@@ -46,13 +33,20 @@ const number = Joi.number().integer().positive().required().messages({
 
 });
 
+// count, id
+
+const products = Joi.array().required().messages({
+  'number.empty': 'Products is not allowed to be empty',
+  'any.required': 'Products is required',
+  'number.base': 'Products must be a number',
+});
+
 const ordersSchema = Joi.object({
-  userId,
   orderDate,
   totalPrice,
-  quantity,
   address,
-  number
+  number,
+  products,
 }).unknown(false);
 
 module.exports = {

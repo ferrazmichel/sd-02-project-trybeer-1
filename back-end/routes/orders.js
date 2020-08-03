@@ -7,7 +7,7 @@ const { orders } = require('../controllers');
 const { auth, validate } = require('../middlewares');
 
 const {
-  userSchema: { ordersSchema },
+  ordersSchema: { ordersSchema },
 } = require('../services/utils/joinSchemas');
 
 const router = express.Router();
@@ -16,6 +16,6 @@ const router = express.Router();
 
 // router.get('/:id', auth, rescue(orders.details));
 
-// router.post('/', auth, validate(ordersSchema), rescue(orders.insert));
+router.post('/', auth, validate(ordersSchema), rescue(orders.insert));
 
 module.exports = router;

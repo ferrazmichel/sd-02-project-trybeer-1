@@ -1,20 +1,5 @@
 const { connection } = require('./connection');
 
-const getAllSales = async () => {
-  const session = await connection();
-  const result = await session.sql(
-    `SELECT id, total_price, delivery_address, delivery_number, status
-    FROM sales;`,
-  )
-    .execute()
-    .then((results) => results.fetchAll())
-    .then((sales) => sales.map(
-      ([id, totalPrice, deliveryAddress, deliveryNumber, status]) =>
-        ({ saleId: id, totalPrice, deliveryAddress, deliveryNumber, status }),
-    ));
-  return result;
-};
-
 const list = async (id) =>
   connection()
     .then((db) =>
@@ -54,7 +39,30 @@ const details = async (id) =>
       })),
     );
 
+const insert = async ({ userId, orderDate, totalPrice, address, number }) =>
+  connection()
+    .then((db) =>
+      db
+        .getTable('orders')
+        .insert(['user_id', 'order_date', 'total_price', 'address', 'number'])
+        .values(userId, orderDate, totalPrice, address, number)
+        .execute(),
+    ).then((query) => query.getAutoIncrementValue());
+
+const insertOrdersProducts = async ({ orderId, products }) =>
+  connection()
+    .then((db) =>
+      db
+        .getTable('orders_products')
+        .insert(['order_id', 'product_id', 'quantity']))
+        .then((query) => {
+          products.forEach(({ id, count }) => query.values(orderId, id, count));
+          return query.execute();
+        })
+
 module.exports = {
-  list,
-  details,
-};
+        list,
+        details,
+        insert,
+        insertOrdersProducts
+      };
