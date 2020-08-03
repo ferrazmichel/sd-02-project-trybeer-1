@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Client/Profile";
 import Products from "./pages/Client/Products";
 import Register from "./pages/Register";
-import Checkout from "./pages/Checkout";
+import Checkout from "./pages/Client/Checkout";
 import PrivateRoute from "./PrivateRoute";
 import NotFound from "./NotFound";
 

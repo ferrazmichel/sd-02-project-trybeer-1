@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../../components/Header';
-import { postSale } from '../../services/Request';
-import Message from '../../components/Message';
+import Header from '../../../components/Header';
+import { postSale } from '../../../services/Request';
+import Message from '../../../components/Message';
 import './style.css';
 
 const URL = 'http://localhost:3001/sales/checkout';
