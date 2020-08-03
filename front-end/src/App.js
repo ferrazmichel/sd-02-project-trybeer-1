@@ -5,6 +5,9 @@ import Profile from "./pages/Client/Profile";
 import Products from "./pages/Client/Products";
 import Register from "./pages/Register";
 import PrivateRoute from "./PrivateRoute";
+import AdminProfile from './pages/Admin/Profile';
+import AdminRoute from "./AdminRoute";
+
 
 function App() {
   return (
@@ -12,6 +15,7 @@ function App() {
       <Switch>
         <PrivateRoute exact path="/products" component={Products} />
         <PrivateRoute path="/profile" component={Profile} />
+        <AdminRoute path="/admin/profile" component={AdminProfile} />
         <Route path="/register" component={Register} />
         <Route exact path="/" component={Login} />
       </Switch>

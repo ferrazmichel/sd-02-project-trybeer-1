@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getData, patchData } from "../../../services/Request";
 import "./style.css";
 import Header from "../../../components/Header";
+import Message from '../../../components/Message';
 
 const URL = "http://localhost:3001/users/profile";
 
@@ -91,10 +92,9 @@ const Profile = () => {
 
   return (
     <div>
-      {" "}
       <Header title="Meu perfil" />
       {error ? (
-        <h2>{error}</h2>
+        <Message message={error} setError={setError} type="ALERT" infinity />
       ) : (
         renderForm(handleSubmit, setName, setDisable, name, email, disable)
       )}

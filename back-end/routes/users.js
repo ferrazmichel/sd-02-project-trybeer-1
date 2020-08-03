@@ -25,4 +25,10 @@ router
   .route('/token')
   .get(auth, rescue(users.validToken));
 
+router
+  .route('/admin')
+  .get(auth, rescue(users.isAdmin));
+
+
 module.exports = router;
+

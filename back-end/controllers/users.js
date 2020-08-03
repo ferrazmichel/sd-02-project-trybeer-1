@@ -50,7 +50,12 @@ const update = async (req, res) => {
   res.status(200).json({ message: 'User update with sucess!' });
 };
 
-const validToken = async (_req, res) => res.status(200).json();
+const validToken = (_req, res) => res.status(200).json();
+
+const isAdmin = (req, res) => {
+  const { role } = req.user;
+  res.status(200).json({ role })
+};
 
 module.exports = {
   find,
@@ -58,4 +63,5 @@ module.exports = {
   register,
   update,
   validToken,
+  isAdmin,
 };

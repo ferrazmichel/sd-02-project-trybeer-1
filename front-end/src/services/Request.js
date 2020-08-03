@@ -30,4 +30,12 @@ const validToken = async (endpoint) =>
 const postData = async ({ endpoint, body }) =>
   axios.post(endpoint, body).catch((error) => handleError({ error }));
 
-export { getData, patchData, postData, validToken };
+const isAdmin = async (endpoint) =>
+  axios.get(endpoint, {
+    headers,
+  })
+    .then(({ data }) => data)
+    .catch((error) => error);
+
+
+export { getData, patchData, postData, validToken, isAdmin };
