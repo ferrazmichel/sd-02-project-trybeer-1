@@ -54,7 +54,7 @@ const validToken = (_req, res) => res.status(200).json();
 
 const isAdmin = (req, res) => {
   const { role } = req.user;
-  res.status(200).json({ role })
+  res.status(200).json({ role });
 };
 
 module.exports = {
