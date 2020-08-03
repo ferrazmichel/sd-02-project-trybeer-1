@@ -23,8 +23,8 @@ const AdminProfile = () => {
         :
         (<div>
           <h2>Perfil</h2>
-          <h3>Nome:{user.name}</h3>
-          <h3>Email:{user.email}</h3>
+          <h3 data-testid="profile-name">Nome:{user.name}</h3>
+          <h3 data-testid="profile-email">Email:{user.email}</h3>
         </div>)
       }
     </React.Fragment>
