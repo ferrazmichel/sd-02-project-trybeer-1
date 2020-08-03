@@ -1,0 +1,60 @@
+const Joi = require('@hapi/joi');
+const joiDate = Joi.extend(require('@hapi/joi-date'));
+
+const userId = Joi.string().required().messages({
+  'any.required': 'Id is required',
+  'string.base': 'Id must be a type of string',
+  'string.empty': 'Id cannot be an empty field'
+});
+
+const orderDate = joiDate.date().format('YYYY-MM-DD').utc().required().messages({
+  'any.required': 'Date is required',
+  'string.date': 'Date must be in date format',
+  'string.empty': 'Date cannot be an empty field'
+})
+
+const totalPrice = Joi.number().positive().required().messages({
+  'number.positive': 'Price must be a positive value',
+  'any.required': 'Price is required',
+  'number.base': 'Price must be a number',
+  'number.empty': 'Price is not allowed to be empty',
+});
+
+const quantity = Joi.number().positive().required().messages({
+  'number.positive': 'Quantity must be a positive value',
+  'any.required': 'Quantity is required',
+  'number.base': 'Quantity must be a number',
+  'number.empty': 'Quantity is not allowed to be empty',
+});
+
+const address = Joi.string()
+  .max(100)
+  .required()
+  .messages({
+    'any.required': 'Address is required',
+    'string.base': 'Address must be a type of string',
+    'string.empty': 'Address is not allowed to be empty',
+    'string.max': 'Address length must be at maximum 100 characters long',
+  });
+
+const number = Joi.number().integer().positive().required().messages({
+  'number.positive': 'Number must be a positive value',
+  'any.required': 'Number is required',
+  'number.base': 'Number must be a number',
+  'number.empty': 'Number is not allowed to be empty',
+  'number.integer': 'Number must be an integer',
+
+});
+
+const ordersSchema = Joi.object({
+  userId,
+  orderDate,
+  totalPrice,
+  quantity,
+  address,
+  number
+}).unknown(false);
+
+module.exports = {
+  ordersSchema,
+};

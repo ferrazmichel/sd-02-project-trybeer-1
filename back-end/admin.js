@@ -6,19 +6,33 @@ const {
   bcrypt: { createHash },
 } = require('./services/utils');
 
-const createAdmin = async (body) => {
-  const hash = await createHash(body.password);
+const createUsers = async (body) => {
 
-  await users.register({ ...body, password: hash });
+  await Promise.all(body.map(async (user) => {
+    const hash = await createHash(user.password);
+    return users.register({ ...user, password: hash });
+  }));
 
-  console.log('User Admin Created!');
+  console.log('Users Created!');
 
   process.exit(1);
 };
 
-createAdmin({
+createUsers([{
   name: 'tryber',
   email: 'tryber@gmail.com',
   password: '123456',
   role: 'admin',
-});
+},
+{
+  name: 'taylor swift',
+  email: 'taylor@gmail.com',
+  password: '123456',
+  role: 'client'
+},
+{
+  name: 'lana del rey',
+  email: 'lana@gmail.com',
+  password: '123456',
+  role: 'admin'
+}]);

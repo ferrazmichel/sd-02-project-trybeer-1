@@ -1,19 +1,28 @@
 const { orders } = require('../services');
 
-const list = async (_req, res) => {
-  const ordersList = await orders.list();
+const list = async (req, res) => {
+  const orders = await orders.list(req.user.id);
 
-  res.status(200).json({ ordersList });
+  res.status(200).json({ orders });
+};
+
+const details = async (req, res) => {
+  const order = await orders.details(req.params.id);
+
+  res.status(200).json({ order });
 };
 
 const insert = async (req, res) => {
-  const { userId, orderDate, totalPrice } = req.body;
-  const insertedOrder = await orders.insert({ userId, orderDate, totalPrice });
+  const { orderDate, totalPrice, quantity, address, number } = req.body;
+  const { id: userId } = req.user;
 
-  res.status(201).json({ insertedOrder });
+  await orders.insert({ userId, orderDate, totalPrice, quantity, address, number });
+
+  res.status(201).json({ message: 'Compra concluída!' });
 };
 
 module.exports = {
   list,
   insert,
+  details,
 };

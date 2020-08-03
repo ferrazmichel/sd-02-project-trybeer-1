@@ -1,10 +1,16 @@
 const { orders } = require('../models');
 
-const list = async () => orders.list();
+const list = async (id) => orders.list(id);
 
-const insert = async ({ userId, orderDate, totalPrice }) => orders.insert({ userId, orderDate, totalPrice });
+const details = async (id) => orders.details(id);
+
+const insert = async ({ userId, orderDate, totalPrice, quantity }) => {
+  const insertOrders = await orders.insert({ userId, orderDate, totalPrice, quantity });
+
+}
 
 module.exports = {
   list,
   insert,
+  details,
 };

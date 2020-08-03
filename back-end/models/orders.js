@@ -15,29 +15,46 @@ const getAllSales = async () => {
   return result;
 };
 
-const list = async () => {
-  const listOrders = await connection()
+const list = async (id) =>
+  connection()
     .then((db) =>
       db
         .getTable('orders')
         .select(['id', 'user_id', 'order_date', 'total_price'])
+        .where(`user_id = :${id}`)
+        .bind(id)
         .execute(),
     )
     .then((results) => results.fetchAll())
     .then((arrayOrders) =>
       arrayOrders.map(([orderId, userId, orderDate, totalPrice]) => ({
-       orderId,
-       userId,
-       orderDate,
-       totalPrice,
+        orderId,
+        userId,
+        orderDate,
+        totalPrice,
       })),
     );
 
-  if (!listOrders) return null;
-
-  return listOrders;
-};
+const details = async (id) =>
+  connection()
+    .then((db) =>
+      db
+        .getTable('orders_products')
+        .select(['order_id', 'product_id', 'quantity'])
+        .where(`order_id = :${id}`)
+        .bind(id)
+        .execute(),
+    )
+    .then((arrayOrders) =>
+      arrayOrders.map(([orderId, userId, orderDate, totalPrice]) => ({
+        orderId,
+        userId,
+        orderDate,
+        totalPrice,
+      })),
+    );
 
 module.exports = {
   list,
+  details,
 };
