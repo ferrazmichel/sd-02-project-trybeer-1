@@ -1,0 +1,27 @@
+.formgroup_component {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  margin: 1% 0%;
+  padding: 1%;
+  width: 60%;
+}
+
+.formgroup_component > p {
+  font-size: 30%;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 800px) {
+  .formgroup_component {
+    height: 70px;
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .formgroup_component {
+    height: 60px;
+    width: 80%;
+  }
+}
