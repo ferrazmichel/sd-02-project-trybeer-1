@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../../context";
 import Form from "react-bootstrap/Form";
 import { FormGroup, Message, SubmitButton } from "../../components";
 import { RegisterButton } from "./components";
@@ -10,7 +11,7 @@ const Login = () => {
 
   const [password, setPassword] = useState({ value: null, error: null });
 
-  const [error, setError] = useState();
+  const { message } = useContext(Context);
 
   const isDisabled =
     !email.value || !password.value || email.error || password.error;
@@ -23,9 +24,7 @@ const Login = () => {
         <h1>Trybeer Masculinahs</h1>
         <h2>Login</h2>
       </header>
-      {error && (
-        <Message message={error} setError={setError} type="ALERT" infinity />
-      )}
+      {message.value && <Message message={message} infinity />}
       <Form>
         <FormGroup
           callback={setEmail}
@@ -44,7 +43,6 @@ const Login = () => {
           isDisabled={isDisabled}
           handleSubmit={handleSubmit}
           label="Signin"
-          setError={setError}
           testId="signin-btn"
         />
         <RegisterButton />

@@ -14,6 +14,7 @@ const getUserAndSaveToken = async (body) => {
   });
 
   if (error) {
+    console.error(error);
     return { error };
   }
 
@@ -22,13 +23,13 @@ const getUserAndSaveToken = async (body) => {
   return { user: data.user };
 };
 
-async function handleSubmit({ event, body, history, setError }) {
+async function handleSubmit({ event, body, history, setMessage }) {
   event.preventDefault();
 
   const { user, error } = await getUserAndSaveToken(body);
 
   if (error) {
-    setError(error.message);
+    setMessage({ value: error.message || error.status, type: "ALERT" });
     return;
   }
 

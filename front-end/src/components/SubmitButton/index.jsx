@@ -1,16 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../../context";
 import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router-dom";
 import "./style.css";
 
-const SubmitButton = ({
-  body,
-  isDisabled,
-  handleSubmit,
-  label,
-  testId,
-  setError,
-}) => {
+const SubmitButton = ({ body, isDisabled, handleSubmit, label, testId }) => {
+  const { setMessage } = useContext(Context);
+
   const history = useHistory();
 
   return (
@@ -18,7 +14,9 @@ const SubmitButton = ({
       className="submit_button"
       data-testid={testId}
       disabled={isDisabled}
-      onClick={(event) => handleSubmit({ event, body, history, setError })}
+      onClick={async (event) =>
+        await handleSubmit({ event, body, history, setMessage })
+      }
       type="submit"
       variant={isDisabled ? "outline-danger" : "outline-success"}
     >

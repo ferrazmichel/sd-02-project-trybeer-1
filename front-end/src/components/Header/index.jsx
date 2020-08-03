@@ -59,7 +59,7 @@ const Header = ({ title }) => {
   return (
     <React.Fragment>
       {sideShow && sidebar()}
-      <div className="header_comp">
+      <header className="header_comp">
         <button
           data-testid="top-hamburguer"
           className="menu"
@@ -69,9 +69,9 @@ const Header = ({ title }) => {
           <span className="material-icons">menu</span>
         </button>
         <div className="title">
-          <p data-testid="top-title">{title}</p>
+          <h1>{title}</h1>
         </div>
-      </div>
+      </header>
     </React.Fragment>
   );
 };

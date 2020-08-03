@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../../context";
 import Form from "react-bootstrap/Form";
 import { FormGroup, Message, SubmitButton } from "../../components";
 import { ConfirmField, PasswordField, RoleField } from "./components";
@@ -17,7 +18,7 @@ const Register = () => {
 
   const [role, setRole] = useState("client");
 
-  const [error, setError] = useState();
+  const { message } = useContext(Context);
 
   const isDisabled =
     confirm.error ||
@@ -43,9 +44,7 @@ const Register = () => {
         <h1>Trybeer Masculinahs</h1>
         <h2>Register</h2>
       </header>
-      {error && (
-        <Message message={error} setError={setError} type="ALERT" infinity />
-      )}
+      {message.value && <Message message={message} infinity />}
       <Form>
         <FormGroup
           state={name}
@@ -76,7 +75,6 @@ const Register = () => {
           isDisabled={isDisabled}
           handleSubmit={handleSubmit}
           label="Create User"
-          setError={setError}
           testId="signin-btn"
         />
       </Form>

@@ -29,16 +29,18 @@ const postUser = async (body) => {
   return { error };
 };
 
-async function handleSubmit({ event, body, history, setError }) {
+async function handleSubmit({ event, body, history, setMessage }) {
   event.preventDefault();
 
   const { error } = await postUser(body);
 
   if (error) {
-    setError(error.message);
+    setMessage({ value: error.message || error.status, type: "ALERT" });
 
     return;
   }
+
+  setMessage({ value: "User created with success", type: "SUCCESS" });
 
   history.push(userRoutes[body.role]);
 }
