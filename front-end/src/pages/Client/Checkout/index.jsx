@@ -55,21 +55,15 @@ const Checkout = () => {
   const handleSubmit = async (e) => {
     const date = new Date();
     e.preventDefault();
-    return postSale(
-      URL,
-      {
-        products,
-        address: street,
-        number: homeNumber,
-        orderDate: date.toISOString().split('T')[0],
+    return postSale(URL, {
+        products, address: street, number: homeNumber, orderDate: date.toISOString().split('T')[0],
         totalPrice: total,
-      })
-      .then(() => setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' }))
+      }).then(() => setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' }))
       .catch(() => setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT' }));
   };
 
   useEffect(() => {
-    setMessage({ value: '', type: '' })
+    setMessage({ value: '', type: '' });
     setProducts(getLocalStorage()
       .map((product) => ({ ...product, total: product.count * product.price })));
   }, []);
@@ -83,7 +77,6 @@ const Checkout = () => {
     return <Redirect to="/products" />;
   }
 
-  const booleanButton = !(street && homeNumber) || (total <= 0);
   return (
     <React.Fragment>
       <Header title="Finalizar Pedido" />
@@ -102,7 +95,7 @@ const Checkout = () => {
           <div className="contain_total"><p className="total_text" data-testid="order-total-value">Total:{formatBrl(total)}</p></div>
         </div>
         <div className="checkout_container_form">
-          {renderForm(handleSubmit, street, setStreet, homeNumber, setHomeNumber, booleanButton)}
+          {renderForm(handleSubmit, street, setStreet, homeNumber, setHomeNumber, !(street && homeNumber) || (total <= 0))}
         </div>
       </div>
     </React.Fragment>
