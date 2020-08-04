@@ -12,7 +12,7 @@ const createTimeout = ({ infinity, setMessage }) => {
   if (!infinity) {
     setTimeout(() => {
       setMessage({ value: "", type: "" });
-    }, 2000);
+    }, 2500);
   }
 };
 
@@ -21,7 +21,6 @@ const Message = ({ message: { value, type }, infinity }) => {
   useEffect(() => {
     createTimeout({ infinity, setMessage });
   }, []);
-
   return (
     <div
       className="message_comp"

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Context } from "../../../context";
+import { Redirect } from "react-router-dom";
 import Header from '../../../components/Header';
 import { postSale } from '../../../services/Request';
 import Message from '../../../components/Message';
 import './style.css';
-
-const URL = 'http://localhost:3001/sales/checkout';
+const URL = 'http://localhost:3001/orders';
 
 const getProducts = () => JSON.parse(localStorage.getItem('products')) || {};
 
@@ -23,21 +24,26 @@ const Checkout = ({ history }) => {
   const [street, setStreet] = useState('');
   const [homeNumber, setHomeNumber] = useState('');
   const [products, setProducts] = useState([]);
-  const [message, setMessage] = useState({});
-  const [redirect, setRedirect] = useState(false);
-
+  const { message, setMessage } = useContext(Context);
+  
   const handleSubmit = async (e) => {
+    const date = new Date();
     e.preventDefault();
-    return postSale({ endpoint: URL, body: { products, adress: { street, homeNumber } } })
-      .then(() => setMessage({ message: 'Venda realizada com Sucesso', type: 'SUCCESS', setError: setMessage }))
-      .catch(() => setMessage({ message: 'Não foi possível cadastrar a venda', type: 'ALERT', setError: setMessage }));
-  };
-
+    return postSale(
+      URL,
+      {
+        products,
+        address: street,
+        number: homeNumber,
+        orderDate: date.toISOString().split('T')[0],
+        totalPrice: total,
+      })
+      .then(() => setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' }))
+      .catch(() => setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT'}));
+    };
+    
   useEffect(() => {
-    setRedirect(message.type);
-  }, [message]);
-
-  useEffect(() => {
+    setMessage({ value: '', type: '' })
     setProducts(getLocalStorage()
       .map((product) => ({ ...product, total: product.count * product.price })));
   }, []);
@@ -46,15 +52,16 @@ const Checkout = ({ history }) => {
     setTotal(products.reduce((acc, curr) => acc + curr.total, 0));
   }, [products]);
 
-  if (redirect === 'SUCCESS' && Object.keys(message).length === 0) {
+  if (message.type === 'SUCCESS') {
     localStorage.removeItem('products');
-    history.push('/products');
+    return <Redirect to="/products" />; 
   }
+  
   const booleanButton = !(street && homeNumber) || (total <= 0);
   return (
     <React.Fragment>
       <Header title="Finalizar Pedido" />
-      {message.type && <Message {...message} />}
+      {message.type && <Message message={{...message}} />}
       <div className="checkout_container">
         <div className="checkout_container_products">
           <h3>Produtos</h3>

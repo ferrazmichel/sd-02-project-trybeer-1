@@ -24,8 +24,6 @@ const list = async () => {
   return products;
 };
 
-// FALTA FAZER ISSO FUNCIONAR
-
 const find = async (id) =>
   connection()
     .then((db) =>

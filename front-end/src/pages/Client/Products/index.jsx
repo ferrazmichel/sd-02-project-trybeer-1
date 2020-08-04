@@ -17,7 +17,7 @@ const Products = () => {
   useEffect(() => {
     getProducts().then(({ data, error }) => {
       setProducts(data);
-      setMessage({ value: error, type: "ALERT" });
+      if (error) setMessage({ value: error, type: "ALERT" });
     });
   }, []);
 
@@ -27,7 +27,7 @@ const Products = () => {
 
   return (
     <div className="products_page">
-      {message.value && <Message message={message} infinity />}
+      {message.value && <Message message={message} />}
       <Header title="Trybeer" />
       <div className="products">
         {products.map((product, index) => (

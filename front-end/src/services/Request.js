@@ -33,7 +33,7 @@ const validToken = async (endpoint) =>
 const postData = async ({ endpoint, body }) =>
   axios.post(endpoint, body).catch((error) => handleError({ error }));
 
-const postSale = async ({ endpoint, body }) =>
-  axios.post(endpoint, body);
+const postSale = async (endpoint, body) =>
+  axios.post(endpoint, {...body}, { headers: headers() });
 
 export { getData, patchData, postData, validToken, postSale };
