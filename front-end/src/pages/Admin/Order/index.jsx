@@ -8,7 +8,7 @@ import "./style.css";
 
 const marcar = (id, setMessage) => {
   updateOrder(id)
-    .then(({ data: { message: message } }) =>
+    .then(({ data: { message } }) =>
       setMessage({ value: message, type: 'SUCCESS' }));
 };
 

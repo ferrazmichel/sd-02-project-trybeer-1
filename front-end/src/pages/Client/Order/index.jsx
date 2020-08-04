@@ -4,9 +4,9 @@ import "./style.css";
 
 const total = 22.5;
 const index = 1;
-const products = [
-  { id: 'product1', }
-];
+// const products = [
+//   { id: 'product1', }
+// ];
 const date = '12/08/2020';
 
 const Order = (props) => {
