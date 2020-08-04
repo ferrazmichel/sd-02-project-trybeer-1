@@ -1,13 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
-/* font-family: "Indie Flower", cursive; */
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-/* font-family: 'Lobster', cursive; */
-@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Source+Sans+Pro:wght@200;400&display=swap");
-/*
-font-family: 'Permanent Marker', cursive;
-font-family: 'Source Sans Pro', sans-serif;
-*/
-
 body,
 .app {
   height: 100vh;
