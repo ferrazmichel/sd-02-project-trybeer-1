@@ -112,8 +112,8 @@
 
   .lateral > .sidebar > ul {
     display: flex;
-    font-size: 50%;
     flex-flow: row wrap;
+    font-size: 50%;
     justify-content: space-around;
   }
 }

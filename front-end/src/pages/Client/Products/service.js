@@ -14,6 +14,7 @@ const getProducts = async () => {
   const { data, error } = await getData(URL);
 
   if (error) {
+    console.error(error);
     return { error: error.message || error.status, data: [] };
   }
 
