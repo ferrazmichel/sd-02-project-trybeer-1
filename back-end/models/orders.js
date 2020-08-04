@@ -51,7 +51,7 @@ const insert = async ({ userId, orderDate, totalPrice, address, number, status =
         .values(userId, orderDate, totalPrice, address, number, status)
         .execute(),
     )
-    .then((query) => query.getAutoIncrementValue())
+    .then((query) => query.getAutoIncrementValue());
 
 const insertOrdersProducts = async ({ orderId, products }) =>
   connection()
