@@ -53,12 +53,9 @@ const Checkout = () => {
   const { message, setMessage } = useContext(Context);
 
   const handleSubmit = async (e) => {
-    const date = new Date();
     e.preventDefault();
-    return postSale(URL, {
-        products, address: street, number: homeNumber, orderDate: date.toISOString().split('T')[0],
-        totalPrice: total,
-      }).then(() => setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' }))
+    return postSale(URL, { products, address: street, number: homeNumber, totalPrice: total, })
+      .then(() => setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' }))
       .catch(() => setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT' }));
   };
 
@@ -84,14 +81,12 @@ const Checkout = () => {
       <div className="checkout_container">
         <div className="checkout_container_products">
           <h3>Produtos</h3>
-          {
-            products.map((product, index) => (
+          {products.map((product, index) => (
               <Product
                 key={JSON.stringify(product)}
                 {...{ products, product, index, setProducts }}
               />
-            ))
-          }
+            ))}
           <div className="contain_total"><p className="total_text" data-testid="order-total-value">Total:{formatBrl(total)}</p></div>
         </div>
         <div className="checkout_container_form">
