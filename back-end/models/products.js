@@ -16,7 +16,7 @@ const list = async () => {
         price,
         volume,
         urlImage,
-      }))
+      })),
     );
 
   if (!products) return null;
@@ -31,13 +31,15 @@ const find = async (id) =>
     .then((db) =>
       db
         .getTable('products')
-        .select(['id', 'name', 'price', 'volume', 'urlImage'])
+        .select(['id', 'name', 'price', 'volume', 'urlImage']),
     )
     .then((query) => {
       const string = id.reduce(
-        (acc, curr, index) =>
-          index !== 0 ? `${acc} OR id = :id_${curr}` : `id = :id_${curr}`,
-        ''
+        (acc, curr, index) => {
+          if (index !== 0) return `${acc} OR id = :id_${curr}`;
+          return `id = :id_${curr}`;
+        },
+        '',
       );
       query.where(string);
       id.forEach((curr) => query.bind(`id_${curr}`, curr));
