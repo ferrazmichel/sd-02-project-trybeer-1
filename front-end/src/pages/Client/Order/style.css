@@ -1,0 +1,21 @@
+.order_page {
+  width: 100%;
+  height: 100%;
+  padding: 4%;
+  box-sizing: border-box;
+}
+
+.order_page .header {
+  display: flex;
+  font-size: 1.2em;
+  justify-content: space-between;
+}
+
+.order_page .total {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.order_page .total > strong {
+  font-size: 1.4em;
+}
