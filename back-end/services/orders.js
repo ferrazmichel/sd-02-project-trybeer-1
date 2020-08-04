@@ -13,15 +13,15 @@ const details = async (id) => {
   });
 
   const allProducts = await orders.details(id);
-  console.log('allProducts: ', allProducts)
   const productsId = allProducts.map(({ productId }) => productId);
 
   const productsDetails = await products.find(productsId);
 
   const productsWithQuantity = productsDetails
     .map((product) => ({
-      ...product, quantity: allProducts
-        .find(({ productId }) => productId === product.id).quantity
+      ...product,
+      quantity: allProducts
+        .find(({ productId }) => productId === product.id).quantity,
     }));
 
   return {
@@ -37,7 +37,7 @@ const insert = async ({
   userId,
   orderDate,
   totalPrice,
-  products,
+  products: productsCC,
   address,
   number,
 }) => {
@@ -49,7 +49,7 @@ const insert = async ({
     number,
   });
 
-  return orders.insertOrdersProducts({ orderId: insertOrders, products });
+  return orders.insertOrdersProducts({ orderId: insertOrders, products: productsCC });
 };
 
 module.exports = {

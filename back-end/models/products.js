@@ -47,13 +47,13 @@ const find = async (id) =>
     })
     .then((results) => results.fetchAll())
     .then((arrayProducts) =>
-      arrayProducts.map(([id, name, price, volume, urlImage]) => ({
-        id,
+      arrayProducts.map(([productId, name, price, volume, urlImage]) => ({
+        id: productId,
         name,
         price,
         volume,
         urlImage,
-      }))
+      })),
     );
 
 module.exports = {
