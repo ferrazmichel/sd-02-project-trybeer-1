@@ -1,8 +1,8 @@
 .order_page {
-  width: 100%;
+  box-sizing: border-box;
   height: 100%;
   padding: 4%;
-  box-sizing: border-box;
+  width: 100%;
 }
 
 .order_page .header {
