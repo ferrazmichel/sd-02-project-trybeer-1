@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="app">
       <Switch>
-        <PrivateRoute exact path="/products" component={Products} />
+        <PrivateRoute path="/products" component={Products} />
         <PrivateRoute path="/profile" component={Profile} />
         <AdminRoute path="/admin/profile" component={AdminProfile} />
         <Route path="/register" component={Register} />
