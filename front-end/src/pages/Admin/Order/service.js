@@ -1,8 +1,8 @@
 import { getData } from "../../../services/Request";
 
-const URL = "http://localhost:3001/products";
+const URL = "http://localhost:3001/orders";
 
-const getProducts = async () => {
+const getOrder = async () => {
   const { data, error } = await getData(URL);
 
   if (error) {
@@ -13,7 +13,9 @@ const getProducts = async () => {
     return { data: [] };
   }
 
-  return { data: data.products };
+  console.log(data)
+
+  return { data: data.orders };
 };
 
-export { getProducts };
+export { getOrder };

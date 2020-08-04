@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Menu from '../Menu';
+import { getOrder } from './service';
 import "./style.css";
 
 const orders = [
@@ -8,6 +9,13 @@ const orders = [
 ];
 
 const Order = () => {
+
+  useEffect(() => {
+    getOrder().then(() => {
+
+    });
+  }, []);
+
   return (
     <div className="order_admin">
       <Menu />
