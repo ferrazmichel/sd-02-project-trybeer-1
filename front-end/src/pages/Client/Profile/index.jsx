@@ -1,103 +1,57 @@
-import React, { useEffect, useState } from "react";
-
-import { getData, patchData } from "../../../services/Request";
+import React, { useEffect, useState, useContext } from "react";
+import { Context } from "../../../context";
+import { FormGroup, Header, Message, SubmitButton } from "../../../components";
+import Form from "react-bootstrap/Form";
+import { getUser, handleSubmit } from "./service";
 import "./style.css";
-import Header from "../../../components/Header";
-
-const URL = "http://localhost:3001/users/profile";
-
-const renderButton = (disable) => (
-  <div className="prof_contain_submit profile_font">
-    <button
-      data-testid="profile-save-btn"
-      type="submit"
-      disabled={disable}
-      className={`profile_submit profile_font ${
-        disable ? "red_background" : "green_background"
-      }`}
-    >
-      Salvar
-    </button>
-  </div>
-);
-
-const renderInputName = (setName, setDisable, name) => (
-  <div className="prof_contain">
-    <label className="prof_label profile_font">Nome</label>
-    <input
-      type="text"
-      onChange={({ target }) => {
-        setName(target.value);
-        setDisable(!/^([a-z ]{12,})+$/i.test(target.value));
-      }}
-      value={name}
-      className="profile_input"
-      data-testid="profile-name-input"
-      required
-    />
-  </div>
-);
-
-const renderInputEmail = (email) => (
-  <div className="prof_contain">
-    <label className="prof_label profile_font">Email</label>
-    <input
-      type="text"
-      defaultValue={email}
-      data-testid="profile-email-input"
-      className="profile_input"
-      readOnly
-    />
-  </div>
-);
-
-const renderForm = (
-  handleSubmit,
-  setName,
-  setDisable,
-  name,
-  email,
-  disable
-) => (
-  <form className="profile_form" onSubmit={(e) => handleSubmit(e)}>
-    <div className="profile_container_all">
-      {renderInputName(setName, setDisable, name)}
-      {renderInputEmail(email)}
-    </div>
-    {renderButton(disable)}
-  </form>
-);
 
 const Profile = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [disable, setDisable] = useState(true);
-  const [error, setError] = useState("");
+  const { message, setMessage } = useContext(Context);
+
+  const [email, setEmail] = useState({ value: null, error: null });
+
+  const [name, setName] = useState({ value: null, error: null });
+
+  const body = { name: name.value, email: email.value };
+
+  const isDisabled = !email.value || email.error || !name.value || name.error;
 
   useEffect(() => {
-    const request = async () => {
-      const { data, error } = await getData(URL);
-      if (error) return setError(error.message);
-      setName(data.name);
-      setEmail(data.email);
-    };
-    request();
+    getUser().then(({ data, error }) => {
+      setName({ value: data.name });
+      setEmail({ value: data.email });
+      error &&
+        setMessage({ value: error.message || error.status, type: "ALERT" });
+    });
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    return patchData(URL, { name, email }).catch((error) => setError(error));
-  };
-
   return (
-    <div>
-      {" "}
+    <div className="profile_page">
       <Header title="Meu perfil" />
-      {error ? (
-        <h2>{error}</h2>
-      ) : (
-        renderForm(handleSubmit, setName, setDisable, name, email, disable)
-      )}
+      {message.value && <Message message={message} infinity />}
+      <Form>
+        <FormGroup
+          state={name}
+          callback={setName}
+          field="name"
+          testId="profile-name-input"
+          defaultValue={name.value}
+        />
+        <FormGroup
+          callback={setEmail}
+          field="email"
+          state={email}
+          testId="profile-email-input"
+          defaultValue={email.value}
+        />
+        <SubmitButton
+          body={body}
+          isDisabled={isDisabled}
+          handleSubmit={handleSubmit}
+          label="Save"
+          testId="signin-btn"
+        />
+      </Form>
     </div>
   );
 };

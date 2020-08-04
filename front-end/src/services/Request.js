@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const headers = { Authorization: localStorage.getItem("token") || '' };
+const headers = () => ({ Authorization: localStorage.getItem("token") });
 
 const handleError = ({ error = {} }) => {
   if (error.response) {
@@ -16,15 +16,17 @@ const handleError = ({ error = {} }) => {
 
 const patchData = async (endpoint, { name, email }) =>
   axios
-    .patch(endpoint, { name, email }, { headers })
+    .patch(endpoint, { name, email }, { headers: headers() })
     .catch((error) => handleError({ error }));
 
 const getData = async (endpoint) =>
-  axios.get(endpoint, { headers }).catch((error) => handleError({ error }));
+  axios
+    .get(endpoint, { headers: headers() })
+    .catch((error) => handleError({ error }));
 
 const validToken = async (endpoint) =>
   axios.get(endpoint, {
-    headers,
+    headers: headers(),
   });
 
 

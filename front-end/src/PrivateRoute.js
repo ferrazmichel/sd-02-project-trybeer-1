@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     validToken("http://localhost:3001/users/token")
       .then(() => setAuth(true))
-      .catch(() => {
+      .catch((err) => {
         setAuth(false);
         localStorage.removeItem("token");
       })

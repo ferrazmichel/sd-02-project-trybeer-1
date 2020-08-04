@@ -1,5 +1,12 @@
 import { postData } from "../../services/Request";
 
+const URL = "http://localhost:3001/users/register";
+
+const userRoutes = {
+  admin: "/home/admin",
+  client: "/products",
+};
+
 const handleConfirm = ({ value, password, callback }) => {
   const validFormat = value.match(/^.*(.*\d){6,}/);
   const matchPassword = value === password;
@@ -14,30 +21,28 @@ const handleConfirm = ({ value, password, callback }) => {
   }
 };
 
-const handleRole = ({ value, setRole }) => {
-  if (value) {
-    setRole("admin");
-  } else {
-    setRole("client");
-  }
-};
-
-const URL = "http://localhost:3001/users/register";
-
 const postUser = async (body) => {
   const { error } = await postData({ endpoint: URL, body });
-  console.error(error.message);
+
+  console.error(error);
+
   return { error };
 };
 
-async function handleSubmit({ event, body, history }) {
+async function handleSubmit({ event, body, history, setMessage }) {
   event.preventDefault();
 
   const { error } = await postUser(body);
 
-  if (!error) {
-    history.push(`home/${body.role}`);
+  if (error) {
+    setMessage({ value: error.message || error.status, type: "ALERT" });
+
+    return;
   }
+
+  setMessage({ value: "User created with success", type: "SUCCESS" });
+
+  history.push(userRoutes[body.role]);
 }
 
-export { handleConfirm, handleRole, handleSubmit };
+export { handleConfirm, handleSubmit };

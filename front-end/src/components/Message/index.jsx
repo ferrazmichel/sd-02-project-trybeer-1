@@ -1,33 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import { Context } from "../../context";
 import "./style.css";
 
 const types = {
-  ALERT: "#f9735e",
+  ALERT: "#e71d36",
   SUCCESS: "#49b76d",
   NEUTRAL: "white",
 };
 
-const createTimeout = (infinity, setError) => {
+const createTimeout = ({ infinity, setMessage }) => {
   if (!infinity) {
     setTimeout(() => {
-      setError(false);
-    }, 3000);
+      setMessage({ value: "", type: "" });
+    }, 2000);
   }
 };
 
-const Message = (props) => {
-  const { message, type, setError, infinity } = props;
-
+const Message = ({ message: { value, type }, infinity }) => {
+  const { setMessage } = useContext(Context);
   useEffect(() => {
-    createTimeout(infinity, setError);
+    createTimeout({ infinity, setMessage });
   }, []);
 
   return (
-    <div className="message_comp">
-      <button type="button" onClick={() => setError(false)}>
+    <div
+      className="message_comp"
+      style={{ boxShadow: `5px 5px 30px -1px ${types[type]}` }}
+    >
+      <button type="button" onClick={() => setMessage({ value: "", type: "" })}>
         <span className="material-icons">close</span>
       </button>
-      <strong style={{ color: `${types[type]}` }}>{message}</strong>
+      <strong style={{ color: `${types[type]}` }}>{value}</strong>
     </div>
   );
 };

@@ -2,6 +2,11 @@ import { postData } from "../../services/Request";
 
 const URL = "http://localhost:3001/users/login";
 
+const userRoutes = {
+  admin: "/home/admin",
+  client: "/products",
+};
+
 const getUserAndSaveToken = async (body) => {
   const { data, error } = await postData({
     endpoint: URL,
@@ -9,6 +14,7 @@ const getUserAndSaveToken = async (body) => {
   });
 
   if (error) {
+    console.error(error);
     return { error };
   }
 
@@ -17,18 +23,18 @@ const getUserAndSaveToken = async (body) => {
   return { user: data.user };
 };
 
-async function handleSubmit({ event, body, history, setError }) {
+async function handleSubmit({ event, body, history, setMessage }) {
   event.preventDefault();
 
   const { user, error } = await getUserAndSaveToken(body);
 
   if (error) {
-    setError(error.message);
+    setMessage({ value: error.message || error.status, type: "ALERT" });
     return;
   }
 
   if (user) {
-    history.push(`${user.role === "admin" ? "/home/admin" : "/products"}`);
+    history.push(userRoutes[user.role]);
   }
 }
 
