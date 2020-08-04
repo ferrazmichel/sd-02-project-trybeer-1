@@ -21,6 +21,17 @@
   overflow: auto;
 }
 
+.order_admin > .container > .orders > .total {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.order_admin > .container > .orders > .total > strong {
+  font-size: 2em;
+}
+
 .order_admin > .container > .orders > .order {
   display: flex;
   justify-content: space-between;

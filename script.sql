@@ -19,19 +19,13 @@ role varchar(100) not null
 
 create table orders (
 id int primary key auto_increment,
-<<<<<<< HEAD
-total double not null,
-status varchar(100) not null,
-date DATE not null,
-=======
 user_id int,
 order_date DATE,
 total_price double,
 address VARCHAR(100) not null,
-number double not null,
+number int not null,
 status VARCHAR(100) not null,
 FOREIGN KEY (user_id) REFERENCES users(id)
->>>>>>> master
 ) engine=InnoDB;
 
 create table orders_products (

@@ -1,61 +1,67 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Context } from '../../../context';
+import Message from '../../../components/Message';
 import Menu from '../Menu';
-import { getOrder } from './service';
+import { getOrder, updateOrder } from './service';
 import "./style.css";
 
 
-const Order = () => {
-  const [order, setOrder] = useState({ status: '', number: 0, orderDate: '' });
+const marcar = (id, setMessage) => {
+  updateOrder(id)
+    .then(({ data: { message: message } }) =>
+      setMessage({ value: message, type: 'SUCCESS' }));
+};
+
+const ordersRender = (products, order) => {
+  return (
+    <div className="orders">
+      {products.map(({ id, name, price, volume, quantity }, index) => (
+        <div className="order" key={id}>
+          <p>
+            <span data-testid={`${index}-product-qtd`}>{quantity}</span> - 
+            <span data-testid={`${index}-product-name`}> {name}</span> {volume}ml</p>
+          <p>R$ <span data-testid={`${index}-product-total-value`}>{(price * quantity).toFixed(2)}</span></p>
+        </div>
+      ))}
+      <div className="total">
+        <strong data-testid="order-total-value">Total: R$ {order.totalPrice.toFixed(2)}</strong>
+      </div>
+    </div>
+  )
+}
+
+const Order = (props) => {
+  const [order, setOrder] = useState({ status: '', number: 0, orderDate: '', totalPrice: 1 });
   const [products, setProducts] = useState([]);
+  const { id } = props.match.params;
+  const { message, setMessage } = useContext(Context);
 
   useEffect(() => {
-    getOrder(1).then(({ data }) => {
+    getOrder(id).then(({ data }) => {
       const { products, ...order } = data;
       setOrder(order);
       setProducts(products);
-      console.log(order)
     });
   }, []);
 
   return (
     <div className="order_admin">
       <Menu />
+      {message.value && <Message infinity />}
       <div className="container">
-        <p>Pedido {order.number} - {order.status} {order.orderDate}</p>
-        <div className="orders">
-          {products.map(({ id, name, price, volume }) => (
-            <div className="order" key={id}>
-              <p>{name} {volume}ml</p>
-              <p>R$ {price}</p>
-            </div>
-          ))}
-        </div>
-        <button type="button">Marcar como entregue</button>
+        <p>Pedido <span data-testid="order-number">001</span>
+        <span data-testid="order-status"> - {order.status}</span> {order.orderDate}</p>
+        {ordersRender(products, order)}
+        <button
+          type="button"
+          onClick={() => marcar(id, setMessage)}
+          data-testid="mark-as-delivered-btn"
+        >
+          Marcar como entregue
+        </button>
       </div>
     </div>
   );
 };
 
 export default Order;
-
-// {
-//   "order": {
-//       "orderId",
-//       "userId",
-//       "orderDate":,
-//       "totalPrice",
-//       "address",
-//       "number",
-//       "status",
-//       "products": [
-//           {
-//               "id",
-//               "name",
-//               "price",
-//               "volume",
-//               "urlImage",
-//               "quantity",
-//           },
-//       ]
-//   }
-// }

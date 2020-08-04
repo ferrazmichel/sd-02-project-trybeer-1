@@ -1,4 +1,4 @@
-import { getData } from "../../../services/Request";
+import { getData, patchData } from "../../../services/Request";
 
 const getOrder = async (id) => {
   const { data, error } = await getData(`http://localhost:5000/orders/${id}`);
@@ -14,4 +14,8 @@ const getOrder = async (id) => {
   return { data: data.order };
 };
 
-export { getOrder };
+const updateOrder = async (id) => {
+  return await patchData(`http://localhost:5000/orders/${id}`);
+};
+
+export { getOrder, updateOrder };
