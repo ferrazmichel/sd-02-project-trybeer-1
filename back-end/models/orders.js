@@ -1,6 +1,6 @@
 const { connection } = require('./connection');
 
-const list = async ({ key, value }) => 
+const list = async ({ key, value }) =>
   connection()
     .then((db) =>
       db
