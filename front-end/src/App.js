@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="app">
       <Switch>
-        <PrivateRoute exact path="/products" component={Products} />
+        <PrivateRoute path="/products" component={Products} />
         <PrivateRoute path="/profile" component={Profile} />
         <Route path="/admin/orders/:id" component={AdminOrder} />
         <Route path="/register" component={Register} />

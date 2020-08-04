@@ -1,9 +1,7 @@
 import { getData } from "../../../services/Request";
 
-const URL = "http://localhost:3001/orders";
-
-const getOrder = async () => {
-  const { data, error } = await getData(URL);
+const getOrder = async (id) => {
+  const { data, error } = await getData(`http://localhost:5000/orders/${id}`);
 
   if (error) {
     return { error: error.message, data: [] };
@@ -13,9 +11,7 @@ const getOrder = async () => {
     return { data: [] };
   }
 
-  console.log(data)
-
-  return { data: data.orders };
+  return { data: data.order };
 };
 
 export { getOrder };

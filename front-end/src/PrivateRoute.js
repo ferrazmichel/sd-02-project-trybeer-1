@@ -7,9 +7,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   const [isTokenValidated, setIsTokenValidated] = useState(false);
 
   useEffect(() => {
-    validToken("http://localhost:3001/users/token")
+    validToken(`http://localhost:5000/users/token`)
       .then(() => setAuth(true))
-      .catch(() => {
+      .catch((err) => {
         setAuth(false);
         localStorage.removeItem("token");
       })

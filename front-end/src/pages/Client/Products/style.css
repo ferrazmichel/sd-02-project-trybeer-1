@@ -1,35 +1,18 @@
 .products_page {
   align-items: center;
+  background-color: #fdd692;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
-}
-
-.products_page > .products > p {
+  font-size: 50px;
   width: 100%;
 }
 
 .products_page > .products {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  height: 75%;
-  overflow: scroll;
-}
-
-.products_page > .ver_carrinho {
-  background-color: chartreuse;
-  border: none;
-  bottom: 2%;
-  color: white;
-  font-size: 2em;
-  font-weight: 700;
-  height: 10%;
-  margin: 2% auto;
-  position: fixed;
-  width: 80%;
-}
-
-.products_page > .ver_carrinho > span:nth-child( 2 ) {
-  margin-left: 4%;
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-bottom: 10%;
+  width: 100%;
 }

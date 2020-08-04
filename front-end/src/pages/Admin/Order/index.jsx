@@ -1,18 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Menu from '../Menu';
 import { getOrder } from './service';
 import "./style.css";
 
-const orders = [
-  { id: 'dde22r3S', product: 'cerva1', price: 12.5, volume: 350 },
-  { id: 'dd7y7e3r3S', product: 'cerva2', price: 20.5, volume: 550 },
-];
 
 const Order = () => {
+  const [order, setOrder] = useState({ status: '', number: 0, orderDate: '' });
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getOrder().then(() => {
-
+    getOrder(1).then(({ data }) => {
+      const { products, ...order } = data;
+      setOrder(order);
+      setProducts(products);
+      console.log(order)
     });
   }, []);
 
@@ -20,12 +21,12 @@ const Order = () => {
     <div className="order_admin">
       <Menu />
       <div className="container">
-        <p>Pedido 001 - Pendente</p>
+        <p>Pedido {order.number} - {order.status} {order.orderDate}</p>
         <div className="orders">
-          {orders.map((order) => (
-            <div className="order" key={order.id}>
-              <p>{order.product} {order.volume}ml</p>
-              <p>R$ {order.price}</p>
+          {products.map(({ id, name, price, volume }) => (
+            <div className="order" key={id}>
+              <p>{name} {volume}ml</p>
+              <p>R$ {price}</p>
             </div>
           ))}
         </div>
@@ -36,3 +37,25 @@ const Order = () => {
 };
 
 export default Order;
+
+// {
+//   "order": {
+//       "orderId",
+//       "userId",
+//       "orderDate":,
+//       "totalPrice",
+//       "address",
+//       "number",
+//       "status",
+//       "products": [
+//           {
+//               "id",
+//               "name",
+//               "price",
+//               "volume",
+//               "urlImage",
+//               "quantity",
+//           },
+//       ]
+//   }
+// }
