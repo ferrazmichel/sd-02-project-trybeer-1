@@ -7,6 +7,54 @@ import { handleSubmit } from "./service";
 
 import "./style.css";
 
+const renderForm = ({
+  name,
+  setName,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  confirm,
+  setConfirm,
+  setRole,
+  body,
+  isDisabled,
+}) => (
+  <Form>
+    <FormGroup
+      state={name}
+      callback={setName}
+      field="name"
+      testId="signup-name"
+    />
+    <FormGroup
+      state={email}
+      callback={setEmail}
+      field="email"
+      testId="signup-email"
+    />
+    <PasswordField
+      password={password}
+      confirm={confirm}
+      setPassword={setPassword}
+      setConfirm={setConfirm}
+    />
+    <ConfirmField
+      confirm={confirm}
+      setConfirm={setConfirm}
+      password={password}
+    />
+    <RoleField setRole={setRole} />
+    <SubmitButton
+      body={body}
+      isDisabled={isDisabled}
+      handleSubmit={handleSubmit}
+      label="Create User"
+      testId="signin-btn"
+    />
+  </Form>
+);
+
 const Register = () => {
   const [confirm, setConfirm] = useState({ value: null, error: null });
 
@@ -37,54 +85,6 @@ const Register = () => {
     password: password.value,
     role,
   };
-
-  const renderForm = ({
-    name,
-    setName,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    confirm,
-    setConfirm,
-    setRole,
-    body,
-    isDisabled,
-  }) => (
-    <Form>
-      <FormGroup
-        state={name}
-        callback={setName}
-        field="name"
-        testId="signup-name"
-      />
-      <FormGroup
-        state={email}
-        callback={setEmail}
-        field="email"
-        testId="signup-email"
-      />
-      <PasswordField
-        password={password}
-        confirm={confirm}
-        setPassword={setPassword}
-        setConfirm={setConfirm}
-      />
-      <ConfirmField
-        confirm={confirm}
-        setConfirm={setConfirm}
-        password={password}
-      />
-      <RoleField setRole={setRole} />
-      <SubmitButton
-        body={body}
-        isDisabled={isDisabled}
-        handleSubmit={handleSubmit}
-        label="Create User"
-        testId="signin-btn"
-      />
-    </Form>
-  );
 
   return (
     <section className="register_page">

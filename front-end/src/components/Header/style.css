@@ -36,7 +36,7 @@
   width: 85%;
 }
 
-.header_comp > .title > h1 {
+.header_comp > .title {
   color: #fdd692;
   font-family: "Permanent Marker", cursive;
   font-size: 100%;
@@ -106,8 +106,8 @@
   }
 
   .lateral {
+     display: flex;
     flex-direction: row;
-    display: flex;
     height: 50px;
     left: 0;
     top: 60px;
@@ -116,9 +116,9 @@
   }
 
   .lateral > .sidebar > ul {
+     display: flex;
+     font-size: 50%;
     flex-flow: row wrap;
-    font-size: 50%;
-    display: flex;
     justify-content: space-around;
   }
 }

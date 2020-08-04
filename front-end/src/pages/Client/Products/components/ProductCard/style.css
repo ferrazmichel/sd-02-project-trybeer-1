@@ -24,7 +24,7 @@
 .counter > button {
   background-color: none;
   border: none;
-  height: 0%;
+  height: 0;
   margin: 0;
 }
 
@@ -34,7 +34,7 @@
   font-size: 0.5em;
   justify-content: center;
   padding: 1%;
-  margin: 0%;
+  margin: 0;
   width: 20%;
 }
 
@@ -76,28 +76,17 @@
   margin: 2% 0%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and ( max-width : 800px ) {
+
   .product_comp {
     width: 40%;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and ( max-width : 500px ) {
+
   .product_comp {
     width: 70%;
   }
 }
 
-/* .product_comp > .product_image {
-  width: 70%;
-}
-
-.product_comp > .product_image > image {
-  width: 70%;
-}
-
-
-
-
-
- */
