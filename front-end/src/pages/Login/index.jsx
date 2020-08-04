@@ -20,7 +20,7 @@ const Login = () => {
 
   return (
     <section className="login_page">
-      <header>
+      <header className="title">
         <h1>Trybeer Masculinahs</h1>
         <h2>Login</h2>
       </header>

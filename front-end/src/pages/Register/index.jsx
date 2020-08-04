@@ -88,7 +88,7 @@ const Register = () => {
 
   return (
     <section className="register_page">
-      <header>
+      <header className="title">
         <h1>Trybeer Masculinahs</h1>
         <h2>Register</h2>
       </header>
