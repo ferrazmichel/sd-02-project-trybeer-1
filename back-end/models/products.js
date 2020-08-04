@@ -5,14 +5,14 @@ const list = async () => {
     .then((db) =>
       db
         .getTable('products')
-        .select(['id', 'product', 'price', 'volume', 'urlImage'])
+        .select(['id', 'name', 'price', 'volume', 'urlImage'])
         .execute(),
     )
     .then((results) => results.fetchAll())
     .then((arrayProducts) =>
-      arrayProducts.map(([id, product, price, volume, urlImage]) => ({
+      arrayProducts.map(([id, name, price, volume, urlImage]) => ({
         id,
-        product,
+        name,
         price,
         volume,
         urlImage,
