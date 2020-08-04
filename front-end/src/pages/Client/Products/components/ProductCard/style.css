@@ -22,7 +22,6 @@
 }
 
 .counter > button {
-  background-color: none;
   border: none;
   height: 0;
   margin: 0;
@@ -33,17 +32,17 @@
   display: flex;
   font-size: 0.5em;
   justify-content: center;
-  padding: 1%;
   margin: 0;
+  padding: 1%;
   width: 20%;
 }
 
 .product_comp > .counter > button > .material-icons {
   border: solid 4px #242423;
   border-radius: 5px;
+  bottom: 10%;
   font-size: 0.6em;
   position: absolute;
-  bottom: 10%;
 }
 
 .product_comp > .counter > button:focus > .material-icons {
