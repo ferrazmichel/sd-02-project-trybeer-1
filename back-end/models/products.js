@@ -5,7 +5,7 @@ const list = async () => {
     .then((db) =>
       db
         .getTable('products')
-        .select(['id', 'product', 'price', 'volume', 'urlImage'])
+        .select(['id', 'name', 'price', 'volume', 'urlImage'])
         .execute(),
     )
     .then((results) => results.fetchAll())

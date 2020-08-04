@@ -37,7 +37,6 @@ FOREIGN KEY (product_id) REFERENCES products(id),
 FOREIGN KEY (order_id) REFERENCES orders(id)
 ) engine=InnoDB;
 
-
 insert into products (name, price, volume, urlImage) value
 ('Skol Lata', 2.20, 250,'http://localhost:3001/images/1.png'),
 ('Heineken', 7.50, 600, 'http://localhost:3001/images/2.png'),
