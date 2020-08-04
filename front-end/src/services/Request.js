@@ -34,7 +34,7 @@ const postData = async ({ endpoint, body }) =>
 
 const isAdmin = async (endpoint) =>
   axios.get(endpoint, {
-    headers,
+    headers: headers(),
   })
     .then(({ data }) => data)
     .catch((error) => error);
