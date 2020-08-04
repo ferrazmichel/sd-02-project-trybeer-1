@@ -20,10 +20,11 @@ role varchar(100) not null
 create table orders (
 id int primary key auto_increment,
 user_id int,
-order_date TIMESTAMP,
+order_date DATE,
 total_price double,
 address VARCHAR(100) not null,
 number double not null,
+status VARCHAR(100) not null,
 FOREIGN KEY (user_id) REFERENCES users(id)
 ) engine=InnoDB;
 

@@ -1,4 +1,4 @@
-const { connection } = require("./connection");
+const { connection } = require('./connection');
 
 const list = async ({ key, value }) =>
   connection()
@@ -46,8 +46,8 @@ const insert = async ({ userId, orderDate, totalPrice, address, number, status =
   connection()
     .then((db) =>
       db
-        .getTable("orders")
-        .insert(["user_id", "order_date", "total_price", "address", "number", "status"])
+        .getTable('orders')
+        .insert(['user_id', 'order_date', 'total_price', 'address', 'number', 'status'])
         .values(userId, orderDate, totalPrice, address, number, status)
         .execute()
     )
@@ -57,8 +57,8 @@ const insertOrdersProducts = async ({ orderId, products }) =>
   connection()
     .then((db) =>
       db
-        .getTable("orders_products")
-        .insert(["order_id", "product_id", "quantity"])
+        .getTable('orders_products')
+        .insert(['order_id', 'product_id', 'quantity'])
     )
     .then((query) => {
       products.forEach(({ id, count }) => query.values(orderId, id, count));
