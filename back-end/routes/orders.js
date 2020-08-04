@@ -1,21 +1,19 @@
-const express = require('express');
+const express = require("express");
 
-const rescue = require('express-rescue');
+const rescue = require("express-rescue");
 
-const { orders } = require('../controllers');
+const { orders } = require("../controllers");
 
-const { auth, validate } = require('../middlewares');
+const { auth, validate } = require("../middlewares");
 
-const {
-  ordersSchema: { ordersSchema },
-} = require('../services/utils/joinSchemas');
+const { ordersSchema } = require("../services/utils/joinSchemas");
 
 const router = express.Router();
 
-router.get('/', auth, rescue(orders.list));
+router.get("/", auth, rescue(orders.list));
 
-router.get('/:id', auth, rescue(orders.details));
+router.get("/:id", auth, rescue(orders.details));
 
-router.post('/', auth, validate(ordersSchema), rescue(orders.insert));
+router.post("/", auth, validate(ordersSchema), rescue(orders.insert));
 
 module.exports = router;

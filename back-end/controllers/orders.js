@@ -1,4 +1,4 @@
-const { orders } = require('../services');
+const { orders } = require("../services");
 
 const list = async (req, res) => {
   const ordersList = await orders.list(req.user.id);
@@ -13,12 +13,9 @@ const details = async (req, res) => {
 };
 
 const insert = async (req, res) => {
-  const { orderDate, totalPrice, address, number, products } = req.body;
-  const { id: userId } = req.user;
+  await orders.insert({ ...req.body, userId: req.user.id });
 
-  await orders.insert({ userId, orderDate, totalPrice, address, number, products });
-
-  res.status(201).json({ message: 'Compra concluída!' });
+  res.status(201).json({ message: "Compra concluída!" });
 };
 
 module.exports = {
