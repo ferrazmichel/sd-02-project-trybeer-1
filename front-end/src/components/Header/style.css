@@ -78,7 +78,8 @@
   background-color: #fdd692;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and ( max-width: 800px ) {
+
   .header_comp {
     font-size: 45px;
     height: 80px;
@@ -93,7 +94,8 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and ( max-width: 500px ) {
+
   .header_comp {
     font-size: 25px;
     height: 60px;
