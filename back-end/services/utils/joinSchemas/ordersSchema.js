@@ -1,16 +1,4 @@
 const Joi = require('@hapi/joi');
-const joiDate = Joi.extend(require('@hapi/joi-date'));
-
-const orderDate = joiDate
-  .date()
-  .format('YYYY-MM-DD')
-  .utc()
-  .required()
-  .messages({
-    'any.required': 'orderDate is required',
-    'string.date': 'orderDate must be in date format',
-    'string.empty': 'orderDate cannot be an empty field',
-  });
 
 const totalPrice = Joi.number().positive().required()
   .messages({
@@ -45,7 +33,6 @@ const products = Joi.array().required()
   });
 
 const ordersSchema = Joi.object({
-  orderDate,
   totalPrice,
   address,
   number,

@@ -42,13 +42,13 @@ const details = async (id) =>
       })),
     );
 
-const insert = async ({ userId, orderDate, totalPrice, address, number, status = 'pendente' }) =>
+const insert = async ({ userId, totalPrice, address, number, status = 'pendente' }) =>
   connection()
     .then((db) =>
       db
         .getTable('orders')
         .insert(['user_id', 'order_date', 'total_price', 'address', 'number', 'status'])
-        .values(userId, orderDate, totalPrice, address, number, status)
+        .values(userId, new Date().toISOString().split('T')[0], totalPrice, address, number, status)
         .execute(),
     )
     .then((query) => query.getAutoIncrementValue());
