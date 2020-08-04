@@ -19,7 +19,7 @@ const removeToLocal = (id) => {
   localStorage.setItem('products', JSON.stringify(products));
 }
 
-const Checkout = ({ history }) => {
+const Checkout = () => {
   const [total, setTotal] = useState(0);
   const [street, setStreet] = useState('');
   const [homeNumber, setHomeNumber] = useState('');
@@ -56,7 +56,7 @@ const Checkout = ({ history }) => {
     localStorage.removeItem('products');
     return <Redirect to="/products" />; 
   }
-  
+
   const booleanButton = !(street && homeNumber) || (total <= 0);
   return (
     <React.Fragment>
