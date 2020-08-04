@@ -20,7 +20,7 @@
   font-size: 80%;
 }
 
-.ver_carrinho > span:nth-child(2) {
+.ver_carrinho > span:nth-child( 2 ) {
   margin-left: 4%;
 }
 
