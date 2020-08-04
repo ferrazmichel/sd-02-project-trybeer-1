@@ -37,7 +37,7 @@ const find = async (id) =>
       const string = id.reduce(
         (acc, curr, index) =>
           index !== 0 ? `${acc} OR id = :id_${curr}` : `id = :id_${curr}`,
-        ""
+        ''
       );
       query.where(string);
       id.forEach((curr) => query.bind(`id_${curr}`, curr));
@@ -45,11 +45,11 @@ const find = async (id) =>
     })
     .then((results) => results.fetchAll())
     .then((arrayProducts) =>
-      arrayProducts.map(([id, name, price, valume, urlImage]) => ({
+      arrayProducts.map(([id, name, price, volume, urlImage]) => ({
         id,
         name,
         price,
-        valume,
+        volume,
         urlImage,
       }))
     );

@@ -18,8 +18,15 @@ const insert = async (req, res) => {
   res.status(201).json({ message: "Compra concluída!" });
 };
 
+const update = async (req, res) => {
+  await orders.update(req.params.id);
+
+  res.status(201).json({ message: "Produto Entregue!" });
+};
+
 module.exports = {
   list,
   insert,
   details,
+  update,
 };

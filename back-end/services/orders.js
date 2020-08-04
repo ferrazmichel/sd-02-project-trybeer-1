@@ -13,16 +13,21 @@ const details = async (id) => {
   });
 
   const allProducts = await orders.details(id);
-
+  console.log('allProducts: ', allProducts)
   const productsId = allProducts.map(({ productId }) => productId);
 
   const productsDetails = await products.find(productsId);
 
+  const productsWithQuantity = productsDetails.map((product)=> ({...product, quantity: allProducts.find(({productId}) => productId === product.id).quantity}))
+
   return {
     ...orderDetails[0],
-    products: [...productsDetails],
+    products: productsWithQuantity,
   };
 };
+
+const update = async (id) =>
+  orders.update(id);
 
 const insert = async ({
   userId,
@@ -47,4 +52,5 @@ module.exports = {
   list,
   insert,
   details,
+  update,
 };

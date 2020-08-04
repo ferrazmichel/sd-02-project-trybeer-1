@@ -4,19 +4,22 @@ const list = async ({ key, value }) =>
   connection()
     .then((db) =>
       db
-        .getTable("orders")
-        .select(["id", "user_id", "order_date", "total_price"])
+        .getTable('orders')
+        .select(['id', 'user_id', 'order_date', 'total_price', 'address', 'number', 'status'])
         .where(`${key} = :${key}`)
         .bind(key, value)
         .execute()
     )
     .then((results) => results.fetchAll())
     .then((arrayOrders) =>
-      arrayOrders.map(([orderId, userId, orderDate, totalPrice]) => ({
+      arrayOrders.map(([orderId, userId, orderDate, totalPrice, address, number, status]) => ({
         orderId,
         userId,
         orderDate,
         totalPrice,
+        address,
+        number,
+        status,
       }))
     );
 
@@ -24,10 +27,10 @@ const details = async (id) =>
   connection()
     .then((db) =>
       db
-        .getTable("orders_products")
-        .select(["order_id", "product_id", "quantity"])
-        .where("order_id = :id")
-        .bind("id", id)
+        .getTable('orders_products')
+        .select(['order_id', 'product_id', 'quantity'])
+        .where('order_id = :id')
+        .bind('id', id)
         .execute()
     )
     .then((results) => results.fetchAll())
@@ -39,13 +42,13 @@ const details = async (id) =>
       }))
     );
 
-const insert = async ({ userId, orderDate, totalPrice, address, number }) =>
+const insert = async ({ userId, orderDate, totalPrice, address, number, status = 'pendente' }) =>
   connection()
     .then((db) =>
       db
         .getTable("orders")
-        .insert(["user_id", "order_date", "total_price", "address", "number"])
-        .values(userId, orderDate, totalPrice, address, number)
+        .insert(["user_id", "order_date", "total_price", "address", "number", "status"])
+        .values(userId, orderDate, totalPrice, address, number, status)
         .execute()
     )
     .then((query) => query.getAutoIncrementValue());
@@ -62,9 +65,21 @@ const insertOrdersProducts = async ({ orderId, products }) =>
       return query.execute();
     });
 
+const update = async (id) =>
+  connection().then((db) =>
+    db
+      .getTable('orders')
+      .update()
+      .set('status', 'entregue')
+      .where('id = :id')
+      .bind('id', id)
+      .execute(),
+  );
+
 module.exports = {
   list,
   details,
   insert,
   insertOrdersProducts,
+  update,
 };
