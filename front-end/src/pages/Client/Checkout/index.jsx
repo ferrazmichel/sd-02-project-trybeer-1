@@ -14,6 +14,37 @@ const getLocalStorage = () => Object.values(getProducts());
 
 const formatBrl = (value) => value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
+const renderForm = (handleSubmit, street, setStreet, homeNumber, setHomeNumber, booleanButton) => (
+  <form className="checkout_form" onSubmit={(e) => handleSubmit(e)}>
+    <h3>Endereço</h3>
+    <label htmlFor="street">Rua:</label>
+    <input
+      data-testid="checkout-street-input"
+      value={street} onChange={({ target }) => setStreet(target.value)}
+      id="street"
+      type="text"
+      required
+    />
+    <label htmlFor="homeNumber">Número da casa:</label>
+    <input
+      data-testid="checkout-house-number-input"
+      value={homeNumber}
+      onChange={({ target }) => setHomeNumber(target.value)}
+      id="homeNumber"
+      type="text"
+      required
+    />
+    <button
+      className={`submit_checkout ${booleanButton ? 'red_background' : 'green_background'}`}
+      data-testid="checkout-finish-btn"
+      type="submit"
+      disabled={booleanButton}
+    >
+      Finalizar Pedido
+    </button>
+  </form>
+);
+
 const Checkout = () => {
   const [total, setTotal] = useState(0);
   const [street, setStreet] = useState('');
@@ -71,34 +102,7 @@ const Checkout = () => {
           <div className="contain_total"><p className="total_text" data-testid="order-total-value">Total:{formatBrl(total)}</p></div>
         </div>
         <div className="checkout_container_form">
-          <form className="checkout_form" onSubmit={(e) => handleSubmit(e)}>
-            <h3>Endereço</h3>
-            <label htmlFor="street">Rua:</label>
-            <input
-              data-testid="checkout-street-input"
-              value={street} onChange={({ target }) => setStreet(target.value)}
-              id="street"
-              type="text"
-              required
-            />
-            <label htmlFor="homeNumber">Número da casa:</label>
-            <input
-              data-testid="checkout-house-number-input"
-              value={homeNumber}
-              onChange={({ target }) => setHomeNumber(target.value)}
-              id="homeNumber"
-              type="text"
-              required
-            />
-            <button
-              className={`submit_checkout ${booleanButton ? 'red_background' : 'green_background'}`}
-              data-testid="checkout-finish-btn"
-              type="submit"
-              disabled={booleanButton}
-            >
-              Finalizar Pedido
-            </button>
-          </form>
+          {renderForm(handleSubmit, street, setStreet, homeNumber, setHomeNumber, booleanButton)}
         </div>
       </div>
     </React.Fragment>
