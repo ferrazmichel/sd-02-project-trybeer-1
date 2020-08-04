@@ -8,7 +8,7 @@ const list = async ({ key, value }) =>
         .select(['id', 'user_id', 'order_date', 'total_price', 'address', 'number', 'status'])
         .where(`${key} = :${key}`)
         .bind(key, value)
-        .execute()
+        .execute(),
     )
     .then((results) => results.fetchAll())
     .then((arrayOrders) =>
@@ -20,7 +20,7 @@ const list = async ({ key, value }) =>
         address,
         number,
         status,
-      }))
+      })),
     );
 
 const details = async (id) =>
@@ -31,7 +31,7 @@ const details = async (id) =>
         .select(['order_id', 'product_id', 'quantity'])
         .where('order_id = :id')
         .bind('id', id)
-        .execute()
+        .execute(),
     )
     .then((results) => results.fetchAll())
     .then((arrayOrders) =>
@@ -39,7 +39,7 @@ const details = async (id) =>
         orderId,
         productId,
         quantity,
-      }))
+      })),
     );
 
 const insert = async ({ userId, orderDate, totalPrice, address, number, status = 'pendente' }) =>
@@ -49,7 +49,7 @@ const insert = async ({ userId, orderDate, totalPrice, address, number, status =
         .getTable('orders')
         .insert(['user_id', 'order_date', 'total_price', 'address', 'number', 'status'])
         .values(userId, orderDate, totalPrice, address, number, status)
-        .execute()
+        .execute(),
     )
     .then((query) => query.getAutoIncrementValue());
 
@@ -58,7 +58,7 @@ const insertOrdersProducts = async ({ orderId, products }) =>
     .then((db) =>
       db
         .getTable('orders_products')
-        .insert(['order_id', 'product_id', 'quantity'])
+        .insert(['order_id', 'product_id', 'quantity']),
     )
     .then((query) => {
       products.forEach(({ id, count }) => query.values(orderId, id, count));

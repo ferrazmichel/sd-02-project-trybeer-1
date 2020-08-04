@@ -1,12 +1,12 @@
-const { connection } = require("./connection");
+const { connection } = require('./connection');
 
 const list = async () => {
   const products = await connection()
     .then((db) =>
       db
-        .getTable("products")
-        .select(["id", "product", "price", "volume", "urlImage"])
-        .execute()
+        .getTable('products')
+        .select(['id', 'product', 'price', 'volume', 'urlImage'])
+        .execute(),
     )
     .then((results) => results.fetchAll())
     .then((arrayProducts) =>
@@ -30,8 +30,8 @@ const find = async (id) =>
   connection()
     .then((db) =>
       db
-        .getTable("products")
-        .select(["id", "name", "price", "volume", "urlImage"])
+        .getTable('products')
+        .select(['id', 'name', 'price', 'volume', 'urlImage'])
     )
     .then((query) => {
       const string = id.reduce(
