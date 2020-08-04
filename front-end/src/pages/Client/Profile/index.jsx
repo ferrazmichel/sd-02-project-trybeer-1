@@ -4,7 +4,6 @@ import { FormGroup, Header, Message, SubmitButton } from "../../../components";
 import Form from "react-bootstrap/Form";
 import { getUser, handleSubmit } from "./service";
 import "./style.css";
-const URL = "http://localhost:3001/users/profile";
 
 const Profile = () => {
   const { message, setMessage } = useContext(Context);
