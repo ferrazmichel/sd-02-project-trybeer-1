@@ -65,3 +65,11 @@
 .submit_checkout {
   margin-top: 5%;
 }
+
+.red_background {
+  background-color: red;
+}
+
+.green_background {
+  background-color: green;
+}
