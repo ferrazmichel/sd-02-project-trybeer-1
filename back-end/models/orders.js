@@ -1,13 +1,13 @@
 const { connection } = require('./connection');
 
-const list = async (id) =>
+const list = async ({ key, value }) =>
   connection()
     .then((db) =>
       db
         .getTable('orders')
         .select(['id', 'user_id', 'order_date', 'total_price'])
-        .where(`user_id = :${id}`)
-        .bind(id)
+        .where(`${key} = :${key}`)
+        .bind(key, value)
         .execute(),
     )
     .then((results) => results.fetchAll())
@@ -26,16 +26,16 @@ const details = async (id) =>
       db
         .getTable('orders_products')
         .select(['order_id', 'product_id', 'quantity'])
-        .where(`order_id = :${id}`)
-        .bind(id)
-        .execute(),
+        .where('order_id = :id')
+        .bind('id', id)
+        .execute()
     )
+    .then((results) => results.fetchAll())
     .then((arrayOrders) =>
-      arrayOrders.map(([orderId, userId, orderDate, totalPrice]) => ({
+      arrayOrders.map(([orderId, productId, quantity]) => ({
         orderId,
-        userId,
-        orderDate,
-        totalPrice,
+        productId,
+        quantity,
       })),
     );
 

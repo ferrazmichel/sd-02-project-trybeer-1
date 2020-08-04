@@ -1,9 +1,9 @@
 const { orders } = require('../services');
 
 const list = async (req, res) => {
-  const orders = await orders.list(req.user.id);
+  const ordersList = await orders.list(req.user.id);
 
-  res.status(200).json({ orders });
+  res.status(200).json({ orders: ordersList });
 };
 
 const details = async (req, res) => {

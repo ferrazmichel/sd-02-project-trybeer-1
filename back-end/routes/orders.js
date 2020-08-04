@@ -12,9 +12,9 @@ const {
 
 const router = express.Router();
 
-// router.get('/', auth, rescue(orders.list));
+router.get('/', auth, rescue(orders.list));
 
-// router.get('/:id', auth, rescue(orders.details));
+router.get('/:id', auth, rescue(orders.details));
 
 router.post('/', auth, validate(ordersSchema), rescue(orders.insert));
 
