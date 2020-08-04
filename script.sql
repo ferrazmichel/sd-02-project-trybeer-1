@@ -3,7 +3,7 @@ use Trybeer;
 
 create table products (
 id int primary key auto_increment,
-product varchar(100) not null,
+name varchar(100) not null,
 price double not null,
 volume int not null,
 urlImage varchar(100) not null
@@ -19,20 +19,26 @@ role varchar(100) not null
 
 create table orders (
 id int primary key auto_increment,
-total double not null,
-date DATE not null,
+user_id int,
+order_date DATE,
+total_price double,
+address VARCHAR(100) not null,
+number double not null,
+status VARCHAR(100) not null,
+FOREIGN KEY (user_id) REFERENCES users(id)
 ) engine=InnoDB;
 
-create table orderItem (
-quantity int not null,
+create table orders_products (
 order_id int NOT NULL,
 product_id int NOT NULL,
-FOREIGN KEY (order_id) REFERENCES orders(id),
+quantity int NOT NULL,
+PRIMARY KEY (product_id, order_id),
 FOREIGN KEY (product_id) REFERENCES products(id),
+FOREIGN KEY (order_id) REFERENCES orders(id)
 ) engine=InnoDB;
 
 
-insert into products (product, price, volume, urlImage) value
+insert into products (name, price, volume, urlImage) value
 ('Skol Lata', 2.20, 250,'http://localhost:3001/images/1.png'),
 ('Heineken', 7.50, 600, 'http://localhost:3001/images/2.png'),
 ('Antarctica Pilsen',2.49, 300, 'http://localhost:3001/images/3.jpeg'),
