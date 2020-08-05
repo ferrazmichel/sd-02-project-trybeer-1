@@ -14,7 +14,6 @@ const getUserAndSaveToken = async (body) => {
   });
 
   if (error) {
-    console.error(error);
     return { error };
   }
 

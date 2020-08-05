@@ -14,9 +14,9 @@ const handleError = ({ error = {} }) => {
   return { error: { status: error.message } };
 };
 
-const patchData = async (endpoint, { name, email }) =>
+const patchData = async (endpoint, params) =>
   axios
-    .patch(endpoint, { name, email }, { headers: headers() })
+    .patch(endpoint, { ...params }, { headers: headers() })
     .catch((error) => handleError({ error }));
 
 const getData = async (endpoint) =>
