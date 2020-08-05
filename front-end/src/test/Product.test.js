@@ -1,11 +1,11 @@
 import React from 'react';
-import renderWithRouter from './services/renderWithRouter';
+import renderWithRouter from '../services/renderWithRouter';
 import { fireEvent, wait, cleanup } from '@testing-library/react';
 import axios from 'axios';
 
-import { Provider } from './context';
-import Products from './pages/Products';
-import { productsMock } from './services/mock';
+import { Provider } from '../context';
+import Products from '../pages/Client/Products';
+import { productsMock } from '../services/mock';
 
 jest.mock('axios');
 
@@ -42,19 +42,24 @@ describe('Products page', () => {
     expect(getByTestId("checkout-bottom-btn").innerHTML).toBe('Ver carrinho');
     expect(getByTestId("checkout-bottom-btn-value").innerHTML).toBe('R$ 0.00');
     fireEvent.click(getByTestId('0-product-plus'));
-    // expect(localStorage.getItem('products')).toBe("{\"1\":{\"price\":2.2,\"count\":1}}");
-  //   expect(getByTestId('0-product-qtd').innerHTML).toBe('1');
-  //   fireEvent.click(getByTestId('0-product-minus'));
-  //   expect(localStorage.getItem('products')).toBe("{}");
+    fireEvent.click(getByTestId('0-product-plus'));
+    expect(localStorage.getItem('products')).toBe("{\"1\":{\"id\":\"1\",\"name\":\"cerva1\",\"price\":2.2,\"volume\":500,\"count\":2}}"
+    );
+    expect(getByTestId('0-product-qtd').innerHTML).toBe('2');
+    fireEvent.click(getByTestId('0-product-minus'));
+    fireEvent.click(getByTestId('0-product-minus'));
+    expect(localStorage.getItem('products')).toBe("{}");
   });
 
-  test.skip('test component Header', () => {
+  test('test component Header', async () => {
+    axios.get.mockResolvedValue({ data: productsMock });
+
     const { getByTestId, history } = renderWithRouter(
       <Provider>
         <Products />
       </Provider>,
     );
-
+    await wait();
     expect(getByTestId('top-hamburguer').tagName).toBe('BUTTON');
     expect(getByTestId('top-title').innerHTML).toBe('Trybeer');
 
@@ -73,6 +78,6 @@ describe('Products page', () => {
     history.push('/products');
 
     fireEvent.click(getByTestId('side-menu-item-logout'));
-    expect(history.location.pathname).toBe('/login');
+    expect(history.location.pathname).toBe('/');
   });
 });
