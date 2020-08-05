@@ -2,21 +2,14 @@ import React, { useEffect, useState } from "react";
 import Header from '../../../components/Header';
 import dateFormat from '../../../services/DateFormat';
 import { getOrder } from '../../../services/orders';
+import orderProductsRender from '../../../components/OrderProducts';
 import "./style.css";
 
 
 const productsRender = (products) => {
   return (
     <React.Fragment>
-      {products.map(({ id, quantity, name, price, volume }, index) => (
-        <div className="product" key={id}>
-          <p>
-          <span data-testid={`${index}-product-qtd`}>{quantity}</span> - 
-          <span data-testid={`${index}-product-name`}> {name}</span> {volume}ml
-        </p>
-        <p>R$ <span data-testid={`${index}-product-total-value`}>{(price * quantity).toFixed(2)}</span></p>
-        </div>
-      ))}
+      {orderProductsRender(products)}
     </React.Fragment>
   )
 };

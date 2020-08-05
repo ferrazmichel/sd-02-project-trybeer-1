@@ -3,6 +3,7 @@ import { Context } from '../../../context';
 import Message from '../../../components/Message';
 import Menu from '../Menu';
 import { getOrder, updateOrder } from '../../../services/orders';
+import orderProductsRender from '../../../components/OrderProducts';
 import "./style.css";
 
 
@@ -15,15 +16,7 @@ const marcar = (id, setMessage) => {
 const ordersRender = (products, order) => {
   return (
     <div className="orders">
-      {products.map(({ id, name, price, volume, quantity }, index) => (
-        <div className="order" key={id}>
-          <p>
-            <span data-testid={`${index}-product-qtd`}>{quantity}</span> - 
-            <span data-testid={`${index}-product-name`}> {name}</span> {volume}ml
-          </p>
-          <p>R$ <span data-testid={`${index}-product-total-value`}>{(price * quantity).toFixed(2)}</span></p>
-        </div>
-      ))}
+      {orderProductsRender(products)}
       <div className="total">
         <strong data-testid="order-total-value">Total: R$ {order.totalPrice.toFixed(2)}</strong>
       </div>
