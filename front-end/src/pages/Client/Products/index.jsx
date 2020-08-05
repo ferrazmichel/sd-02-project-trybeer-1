@@ -7,6 +7,7 @@ import Header from "../../../components/Header";
 import Product from "./Product";
 import { getProducts, calculeTotal } from "./service";
 import "./style.css";
+import { message } from "../../../../../back-end/services/utils/joinSchemas/ordersSchema";
 
 const buttonRender = ({ total, history }) => {
   return (
@@ -41,7 +42,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [update, setUpdate] = useState(false);
-  const { setMessage } = useContext(Context);
+  const { message, setMessage } = useContext(Context);
   const history = useHistory();
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const Products = () => {
 
   return (
     <div className="products_page">
-      <Message />
+      {message.value && <Message />}
       {render({ history, products, setUpdate, total, update })}
     </div>
   );

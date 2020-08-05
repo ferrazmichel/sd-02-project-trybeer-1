@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import { handleField } from "../../services/Validate";
 import "./style.css";
 
-const FormGroup = ({ callback, field, state, testId, defaultValue }) => (
+const FormGroup = ({ callback, field, state, testId, defaultValue, readOnly }) => (
   <Form.Group className="formgroup_component">
     <Form.Control
       data-testid={testId}
@@ -20,6 +20,7 @@ const FormGroup = ({ callback, field, state, testId, defaultValue }) => (
       placeholder={field}
       required="required"
       type={field === "password" ? "password" : "string"}
+      readOnly={readOnly}
     />
     <Form.Control.Feedback
       as="p"

@@ -44,15 +44,16 @@ const Order = (props) => {
       <Message infinity />
       <div className="container">
         <p>Pedido <span data-testid="order-number">001</span>
-        <span data-testid="order-status"> - {order.status}</span> {order.orderDate}</p>
+          <span data-testid="order-status"> - {order.status}</span> {order.orderDate}</p>
         {ordersRender(products, order)}
-        <button
-          type="button"
-          onClick={() => marcar(id, setMessage)}
-          data-testid="mark-as-delivered-btn"
-        >
-          Marcar como entregue
-        </button>
+        {order.status === 'pendente' &&
+          <button
+            type="button"
+            onClick={() => marcar(id, setMessage)}
+            data-testid="mark-as-delivered-btn"
+          >
+            Marcar como entregue
+        </button>}
       </div>
     </div>
   );

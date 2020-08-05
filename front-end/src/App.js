@@ -10,11 +10,16 @@ import AdminOrder from './pages/Admin/Order';
 import Checkout from "./pages/Client/Checkout";
 import PrivateRoute from "./PrivateRoute";
 import NotFound from "./NotFound";
+import Home from "./pages/Admin/Home";
+import AdminProfile from './pages/Admin/Profile';
+import AdminRoute from "./AdminRoute";
+
 
 function App () {
   return (
     <div className="app">
       <Switch>
+<<<<<<< HEAD
         <PrivateRoute path="/products" component={Products} />
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute exact path="/orders" component={Orders} />
@@ -22,6 +27,16 @@ function App () {
         <PrivateRoute path="/checkout" component={Checkout} />
         <PrivateRoute path="/admin/orders/:id" component={AdminOrder} />
         <PrivateRoute path="/register" component={Register} />
+=======
+        <PrivateRoute exact path="/orders" component={Orders} />
+        <AdminRoute exact path="/admin/orders" component={Home} />
+        <AdminRoute path="/admin/orders/:id" component={AdminOrder} />
+        <PrivateRoute exact path="/products" component={Products} />
+        <PrivateRoute exact path="/profile" component={Profile} />
+        <PrivateRoute exact path="/checkout" component={Checkout} />
+        <AdminRoute path="/admin/profile" component={AdminProfile} />
+        <Route exact path="/register" component={Register} />
+>>>>>>> master
         <Route exact path="/" component={Login} />
         <Route component={NotFound} />
       </Switch>

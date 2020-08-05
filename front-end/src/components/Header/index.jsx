@@ -32,7 +32,7 @@ const LinkProfile = () => (
 
 const LinkOut = () => (
   <li>
-    <Link to="/" data-testid="side-menu-item-logout">
+    <Link onClick={()=> localStorage.clear()}to="/" data-testid="side-menu-item-logout">
       Sair
     </Link>
   </li>

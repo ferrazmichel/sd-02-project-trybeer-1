@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { validToken } from "./services/Request";
+import { isAdmin } from "./services/Request";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const AdminRoute = ({ component: Component, ...rest }) => {
   const [auth, setAuth] = useState(false);
   const [isTokenValidated, setIsTokenValidated] = useState(false);
 
   useEffect(() => {
-    validToken(`http://localhost:3001/users/token`)
-      .then(() => setAuth(true))
-      .catch(() => {
-        setAuth(false);
-        localStorage.removeItem("token");
+    isAdmin('http://localhost:3001/users/admin')
+      .then(({ role }) => {
+        if (role === 'admin') setAuth(true);
+        setIsTokenValidated(true);
       })
-      .then(() => setIsTokenValidated(true));
+      .catch(()=> setIsTokenValidated(true));
   }, []);
-
+  
   if (!isTokenValidated) return <div />;
 
   return (
@@ -28,4 +27,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-export default PrivateRoute;
+export default AdminRoute;
