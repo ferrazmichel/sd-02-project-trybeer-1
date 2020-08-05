@@ -27,10 +27,27 @@ price    | double not null
 volume   | int not null                   
 urlImage | varchar(100) not null          
 
+#### Order
+filed         |  Mysql                         
+--------      | -------------------------------
+id            | int primary key auto_increment,
+user_id       | foreign key references users(id),
+order_date    | date not null,
+total_price   | double not null,
+address       | varchar(100) not null,
+number        | double not null,
+status        | varchar(100) not null,
+
+#### OrderItem
+filed      |  Mysql                         
+--------   | -------------------------------
+order_id   | foreign key references orders(id),
+product_id | foreign key references products(id),
+quantity   | int not null,
 
 
 ## Routes
-
+---
 ### User
 
 #### POST: localhost:3001/user/login ⟶ [Authorization=NO]
@@ -101,6 +118,7 @@ responses:
 }
 ```
 
+---
 ### Product
 
 #### GET: localhost:3001/products ⟶ [Authorization=YES]
@@ -116,4 +134,79 @@ responses:
             "urlImage",
         },
 ],
+```
+
+---
+### Order
+
+
+#### GET: localhost:3001/orders ⟶ [Authorization=YES]
+responses:
+**success | status: 200**
+```
+{
+    "orders": [
+        {
+            "orderId",
+            "userId",
+            "orderDate",
+            "totalPrice",
+            "address",
+            "number",
+            "status",
+        }
+    ]
+}
+```
+
+
+#### GET: localhost:3001/orders/:id ⟶ [Authorization=YES]
+responses:
+**success | status: 200**
+```
+{
+    "order": {
+        "orderId",
+        "userId",
+        "orderDate":,
+        "totalPrice",
+        "address",
+        "number",
+        "status",
+        "products": [
+            {
+                "id",
+                "name",
+                "price",
+                "volume",
+                "urlImage",
+                "quantity",
+            },
+        ]
+    }
+}
+```
+
+#### POST: localhost:3001/orders ⟶ [Authorization=YES]
+responses:
+**success | status: 201**
+
+```
+{
+"orderDate",
+"totalPrice",
+"products": [{"id", "count" }, {"id", "count" }],
+"address",
+"number",
+}
+```
+
+#### PATCH: localhost:3001/orders/:id ⟶ [Authorization=YES]
+responses:
+**success | status: 200**
+
+```
+{
+    "message": "Produto Entregue!"
+}
 ```

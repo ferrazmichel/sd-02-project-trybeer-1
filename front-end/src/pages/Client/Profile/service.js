@@ -1,6 +1,6 @@
 import { patchData, getData } from "../../../services/Request";
 
-const URL = "http://localhost:3001/users/profile";
+const URL = `http://localhost:3001/users/profile`;
 
 const getUser = async () => {
   const { data, error } = await getData(URL);
@@ -10,8 +10,6 @@ const getUser = async () => {
 
 const patchUser = async ({ name, email }) => {
   const { error } = await patchData(URL, { name, email });
-
-  console.error(error);
 
   return { error };
 };

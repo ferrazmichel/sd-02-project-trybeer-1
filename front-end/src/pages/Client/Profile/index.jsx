@@ -10,15 +10,15 @@ const Profile = () => {
 
   const [email, setEmail] = useState({ value: null, error: null });
 
-  const [name, setName] = useState({ value: null, error: null });
+  const [name, setName] = useState({ value: null, error: true });
 
   const body = { name: name.value, email: email.value };
 
-  const isDisabled = !email.value || email.error || !name.value || name.error;
+  const isDisabled = !name.value || name.error;
 
   useEffect(() => {
     getUser().then(({ data, error }) => {
-      setName({ value: data.name });
+      setName({ ...name, value: data.name, firstName: data.name });
       setEmail({ value: data.email });
       error &&
         setMessage({ value: error.message || error.status, type: "ALERT" });
@@ -28,7 +28,7 @@ const Profile = () => {
   return (
     <div className="profile_page">
       <Header title="Meu perfil" />
-      {message.value && <Message message={message} infinity />}
+      {message.value && <Message infinity />}
       <Form>
         <FormGroup
           state={name}
@@ -38,11 +38,11 @@ const Profile = () => {
           defaultValue={name.value}
         />
         <FormGroup
-          callback={setEmail}
           field="email"
           state={email}
           testId="profile-email-input"
           defaultValue={email.value}
+          readOnly={true}
         />
         <SubmitButton
           body={body}

@@ -20,11 +20,8 @@ const Login = () => {
 
   return (
     <section className="login_page">
-      <header className="title">
-        <h1>Trybeer Masculinahs</h1>
-        <h2>Login</h2>
-      </header>
-      {message.value && <Message message={message} infinity />}
+      <p className="title">Trybeer</p>
+      {message.value && <Message infinity />}
       <Form>
         <FormGroup
           callback={setEmail}

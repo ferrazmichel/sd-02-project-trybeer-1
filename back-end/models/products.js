@@ -4,9 +4,9 @@ const list = async () => {
   const products = await connection()
     .then((db) =>
       db
-        .getTable("products")
-        .select(["id", "name", "price", "volume", "urlImage"])
-        .execute()
+        .getTable('products')
+        .select(['id', 'name', 'price', 'volume', 'urlImage'])
+        .execute(),
     )
     .then((results) => results.fetchAll())
     .then((arrayProducts) =>
@@ -23,8 +23,6 @@ const list = async () => {
 
   return products;
 };
-
-// FALTA FAZER ISSO FUNCIONAR
 
 const find = async (id) =>
   connection()

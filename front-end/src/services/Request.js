@@ -2,7 +2,7 @@ import axios from "axios";
 
 const headers = () => ({ Authorization: localStorage.getItem("token") });
 
-const handleError = ({ error }) => {
+const handleError = ({ error = {} }) => {
   if (error.response) {
     return { error: { ...error.response.data.error, status: error.message } };
   }
@@ -14,9 +14,9 @@ const handleError = ({ error }) => {
   return { error: { status: error.message } };
 };
 
-const patchData = async (endpoint, { name, email }) =>
+const patchData = async (endpoint, params) =>
   axios
-    .patch(endpoint, { name, email }, { headers: headers() })
+    .patch(endpoint, { ...params }, { headers: headers() })
     .catch((error) => handleError({ error }));
 
 const getData = async (endpoint) =>
@@ -29,7 +29,19 @@ const validToken = async (endpoint) =>
     headers: headers(),
   });
 
+
 const postData = async ({ endpoint, body }) =>
   axios.post(endpoint, body).catch((error) => handleError({ error }));
 
-export { getData, patchData, postData, validToken };
+const postSale = async (endpoint, body) =>
+  axios.post(endpoint, { ...body }, { headers: headers() });
+
+const isAdmin = async (endpoint) =>
+  axios.get(endpoint, {
+    headers: headers(),
+  })
+    .then(({ data }) => data)
+    .catch((error) => error);
+
+
+export { getData, patchData, postData, validToken, isAdmin, postSale };
