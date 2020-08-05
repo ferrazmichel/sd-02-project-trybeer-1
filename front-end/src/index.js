@@ -5,7 +5,6 @@ import { Provider } from './context';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import '@testing-library/jest-dom'
 
 ReactDOM.render(
   <Provider>
