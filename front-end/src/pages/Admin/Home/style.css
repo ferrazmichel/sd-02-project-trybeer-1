@@ -1,9 +1,9 @@
 .contain_cards {
   align-items: flex-start;
   display: flex;
+  height: 100%;
   justify-content: space-around;
   width: 100%;
-  height: 100%;
 }
 
 .card_link {
@@ -20,16 +20,16 @@
 .card_container {
   align-items: center;
   display: flex;
+  height: 90%;
   justify-content: space-around;
   flex-direction: column;
   width: 100%;
-  height: 90%;
 }
 
 .contain_page {
   display: flex;
-  width: 100%;
   flex-direction: column;
+  width: 100%;
 }
 
 .label_success {
@@ -42,13 +42,13 @@
 
 .last_box {
   display: flex;
-  width: 100%;
   justify-content: space-around;
+  width: 100%;
 }
 
 .first_box {
   display: flex;
   flex-direction: column;
-  width: 100%;
   justify-content: space-around;
+  width: 100%;
 }
