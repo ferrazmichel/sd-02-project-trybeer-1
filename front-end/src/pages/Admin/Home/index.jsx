@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import './style.css';
 import Menu from '../Menu';
 
-const URL = 'http://localhost:3001/orders';
+const URL = 'http://localhost:3001/orders/admin';
 
 const Home = () => {
   const [orders, setOrders] = useState([]);
@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     getData(URL)
       .then(({ data }) => setOrders(data.orders.sort((a, b) => a.status === 'pendente' ? -1 : 1)))
-      .catch(({ error }) => setMessage({ value: error.status, type: 'ALERT' }));
+      .catch(({ error ={} }) => setMessage({ value: error.status, type: 'ALERT' }));
   }, []);
 
   return (
