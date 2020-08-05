@@ -11,8 +11,6 @@ const getUser = async () => {
 const patchUser = async ({ name, email }) => {
   const { error } = await patchData(URL, { name, email });
 
-  console.error(error);
-
   return { error };
 };
 

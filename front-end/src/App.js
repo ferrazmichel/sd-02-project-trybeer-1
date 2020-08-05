@@ -5,6 +5,7 @@ import Profile from "./pages/Client/Profile";
 import Products from "./pages/Client/Products";
 import Register from "./pages/Register";
 import Orders from "./pages/Client/Orders";
+import Order from "./pages/Client/Order";
 import AdminOrder from './pages/Admin/Order';
 import Checkout from "./pages/Client/Checkout";
 import PrivateRoute from "./PrivateRoute";
@@ -19,6 +20,7 @@ function App () {
     <div className="app">
       <Switch>
         <PrivateRoute exact path="/orders" component={Orders} />
+        <PrivateRoute exact path="/orders/:id" component={Order} />
         <AdminRoute exact path="/admin/orders" component={Home} />
         <AdminRoute path="/admin/orders/:id" component={AdminOrder} />
         <PrivateRoute exact path="/products" component={Products} />
