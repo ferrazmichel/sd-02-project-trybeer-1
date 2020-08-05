@@ -1,16 +1,16 @@
 .message_comp {
   align-items: center;
   background-color: #242423;
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: 5px 5px 30px -1px #e71d36;
   display: flex;
-  height: 40px;
+  height: 7%;
   justify-content: flex-start;
   padding: 0 1%;
   position: absolute;
   top: 22%;
   width: 40%;
-  z-index: 1;
+  z-index: 2;
 }
 
 .message_comp > button {
@@ -28,5 +28,6 @@
 }
 
 .message_comp > strong {
-  font-size: 30%;
+  font-size: 1em;
+  padding: 2%;
 }
