@@ -19,15 +19,6 @@ function App () {
   return (
     <div className="app">
       <Switch>
-<<<<<<< HEAD
-        <PrivateRoute path="/products" component={Products} />
-        <PrivateRoute path="/profile" component={Profile} />
-        <PrivateRoute exact path="/orders" component={Orders} />
-        <PrivateRoute exact path="/orders/:id" component={Order} />
-        <PrivateRoute path="/checkout" component={Checkout} />
-        <PrivateRoute path="/admin/orders/:id" component={AdminOrder} />
-        <PrivateRoute path="/register" component={Register} />
-=======
         <PrivateRoute exact path="/orders" component={Orders} />
         <AdminRoute exact path="/admin/orders" component={Home} />
         <AdminRoute path="/admin/orders/:id" component={AdminOrder} />
@@ -36,7 +27,6 @@ function App () {
         <PrivateRoute exact path="/checkout" component={Checkout} />
         <AdminRoute path="/admin/profile" component={AdminProfile} />
         <Route exact path="/register" component={Register} />
->>>>>>> master
         <Route exact path="/" component={Login} />
         <Route component={NotFound} />
       </Switch>
