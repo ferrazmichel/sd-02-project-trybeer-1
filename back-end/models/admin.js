@@ -23,5 +23,5 @@ const list = async () =>
 
 
 module.exports = {
-  list
+  list,
 };
