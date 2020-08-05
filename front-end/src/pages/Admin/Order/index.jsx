@@ -18,7 +18,7 @@ const ordersRender = (products, order) => {
       {products.map(({ id, name, price, volume, quantity }, index) => (
         <div className="order" key={id}>
           <p>
-            <span data-testid={`${index}-product-qtd`}>{quantity}</span> - 
+            <span data-testid={`${index}-product-qtd`}>{quantity}</span> -
             <span data-testid={`${index}-product-name`}> {name}</span> {volume}ml</p>
           <p>R$ <span data-testid={`${index}-product-total-value`}>{(price * quantity).toFixed(2)}</span></p>
         </div>
@@ -50,15 +50,16 @@ const Order = (props) => {
       {message.value && <Message infinity />}
       <div className="container">
         <p>Pedido <span data-testid="order-number">001</span>
-        <span data-testid="order-status"> - {order.status}</span> {order.orderDate}</p>
+          <span data-testid="order-status"> - {order.status}</span> {order.orderDate}</p>
         {ordersRender(products, order)}
-        <button
-          type="button"
-          onClick={() => marcar(id, setMessage)}
-          data-testid="mark-as-delivered-btn"
-        >
-          Marcar como entregue
-        </button>
+        {order.status === 'pendente' &&
+          <button
+            type="button"
+            onClick={() => marcar(id, setMessage)}
+            data-testid="mark-as-delivered-btn"
+          >
+            Marcar como entregue
+        </button>}
       </div>
     </div>
   );
