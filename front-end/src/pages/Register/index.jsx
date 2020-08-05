@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Context } from "../../context";
+import React, { useState } from "react";
+
 import Form from "react-bootstrap/Form";
 import { FormGroup, Message, SubmitButton } from "../../components";
 import { ConfirmField, PasswordField, RoleField } from "./components";
