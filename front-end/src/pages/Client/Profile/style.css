@@ -4,7 +4,6 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  font-size: 50px;
   height: 100%;
   width: 100%;
 }
@@ -15,41 +14,9 @@
   border-radius: 70px 20px;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 40%;
   justify-content: center;
-  margin: 1% 0;
+  margin: 10% 0;
   padding: 1%;
-  width: 50%;
-}
-
-@media screen and ( max-width : 800px ) {
-
-  .profile_page {
-    font-size: 40px;
-  }
-
-  .profile_page > form {
-    border-radius: 50px 20px;
-    width: 70%;
-  }
-
-  .profile_page > header {
-    width: 80%;
-  }
-}
-
-@media screen and ( max-width : 500px ) {
-
-  .profile_page {
-    font-size: 30px;
-  }
-
-  .profile_page > form {
-    border-radius: 30px 10px;
-    width: 90%;
-  }
-
-  .profile_page > header {
-    width: 100%;
-  }
+  width: 80%;
 }
