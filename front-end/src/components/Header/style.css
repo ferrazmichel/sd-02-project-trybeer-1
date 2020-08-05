@@ -2,10 +2,7 @@
   align-items: center;
   background-color: #333533;
   display: flex;
-  flex-direction: row;
-  font-size: 50px;
-  height: 100px;
-  justify-content: space-between;
+  height: 10%;
   width: 100%;
 }
 
@@ -13,31 +10,37 @@
   align-items: center;
   background-color: #333533;
   border-color: #fdd692;
-  border-radius: 5px;
+  border-radius: 3px;
   border-style: solid;
-  border-width: 4px;
+  border-width: 1px;
   cursor: pointer;
   display: flex;
-  height: 60%;
-  margin: 1% 2%;
-  width: 5%;
+  flex-grow: 0;
+  margin: 2%;
+  padding: 1%;
+  width: 10%;
 }
 
 .header_comp > .menu > .material-icons {
-  color: white;
-  font-size: 1em;
+  color: #fdd692;
+  height: 1em;
+  width: 1em;
 }
 
 .header_comp > .title {
   align-items: center;
-  color: #fdd692;
   display: flex;
+  flex-grow: 1;
   font-family: Permanent Marker, cursive;
-  font-size: 100%;
-  height: 60%;
+  height: 100%;
   justify-content: center;
+}
+
+.header_comp > .title > p {
+  color: #fdd692;
+  font-size: 2em;
+  height: 60%;
   margin: 0;
-  width: 85%;
 }
 
 .lateral {
@@ -46,13 +49,12 @@
   height: 100vh;
   left: 0;
   position: absolute;
-  top: 100px;
-  width: 15vw;
+  top: 9vh;
+  width: 30vw;
   z-index: 2;
 }
 
 .lateral > .sidebar , .lateral > .sidebar > ul {
-  font-family: Permanent Marker, cursive;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -60,8 +62,9 @@
 }
 
 .lateral > .sidebar a {
-  color: white;
-  font-size: 50%;
+  color: #fdd692;
+  font-family: Permanent Marker, cursive;
+  font-size: 1em;
   text-decoration: none;
   width: 100%;
 }
@@ -70,51 +73,18 @@
   list-style: none;
 }
 
+.lateral > .sidebar > ul > li {
+  align-items: center;
+  border: solid #fdd692 1px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  height: 7%;
+  justify-content: center;
+  margin: 5% 0;
+  width: 100%;
+}
+
 .lateral > .sidebar > ul > li:hover {
-  background-color: #fdd692;
-}
-
-@media screen and ( max-width : 800px ) {
-
-  .header_comp {
-    font-size: 45px;
-    height: 80px;
-  }
-
-  .lateral {
-    top: 80px;
-  }
-
-  .header_comp > .menu {
-    width: 8%;
-  }
-}
-
-@media screen and ( max-width : 500px ) {
-
-  .header_comp {
-    font-size: 25px;
-    height: 60px;
-  }
-
-  .header_comp > .menu {
-    width: 12%;
-  }
-
-  .lateral {
-    display: flex;
-    flex-direction: row;
-    height: 50px;
-    left: 0;
-    top: 60px;
-    width: 100vw;
-    z-index: 2;
-  }
-
-  .lateral > .sidebar > ul {
-    display: flex;
-    flex-flow: row wrap;
-    font-size: 50%;
-    justify-content: space-around;
-  }
+  background-color: grey;
 }

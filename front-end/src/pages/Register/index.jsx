@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Context } from "../../context";
+import { Context } from '../../context';
 import Form from "react-bootstrap/Form";
 import { FormGroup, Message, SubmitButton } from "../../components";
 import { ConfirmField, PasswordField, RoleField } from "./components";
@@ -56,6 +56,8 @@ const renderForm = ({
 );
 
 const Register = () => {
+  const { message } = useContext(Context);
+
   const [confirm, setConfirm] = useState({ value: null, error: null });
 
   const [email, setEmail] = useState({ value: null, error: null });
@@ -65,8 +67,6 @@ const Register = () => {
   const [password, setPassword] = useState({ value: null, error: null });
 
   const [role, setRole] = useState("client");
-
-  const { message } = useContext(Context);
 
   const isDisabled =
     confirm.error ||
@@ -92,7 +92,7 @@ const Register = () => {
         <h1>Trybeer Masculinahs</h1>
         <h2>Register</h2>
       </header>
-      {message.value && <Message message={message} infinity />}
+      {message.value && <Message infinity />}
       {renderForm({
         name,
         setName,

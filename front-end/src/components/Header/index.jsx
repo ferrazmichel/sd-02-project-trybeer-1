@@ -32,7 +32,7 @@ const LinkProfile = () => (
 
 const LinkOut = () => (
   <li>
-    <Link to="/" data-testid="side-menu-item-logout">
+    <Link onClick={()=> localStorage.clear()}to="/" data-testid="side-menu-item-logout">
       Sair
     </Link>
   </li>
@@ -69,7 +69,7 @@ const Header = ({ title }) => {
           <span className="material-icons">menu</span>
         </button>
         <div className="title">
-          <h1>{title}</h1>
+          <p>{title}</p>
         </div>
       </header>
     </React.Fragment>
