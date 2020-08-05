@@ -1,9 +1,11 @@
 import React from "react";
+import './style.css';
 
 const OrderProducts = (props) => {
-  const { products } = props;
+  const { products = [] } = props;
+
   return (
-    <React.Fragment>
+    <div className="order_product_comp">
       {products.map(({ id, name, price, volume, quantity }, index) => (
         <div className="order" key={id}>
           <p>
@@ -13,7 +15,7 @@ const OrderProducts = (props) => {
           <p>R$ <span data-testid={`${index}-product-total-value`}>{(price * quantity).toFixed(2)}</span></p>
         </div>
       ))}
-    </React.Fragment>
+    </div>
   );
 };
 

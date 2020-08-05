@@ -35,7 +35,7 @@ const renderForm = (handleSubmit, street, setStreet, homeNumber, setHomeNumber, 
       required
     />
     <button
-      className={`submit_checkout ${booleanButton ? 'red_background' : 'green_background'}`}
+      className="submit_checkout"
       data-testid="checkout-finish-btn"
       type="submit"
       disabled={booleanButton}
