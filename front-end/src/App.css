@@ -4,3 +4,19 @@ body , .app {
   padding: 0;
   width: 100vw;
 }
+
+.not_found {
+  align-items: center;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.giphy_not_found {
+  height: auto;
+  width: 80%;
+}
