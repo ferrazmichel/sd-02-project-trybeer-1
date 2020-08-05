@@ -77,7 +77,7 @@ const Checkout = () => {
   return (
     <React.Fragment>
       <Header title="Finalizar Pedido" />
-      {message.type && <Message message={{ ...message }} />}
+      <Message />
       <div className="checkout_container">
         <div className="checkout_container_products">
           <h3>Produtos</h3>
