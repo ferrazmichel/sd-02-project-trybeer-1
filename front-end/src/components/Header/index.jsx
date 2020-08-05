@@ -69,7 +69,7 @@ const Header = ({ title }) => {
           <span className="material-icons">menu</span>
         </button>
         <div className="title">
-          <p>{title}</p>
+          <h1 data-testid="top-title">{title}</h1>
         </div>
       </header>
     </React.Fragment>
