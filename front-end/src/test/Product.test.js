@@ -1,9 +1,9 @@
 import React from 'react';
-import renderWithRouter from '../services/renderWithRouter';
+import renderWithRouter from './service/renderWithRouter';
 import { fireEvent, wait, cleanup } from '@testing-library/react';
 import { Provider } from '../context';
 import Products from '../pages/Client/Products';
-import { productsMock } from '../services/mock';
+import { productsMock } from './service/mock';
 import axios from 'axios';
 import '@testing-library/jest-dom';
 
