@@ -1,15 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 import Header from '../../../components/Header';
+import dateFormat from '../../../services/DateFormat';
+import { getOrder } from './service';
 import "./style.css";
 
-const orders = [
-  { id: '1', address: 'Joao de Deus', date: '12/03/2020', total: 22.5 },
-  { id: '2', address: 'Joao de Deus', date: '12/03/2020', total: 22.5 }
-];
+
+const details = (history, orderId) => {
+  history.push(`orders/${orderId}`);
+};
 
 const Orders = () => {
-  useEffect(() => {
+  const [orders, setOrders] = useState([]);
+  const history = useHistory();
 
+  useEffect(() => {
+    getOrder()
+      .then(({ data }) => setOrders(data))
   }, []);
 
   return (
@@ -17,14 +25,14 @@ const Orders = () => {
       <Header title="Meus Pedidos" />
       <div className="orders">
         {orders.map((order, index) => {
-        const { id, date, total } = order;
+        const { orderId, orderDate, totalPrice } = order;
         return (
-          <div className="order" key={id}>
+          <div className="order" key={orderId} onClick={() => details(history, orderId)}>
             <div className="header">
-              <strong className="pedido" data-testid={`${index}-order-number`}>Pedido {index}</strong>
-              <p className="date" data-testid={`${index}-order-number`}>{date}</p>
+              <strong className="pedido" data-testid={`${index}-order-number`}>Pedido {orderId}</strong>
+              <p className="date" data-testid={`${index}-order-date`}>{dateFormat(orderDate)}</p>
             </div>
-            <strong data-testid={`${index}-order-total-value`}>R$ {total}</strong>
+            <strong data-testid={`${index}-order-total-value`}>R$ {totalPrice.toFixed(2)}</strong>
           </div>
         )})}
       </div>

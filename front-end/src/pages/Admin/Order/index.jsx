@@ -19,7 +19,8 @@ const ordersRender = (products, order) => {
         <div className="order" key={id}>
           <p>
             <span data-testid={`${index}-product-qtd`}>{quantity}</span> - 
-            <span data-testid={`${index}-product-name`}> {name}</span> {volume}ml</p>
+            <span data-testid={`${index}-product-name`}> {name}</span> {volume}ml
+          </p>
           <p>R$ <span data-testid={`${index}-product-total-value`}>{(price * quantity).toFixed(2)}</span></p>
         </div>
       ))}
@@ -47,7 +48,7 @@ const Order = (props) => {
   return (
     <div className="order_admin">
       <Menu />
-      {message.value && <Message infinity />}
+      <Message infinity />
       <div className="container">
         <p>Pedido <span data-testid="order-number">001</span>
         <span data-testid="order-status"> - {order.status}</span> {order.orderDate}</p>

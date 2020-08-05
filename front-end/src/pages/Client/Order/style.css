@@ -1,8 +1,10 @@
 .order_page {
-  box-sizing: border-box;
   height: 100%;
-  padding: 4%;
   width: 100%;
+}
+
+.order_page > .margin {
+  padding: 5%;
 }
 
 .order_page .header {
@@ -17,5 +19,15 @@
 }
 
 .order_page .total > strong {
+  margin-top: 1%;
   font-size: 1.4em;
+}
+
+.order_page .product {
+  border: solid 1px black;
+  padding: 2%;
+}
+
+.order_page .product p {
+  margin: 0;
 }

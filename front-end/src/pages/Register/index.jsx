@@ -92,7 +92,7 @@ const Register = () => {
         <h1>Trybeer Masculinahs</h1>
         <h2>Register</h2>
       </header>
-      {message.value && <Message message={message} infinity />}
+      <Message infinity />
       {renderForm({
         name,
         setName,

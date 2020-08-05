@@ -12,7 +12,7 @@ const createTimeout = ({ infinity, setMessage }) => {
   if (!infinity) {
     setTimeout(() => {
       setMessage({ value: "", type: "" });
-    }, 1000);
+    }, 3000);
   }
 };
 
@@ -25,7 +25,8 @@ const Message = ({ infinity }) => {
   return (
     <div
       className="message_comp"
-      style={{ boxShadow: `5px 5px 30px -1px ${types[type]}` }}
+      style={{ boxShadow: `5px 5px 30px -1px ${types[type]}`,
+        display: (value) ? "flex" : "none" }}
     >
       <button type="button" onClick={() => setMessage({ value: "", type: "" })}>
         <span className="material-icons">close</span>
