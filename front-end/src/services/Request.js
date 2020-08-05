@@ -34,9 +34,8 @@ const postData = async ({ endpoint, body }) =>
   axios.post(endpoint, body).catch((error) => handleError({ error }));
 
 const postSale = async (endpoint, body) =>
-  axios.post(endpoint, {...body}, { headers: headers() });
+  axios.post(endpoint, { ...body }, { headers: headers() });
 
-export { getData, patchData, postData, validToken, postSale };
 const isAdmin = async (endpoint) =>
   axios.get(endpoint, {
     headers: headers(),
@@ -45,4 +44,4 @@ const isAdmin = async (endpoint) =>
     .catch((error) => error);
 
 
-export { getData, patchData, postData, validToken, isAdmin };
+export { getData, patchData, postData, validToken, isAdmin, postSale };

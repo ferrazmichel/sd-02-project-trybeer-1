@@ -5,12 +5,13 @@ import Card from './components/Card';
 import { Link } from 'react-router-dom';
 import './style.css';
 import Menu from '../Menu';
+import Message from '../../../components/Message';
 
 const URL = 'http://localhost:3001/orders/admin';
 
 const Home = () => {
   const [orders, setOrders] = useState([]);
-  const { setMessage } = useContext(Context);
+  const { message, setMessage } = useContext(Context);
 
   useEffect(() => {
     getData(URL)
@@ -20,6 +21,7 @@ const Home = () => {
 
   return (
     <React.Fragment>
+      {message.value && <Message />}
       <div className="order_admin">
         <Menu />
         <div className="contain_page">
