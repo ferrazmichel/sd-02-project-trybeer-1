@@ -15,22 +15,13 @@ function App () {
   return (
     <div className="app">
       <Switch>
-<<<<<<< HEAD
         <PrivateRoute exact path="/orders" component={Orders} />
         <PrivateRoute exact path="/admin/orders" component={Home} />
+        <Route path="/admin/orders/:id" component={AdminOrder} />
         <PrivateRoute exact path="/products" component={Products} />
         <PrivateRoute exact path="/profile" component={Profile} />
         <PrivateRoute exact path="/checkout" component={Checkout} />
-        <Route path="/admin/orders/:id" component={AdminOrder} />
         <Route exact path="/register" component={Register} />
-=======
-        <PrivateRoute path="/orders" component={Orders} />
-        <Route path="/admin/orders/:id" component={AdminOrder} />
-        <PrivateRoute path="/products" component={Products} />
-        <PrivateRoute path="/profile" component={Profile} />
-        <PrivateRoute path="/checkout" component={Checkout} />
-        <Route path="/register" component={Register} />
->>>>>>> master
         <Route exact path="/" component={Login} />
         <Route component={NotFound} />
       </Switch>

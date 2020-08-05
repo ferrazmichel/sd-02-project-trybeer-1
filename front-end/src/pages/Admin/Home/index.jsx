@@ -4,6 +4,7 @@ import { Context } from '../../../context';
 import Card from './components/Card';
 import { Link } from 'react-router-dom';
 import './style.css';
+import Menu from '../Menu';
 
 const URL = 'http://localhost:3001/orders';
 
@@ -19,17 +20,22 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <h1>Pedidos</h1>
-      <div className="contain_cards">
-        {orders.map((order, index) => (
-          <Link
-            className="card_link"
-            style={{ textDecoration: 'none' }}
-            to={`/admin/orders/${order.orderId}`} key={JSON.stringify(order)}
-          >
-            <Card {...{ ...order, index }} />
-          </Link>
-        ))}
+      <div className="order_admin">
+        <Menu />
+        <div className="contain_page">
+          <h1>Pedidos</h1>
+          <div className="contain_cards">
+            {orders.map((order, index) => (
+              <Link
+                className="card_link"
+                style={{ textDecoration: 'none' }}
+                to={`/admin/orders/${order.orderId}`} key={JSON.stringify(order)}
+              >
+                <Card {...{ ...order, index }} />
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </React.Fragment>
   )
