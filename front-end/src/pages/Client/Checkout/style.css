@@ -4,7 +4,7 @@
   flex-direction: column;
   height: 80%;
   justify-content: space-around;
-  padding: 1%;
+  padding: 5%;
   width: 100%;
 }
 
@@ -76,6 +76,11 @@
 
 .submit_checkout {
   background-color: chartreuse;
+  color: white;
   margin-top: 5%;
   padding: 1%;
+}
+
+.submit_checkout:disabled {
+  background-color: gray;
 }

@@ -22,12 +22,3 @@
   font-size: 1.4em;
   margin-top: 1%;
 }
-
-.order_page .product {
-  border: solid 1px black;
-  padding: 2%;
-}
-
-.order_page .product p {
-  margin: 0;
-}
