@@ -1,6 +1,6 @@
 import { postData } from "../../services/Request";
 
-const URL = "http://localhost:3001/users/login";
+const URL = `http://localhost:5000/users/login`;
 
 const userRoutes = {
   admin: "/home/admin",
@@ -14,7 +14,6 @@ const getUserAndSaveToken = async (body) => {
   });
 
   if (error) {
-    console.error(error);
     return { error };
   }
 

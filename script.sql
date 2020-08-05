@@ -13,7 +13,7 @@ create table users (
 id int primary key auto_increment,
 name varchar(100) not null,
 email varchar(100) not null,
-password  varchar(100) not null,
+password varchar(100) not null,
 role varchar(100) not null
 ) engine=InnoDB;
 
@@ -23,7 +23,7 @@ user_id int,
 order_date DATE,
 total_price double,
 address VARCHAR(100) not null,
-number double not null,
+number int not null,
 status VARCHAR(100) not null,
 FOREIGN KEY (user_id) REFERENCES users(id)
 ) engine=InnoDB;
@@ -36,7 +36,6 @@ PRIMARY KEY (product_id, order_id),
 FOREIGN KEY (product_id) REFERENCES products(id),
 FOREIGN KEY (order_id) REFERENCES orders(id)
 ) engine=InnoDB;
-
 
 insert into products (name, price, volume, urlImage) value
 ('Skol Lata', 2.20, 250,'http://localhost:3001/images/1.png'),

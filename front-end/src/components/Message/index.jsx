@@ -16,8 +16,8 @@ const createTimeout = ({ infinity, setMessage }) => {
   }
 };
 
-const Message = ({ message: { value, type }, infinity }) => {
-  const { setMessage } = useContext(Context);
+const Message = ({ infinity }) => {
+  const { setMessage, message: { value, type } } = useContext(Context);
   useEffect(() => {
     createTimeout({ infinity, setMessage });
   }, []);

@@ -24,7 +24,7 @@ const Login = () => {
         <h1>Trybeer Masculinahs</h1>
         <h2>Login</h2>
       </header>
-      {message.value && <Message message={message} infinity />}
+      {message.value && <Message infinity />}
       <Form>
         <FormGroup
           callback={setEmail}

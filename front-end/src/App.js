@@ -4,6 +4,8 @@ import Login from "./pages/Login";
 import Profile from "./pages/Client/Profile";
 import Products from "./pages/Client/Products";
 import Register from "./pages/Register";
+import Orders from "./pages/Client/Orders";
+import AdminOrder from './pages/Admin/Order';
 import Checkout from "./pages/Client/Checkout";
 import PrivateRoute from "./PrivateRoute";
 import NotFound from "./NotFound";
@@ -12,6 +14,8 @@ function App () {
   return (
     <div className="app">
       <Switch>
+        <PrivateRoute path="/orders" component={Orders} />
+        <Route path="/admin/orders/:id" component={AdminOrder} />
         <PrivateRoute path="/products" component={Products} />
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/checkout" component={Checkout} />
