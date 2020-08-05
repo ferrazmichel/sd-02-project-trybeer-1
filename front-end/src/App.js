@@ -15,13 +15,13 @@ function App () {
   return (
     <div className="app">
       <Switch>
-        <Route path="/products" component={Products} />
-        <Route path="/profile" component={Profile} />
-        <Route exact path="/orders" component={Orders} />
-        <Route exact path="/orders/:id" component={Order} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/admin/orders/:id" component={AdminOrder} />
-        <Route path="/register" component={Register} />
+        <PrivateRoute path="/products" component={Products} />
+        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute exact path="/orders" component={Orders} />
+        <PrivateRoute exact path="/orders/:id" component={Order} />
+        <PrivateRoute path="/checkout" component={Checkout} />
+        <PrivateRoute path="/admin/orders/:id" component={AdminOrder} />
+        <PrivateRoute path="/register" component={Register} />
         <Route exact path="/" component={Login} />
         <Route component={NotFound} />
       </Switch>

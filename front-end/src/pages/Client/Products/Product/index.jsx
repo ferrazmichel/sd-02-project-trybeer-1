@@ -89,7 +89,7 @@ const Product = ({ index, product, setUpdate, update }) => {
       <p className="price" data-testid={`${index}-product-price`}>
         R$ {price.toFixed(2)}
       </p>
-      <img src="https://thebeerplanet.vteximg.com.br/arquivos/ids/466829-300-300/Cerveja-Lake-Side-Beer-Lager-Sem-Gluten-355ml.jpg?v=637093943199130000" alt="product" data-testid={`${index}-product-img`} />
+      <img src={urlImage} alt="product" data-testid={`${index}-product-img`} />
       <p className="name" data-testid={`${index}-product-name`}>
         {name} {volume}ml
       </p>

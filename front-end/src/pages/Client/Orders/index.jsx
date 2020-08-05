@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import Header from '../../../components/Header';
 import dateFormat from '../../../services/DateFormat';
-import { getOrder } from './service';
+import { getOrders } from '../../../services/orders';
 import "./style.css";
 
 
@@ -16,7 +16,7 @@ const Orders = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getOrder()
+    getOrders()
       .then(({ data }) => setOrders(data))
   }, []);
 

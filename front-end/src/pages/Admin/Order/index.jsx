@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Context } from '../../../context';
 import Message from '../../../components/Message';
 import Menu from '../Menu';
-import { getOrder, updateOrder } from './service';
+import { getOrder, updateOrder } from '../../../services/orders';
 import "./style.css";
 
 
@@ -35,7 +35,7 @@ const Order = (props) => {
   const [order, setOrder] = useState({ status: '', number: 0, orderDate: '', totalPrice: 1 });
   const [products, setProducts] = useState([]);
   const { id } = props.match.params;
-  const { message, setMessage } = useContext(Context);
+  const { setMessage } = useContext(Context);
 
   useEffect(() => {
     getOrder(id).then(({ data }) => {

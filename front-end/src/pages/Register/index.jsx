@@ -66,8 +66,6 @@ const Register = () => {
 
   const [role, setRole] = useState("client");
 
-  const { message } = useContext(Context);
-
   const isDisabled =
     confirm.error ||
     !confirm.value ||

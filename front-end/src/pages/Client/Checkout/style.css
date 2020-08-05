@@ -32,9 +32,8 @@
 
 .product_info > button {
   background-color: white;
-  border: none
+  border: none;
 }
-
 
 .product_info > button .material-icons {
   font-size: 1.2em;

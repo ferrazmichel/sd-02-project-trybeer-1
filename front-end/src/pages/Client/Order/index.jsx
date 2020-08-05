@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from '../../../components/Header';
-import { getOrder } from './service';
-import dateFormat from '../../../services/DateFormat'
+import dateFormat from '../../../services/DateFormat';
+import { getOrder } from '../../../services/orders';
 import "./style.css";
 
 

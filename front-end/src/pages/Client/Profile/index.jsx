@@ -6,7 +6,7 @@ import { getUser, handleSubmit } from "./service";
 import "./style.css";
 
 const Profile = () => {
-  const { message, setMessage } = useContext(Context);
+  const { setMessage } = useContext(Context);
 
   const [email, setEmail] = useState({ value: null, error: null });
 

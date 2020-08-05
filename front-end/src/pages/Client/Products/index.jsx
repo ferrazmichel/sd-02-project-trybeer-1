@@ -5,17 +5,8 @@ import { Context } from '../../../context';
 import Message from '../../../components/Message';
 import Header from "../../../components/Header";
 import Product from "./Product";
-import { getProducts } from "./service";
+import { getProducts, calculeTotal } from "./service";
 import "./style.css";
-
-
-const calculeTotal = () => {
-  const products = JSON.parse(localStorage.getItem("products") || "{}");
-
-  return Object.keys(products)
-    .reduce((acc, id) => acc + products[id].price * products[id].count, 0)
-    .toFixed(2);
-};
 
 const buttonRender = ({ total, history }) => {
   return (
@@ -50,7 +41,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [update, setUpdate] = useState(false);
-  const { message, setMessage } = useContext(Context);
+  const { setMessage } = useContext(Context);
   const history = useHistory();
 
   useEffect(() => {
