@@ -28,7 +28,7 @@ const Profile = () => {
   return (
     <div className="profile_page">
       <Header title="Meu perfil" />
-      {message.value && <Message message={message} infinity />}
+      {message.value && <Message infinity />}
       <Form>
         <FormGroup
           state={name}

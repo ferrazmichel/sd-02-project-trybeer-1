@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Checkout from "./pages/Client/Checkout";
 import PrivateRoute from "./PrivateRoute";
 import NotFound from "./NotFound";
+import Home from "./pages/Admin/Home";
 
 function App () {
   return (
@@ -15,6 +16,7 @@ function App () {
         <PrivateRoute path="/products" component={Products} />
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/checkout" component={Checkout} />
+        <PrivateRoute path="/admin/orders" component={Home} />
         <Route path="/register" component={Register} />
         <Route exact path="/" component={Login} />
         <Route component={NotFound} />

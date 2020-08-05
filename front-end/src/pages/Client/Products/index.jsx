@@ -27,7 +27,7 @@ const Products = () => {
 
   return (
     <div className="products_page">
-      {message.value && <Message message={message} />}
+      {message.value && <Message />}
       <Header title="Trybeer" />
       <div className="products">
         {products.map((product, index) => (
