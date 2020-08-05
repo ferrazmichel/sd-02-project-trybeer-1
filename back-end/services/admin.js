@@ -1,13 +1,11 @@
 const { admin, orders, products } = require('../models');
+const { orderDetails } = require('./utils');
 
 const list = async () =>
   admin.list();
 
 const details = async (id) => {
-  const adminOrderDetails = await orders.list({
-    key: 'id',
-    value: id,
-  });
+  const findOrder = await orderDetails(id);
 
   const allProducts = await orders.details(id);
   const productsId = allProducts.map(({ productId }) => productId);
@@ -22,7 +20,7 @@ const details = async (id) => {
     }));
 
   return {
-    ...adminOrderDetails[0],
+    ...findOrder[0],
     products: productsWithQuantity,
   };
 };
