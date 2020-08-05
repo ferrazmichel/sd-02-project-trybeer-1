@@ -10,6 +10,7 @@
   position: absolute;
   top: 22%;
   width: 40%;
+  z-index: 1;
 }
 
 .message_comp > button {

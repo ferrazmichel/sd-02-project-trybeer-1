@@ -32,7 +32,7 @@ const LinkProfile = () => (
 
 const LinkOut = () => (
   <li>
-    <Link to="/login" data-testid="side-menu-item-logout">
+    <Link to="/" data-testid="side-menu-item-logout">
       Sair
     </Link>
   </li>
