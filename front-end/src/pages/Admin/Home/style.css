@@ -1,7 +1,6 @@
 .contain_cards {
   align-items: flex-start;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   height: 100%;
   justify-content: space-around;
