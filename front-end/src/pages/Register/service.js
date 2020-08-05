@@ -1,6 +1,6 @@
 import { postData } from "../../services/Request";
 
-const URL = "http://localhost:3001/users/register";
+const URL = `http://localhost:3001/users/register`;
 
 const userRoutes = {
   admin: "/home/admin",

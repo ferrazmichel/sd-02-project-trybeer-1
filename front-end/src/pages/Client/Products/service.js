@@ -1,6 +1,6 @@
 import { getData } from "../../../services/Request";
 
-const URL = "http://localhost:3001/products";
+const URL = `http://localhost:3001/products`;
 
 const calculeTotal = () => {
   const products = JSON.parse(localStorage.getItem("products") || "{}");
