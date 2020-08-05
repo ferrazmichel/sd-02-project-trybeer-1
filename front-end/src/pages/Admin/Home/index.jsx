@@ -7,7 +7,7 @@ import './style.css';
 import Menu from '../Menu';
 import Message from '../../../components/Message';
 
-const URL = 'http://localhost:3001/orders/admin';
+const URL = 'http://localhost:3001/admin/orders';
 
 const Home = () => {
   const [orders, setOrders] = useState([]);
@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     getData(URL)
-      .then(({ data }) => setOrders(data.orders.sort((a, b) => a.status === 'pendente' ? -1 : 1)))
+      .then(({ data }) => setOrders(data.allOrders.sort((a, b) => a.status === 'pendente' ? -1 : 1)))
       .catch(({ error ={} }) => setMessage({ value: error.status, type: 'ALERT' }));
   }, []);
 

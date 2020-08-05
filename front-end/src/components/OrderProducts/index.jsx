@@ -12,7 +12,7 @@ const OrderProducts = (props) => {
          </p>
           <p>R$ <span data-testid={`${index}-product-total-value`}>{(price * quantity).toFixed(2)}</span></p>
         </div>
-      ))};
+      ))}
     </React.Fragment>
   );
 };
