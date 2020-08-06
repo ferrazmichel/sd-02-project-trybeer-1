@@ -30,7 +30,7 @@ const Orders = () => {
             <div className="order" key={orderId} onClick={() => details(history, orderId)}>
               <div className="header">
                 <strong className="pedido" data-testid={`${index}-order-number`}>Pedido {orderId}</strong>
-                <p className="date" data-testid={`${index}-order-date`}>{console.log(orderDate) || dateFormat(orderDate)}</p>
+                <p className="date" data-testid={`${index}-order-date`}>{dateFormat(orderDate)}</p>
               </div>
               <strong data-testid={`${index}-order-total-value`}>R$ {totalPrice.toFixed(2)}</strong>
             </div>
