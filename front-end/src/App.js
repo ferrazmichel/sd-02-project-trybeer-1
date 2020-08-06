@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./pages/Login";
 import Profile from "./pages/Client/Profile";
 import Products from "./pages/Client/Products";
@@ -28,7 +28,8 @@ function App () {
         <PrivateRoute exact path="/checkout" component={Checkout} />
         <AdminRoute path="/admin/profile" component={AdminProfile} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/" component={Login} />
+        <Route exact path="/login" component={Login} />
+        <Route path="/" render={() => <Redirect to="/login" />} />
         <Route component={NotFound} />
       </Switch>
     </div>
