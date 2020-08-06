@@ -30,7 +30,7 @@ const Message = ({ infinity }) => {
       <button type="button" onClick={() => setMessage({ value: "", type: "" })}>
         <span className="material-icons">close</span>
       </button>
-      <strong style={{ color: `${types[type]}` }}>{value}</strong>
+      <strong data-testid="message" style={{ color: `${types[type]}` }}>{value}</strong>
     </div>
   );
 };
