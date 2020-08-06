@@ -6,7 +6,7 @@ const handleError = ({ error = {} }) => {
   if (error.response) {
     return { error: { ...error.response.data.error, status: error.message } };
   }
-  if (error.request) {
+  if (error.request || !error.message) {
     return {
       error: { message: "Server internal error", status: error.message },
     };

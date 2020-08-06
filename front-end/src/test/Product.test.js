@@ -1,11 +1,13 @@
 import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+
 import renderWithRouter from './service/renderWithRouter';
 import { fireEvent, wait, cleanup } from '@testing-library/react';
 import { Provider } from '../context';
 import Products from '../pages/Client/Products';
 import { productsMock } from './service/mock';
 import axios from 'axios';
-import '@testing-library/jest-dom';
+
 
 
 jest.mock('axios');
@@ -96,7 +98,6 @@ describe('Products page', () => {
     await wait();
   });
   test('test empty data', async () => {
-    // axios.get.mockRejecValue({error: { message:'Sem elementos'}});
     axios.get.mockImplementationOnce(() =>
       Promise.reject(new Error({ error: { message: 'Sem elementos' } })),
     );

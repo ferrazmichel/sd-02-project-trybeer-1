@@ -24,8 +24,6 @@ const handleConfirm = ({ value, password, callback }) => {
 const postUser = async (body) => {
   const { error } = await postData({ endpoint: URL, body });
 
-  console.error(error);
-
   return { error };
 };
 
