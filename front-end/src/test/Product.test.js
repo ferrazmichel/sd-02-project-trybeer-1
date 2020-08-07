@@ -97,7 +97,6 @@ describe('Products page', () => {
     await wait();
   });
   test('test empty data', async () => {
-    // axios.get.mockRejecValue({error: { message:'Sem elementos'}});
     axios.get.mockImplementationOnce(() =>
       Promise.reject(new Error({ error: { message: 'Sem elementos' } })),
     );
