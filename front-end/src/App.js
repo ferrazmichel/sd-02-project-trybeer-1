@@ -19,8 +19,8 @@ function App () {
   return (
     <div className="app">
       <Switch>
-        <PrivateRoute exact path="/orders" component={Orders} />
-        <PrivateRoute exact path="/orders/:id" component={Order} />
+        <Route exact path="/orders" component={Orders} />
+        <Route exact path="/orders/:id" component={Order} />
         <AdminRoute exact path="/admin/orders" component={Home} />
         <AdminRoute path="/admin/orders/:id" component={AdminOrder} />
         <PrivateRoute exact path="/products" component={Products} />

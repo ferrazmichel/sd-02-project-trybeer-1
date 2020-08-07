@@ -30,7 +30,7 @@ const Order = (props) => {
         </div>
         <OrderProducts products={products} />
         <div className="total">
-          <strong>Total: R$ <span data-testid="order-total-value">{order.totalPrice}</span></strong>
+          <strong>Total: R$ <span data-testid="order-total-value">{order.totalPrice.toFixed(2)}</span></strong>
         </div>
       </div>
     </div>
