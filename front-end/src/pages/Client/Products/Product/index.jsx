@@ -89,7 +89,9 @@ const Product = ({ index, product, setUpdate, update }) => {
       <p className="price" data-testid={`${index}-product-price`}>
         R$ {price.toFixed(2)}
       </p>
-      <img src={urlImage} alt="product" data-testid={`${index}-product-img`} />
+      <div className="img">
+        <img src={urlImage} alt="product" data-testid={`${index}-product-img`} />
+      </div>
       <p className="name" data-testid={`${index}-product-name`}>
         {name} {volume}ml
       </p>
