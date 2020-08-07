@@ -16,8 +16,8 @@
   cursor: pointer;
   display: flex;
   flex-grow: 0;
-  padding: 0;
   margin: 2%;
+  padding: 0;
 }
 
 .header_comp > .menu > .material-icons {
@@ -25,7 +25,6 @@
   font-size: 1.4em;
   height: 1em;
   margin: 10% 0;
-  vertical-align:middle;
   width: 1.4em;
 }
 
