@@ -15,8 +15,13 @@ const Home = () => {
 
   useEffect(() => {
     getData(URL)
-      .then(({ data }) => setOrders(data.allOrders.sort((a, b) => a.status === 'pendente' ? -1 : 1)))
-      .catch(({ error ={} }) => setMessage({ value: error.status, type: 'ALERT' }));
+      .then(({ data, error }) => {
+        if (error) {
+          setMessage({ value: error.status, type: 'ALERT' })
+          return;
+        }
+        setOrders(data.allOrders.sort((a, b) => a.status === 'pendente' ? -1 : 1))
+      })
   }, []);
 
   return (
