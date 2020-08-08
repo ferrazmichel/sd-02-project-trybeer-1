@@ -5,5 +5,5 @@ const digits = (digit) =>
 
 module.exports = (date) => {
   const d = new Date(date);
-  return `${digits(d.getUTCMonth() + 1)}/${digits(d.getUTCDate() + 1)}`
+  return `${digits(d.getUTCMonth() + 1)}/${digits(d.getUTCDate())}`
 };
