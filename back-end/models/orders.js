@@ -43,7 +43,7 @@ const details = async (id) =>
       })),
     );
 
-const insert = async ({ userId, totalPrice, address, number, status = 'pendente' }) => await
+const insert = async ({ userId, totalPrice, address, number, status = 'pendente' }) =>
   connection()
     .then((db) =>
       db
@@ -52,7 +52,7 @@ const insert = async ({ userId, totalPrice, address, number, status = 'pendente'
         .values(userId, moment().format('L'), totalPrice, address, number, status)
         .execute(),
     )
-    .then((query) => query.getAutoIncrementValue())
+    .then((query) => query.getAutoIncrementValue());
 
 const insertOrdersProducts = async ({ orderId, products }) =>
   connection()
