@@ -55,8 +55,13 @@ const Checkout = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     return postSale(URL, { products, address: street, number: homeNumber, totalPrice: total, })
-      .then(() => setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' }))
-      .catch(() => setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT' }));
+      .then(({ error }) => {
+        if (error) {
+          setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT' });
+          return;
+        }
+        setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' })
+      });
   };
 
   useEffect(() => {
@@ -73,7 +78,6 @@ const Checkout = () => {
     localStorage.removeItem('products');
     return <Redirect to="/products" />;
   }
-
   return (
     <React.Fragment>
       <Header title="Finalizar Pedido" />
@@ -82,11 +86,11 @@ const Checkout = () => {
         <div className="checkout_container_products">
           <h3>Produtos</h3>
           {products.map((product, index) => (
-              <Product
-                key={JSON.stringify(product)}
-                {...{ products, product, index, setProducts }}
-              />
-            ))}
+            <Product
+              key={JSON.stringify(product)}
+              {...{ products, product, index, setProducts }}
+            />
+          ))}
           <div className="contain_total"><p className="total_text" data-testid="order-total-value">Total:{formatBrl(total)}</p></div>
         </div>
         <div className="checkout_container_form">
