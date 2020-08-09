@@ -67,9 +67,7 @@ const Checkout = () => {
       .map((product) => ({ ...product, total: product.count * product.price })));
   }, []);
 
-  useEffect(() => {
-    setTotal(products.reduce((acc, curr) => acc + curr.total, 0));
-  }, [products]);
+  useEffect(() => { setTotal(products.reduce((acc, curr) => acc + curr.total, 0));  }, [products]);
 
   if (message.type === 'SUCCESS') {
     localStorage.removeItem('products');
