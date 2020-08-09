@@ -56,11 +56,8 @@ const Checkout = () => {
     e.preventDefault();
     return postSale(URL, { products, address: street, number: homeNumber, totalPrice: total, })
       .then(({ error }) => {
-        if (error) {
-          setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT' });
-          return;
-        }
-        setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' })
+        if (error) return setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT' });
+        setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' });
       });
   };
 
