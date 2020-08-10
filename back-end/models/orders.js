@@ -1,4 +1,5 @@
 const { connection } = require('./connection');
+const moment = require('moment');
 
 const list = async ({ key, value }) =>
   connection()
@@ -48,7 +49,7 @@ const insert = async ({ userId, totalPrice, address, number, status = 'pendente'
       db
         .getTable('orders')
         .insert(['user_id', 'order_date', 'total_price', 'address', 'number', 'status'])
-        .values(userId, new Date().toISOString().split('T')[0], totalPrice, address, number, status)
+        .values(userId, moment().format('L'), totalPrice, address, number, status)
         .execute(),
     )
     .then((query) => query.getAutoIncrementValue());

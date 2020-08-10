@@ -32,12 +32,11 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   const { error } = await users.register(req.body);
-
+  const { token } = await users.login(req.body);
   if (error) {
     handleError[error]();
   }
-
-  res.status(201).json({ message: 'User created with success!' });
+  res.status(201).json({ token, message: 'User created with success!' });
 };
 
 const update = async (req, res) => {

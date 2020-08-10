@@ -6,6 +6,7 @@ import { getOrder } from '../../../services/orders';
 import OrderProducts from '../../../components/OrderProducts';
 import "./style.css";
 
+const formatBrl = (value) => value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
 const Order = (props) => {
   const { id } = props.match.params;
@@ -30,7 +31,7 @@ const Order = (props) => {
         </div>
         <OrderProducts products={products} />
         <div className="total">
-          <strong>Total: R$ <span data-testid="order-total-value">{order.totalPrice}</span></strong>
+          <strong>Total: R$ <span data-testid="order-total-value">{formatBrl(order.totalPrice)}</span></strong>
         </div>
       </div>
     </div>
