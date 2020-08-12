@@ -24,8 +24,7 @@ const handleConfirm = ({ value, password, callback }) => {
 const postUser = async (body) => {
   const { error, data } = await postData({ endpoint: URL, body });
   if (data.token) localStorage.setItem('token', data.token);
-  console.error(error);
-
+  
   return { error };
 };
 
