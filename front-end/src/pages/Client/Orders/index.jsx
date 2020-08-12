@@ -17,7 +17,7 @@ const Orders = () => {
 
   useEffect(() => {
     getOrders()
-      .then(({ data }) => setOrders(data))
+      .then(({ data }) => setOrders(data.sort((a, b) => b.orderId - a.orderId)))
   }, []);
 
   return (
@@ -25,16 +25,17 @@ const Orders = () => {
       <Header title="Meus Pedidos" />
       <div className="orders">
         {orders.map((order, index) => {
-        const { orderId, orderDate, totalPrice } = order;
-        return (
-          <div className="order" key={orderId} onClick={() => details(history, orderId)}>
-            <div className="header">
-              <strong className="pedido" data-testid={`${index}-order-number`}>Pedido {orderId}</strong>
-              <p className="date" data-testid={`${index}-order-date`}>{dateFormat(orderDate)}</p>
+          const { orderId, orderDate, totalPrice } = order;
+          return (
+            <div className="order" key={orderId} onClick={() => details(history, orderId)}>
+              <div className="header">
+                <strong className="pedido" data-testid={`${index}-order-number`}>Pedido {orderId}</strong>
+                <p className="date" data-testid={`${index}-order-date`}>{dateFormat(orderDate)}</p>
+              </div>
+              <strong data-testid={`${index}-order-total-value`}>R$ {totalPrice.toFixed(2)}</strong>
             </div>
-            <strong data-testid={`${index}-order-total-value`}>R$ {totalPrice.toFixed(2)}</strong>
-          </div>
-        )})}
+          )
+        })}
       </div>
     </div>
   );
