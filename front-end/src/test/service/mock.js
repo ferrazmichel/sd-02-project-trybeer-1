@@ -33,3 +33,4 @@ module.exports = {
   productsMock,
   storageMock,
   ordersMock
+};
