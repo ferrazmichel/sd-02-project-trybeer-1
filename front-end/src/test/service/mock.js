@@ -8,7 +8,6 @@ const productsMock = {
   ],
 };
 
-
 const ordersMock = {
   "orders": [
     {

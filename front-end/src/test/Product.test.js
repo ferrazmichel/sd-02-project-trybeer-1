@@ -1,4 +1,6 @@
 import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+
 import renderWithRouter from './service/renderWithRouter';
 import { fireEvent, wait, cleanup } from '@testing-library/react';
 import axios from 'axios';

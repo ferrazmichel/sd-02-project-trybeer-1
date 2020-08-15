@@ -8,10 +8,12 @@ import dateFormat from '../../../services/DateFormat';
 import "./style.css";
 
 
-const marcar = (id, setMessage) => {
+const marcar = (id, setMessage, setShipping) => {
   updateOrder(id)
-    .then(({ data: { message } }) =>
-      setMessage({ value: message, type: 'SUCCESS' }));
+    .then(({ data: { message } }) =>{
+      setMessage({ value: message, type: 'SUCCESS' })
+      setShipping(true);
+    })
 };
 
 const ordersRender = (products, order) => {
@@ -30,6 +32,7 @@ const Order = (props) => {
   const [products, setProducts] = useState([]);
   const { id } = props.match.params;
   const { setMessage } = useContext(Context);
+  const [shipping, setShipping]= useState(false);
 
   useEffect(() => {
     getOrder(id).then(({ data }) => {
@@ -47,10 +50,10 @@ const Order = (props) => {
         <p>Pedido <span data-testid="order-number">{order.orderId} - </span>
           <span data-testid="order-status">{order.status}</span> {dateFormat(order.orderDate)}</p>
         {ordersRender(products, order)}
-        {order.status === 'pendente' &&
+        {!shipping && order.status === 'pendente' &&
           <button
             type="button"
-            onClick={() => marcar(id, setMessage)}
+            onClick={() => marcar(id, setMessage, setShipping)}
             data-testid="mark-as-delivered-btn"
           >
             Marcar como entregue
