@@ -3,7 +3,8 @@ import { Context } from '../../../context';
 import Message from '../../../components/Message';
 import Menu from '../Menu';
 import { getOrder, updateOrder } from '../../../services/orders';
-import orderProductsRender from '../../../components/OrderProducts';
+import OrderProductsRender from '../../../components/OrderProducts';
+import dateFormat from '../../../services/DateFormat';
 import "./style.css";
 
 
@@ -16,7 +17,7 @@ const marcar = (id, setMessage) => {
 const ordersRender = (products, order) => {
   return (
     <div className="orders">
-      {orderProductsRender(products)}
+      <OrderProductsRender products={products} />
       <div className="total">
         <strong data-testid="order-total-value">Total: R$ {order.totalPrice.toFixed(2)}</strong>
       </div>
@@ -37,14 +38,14 @@ const Order = (props) => {
       setProducts(products);
     });
   }, []);
-
+  if (!order.status) return <div />
   return (
     <div className="order_admin">
       <Menu />
       <Message infinity />
       <div className="container">
-        <p>Pedido <span data-testid="order-number">001</span>
-          <span data-testid="order-status"> - {order.status}</span> {order.orderDate}</p>
+        <p>Pedido <span data-testid="order-number">{order.orderId} - </span>
+          <span data-testid="order-status">{order.status}</span> {dateFormat(order.orderDate)}</p>
         {ordersRender(products, order)}
         {order.status === 'pendente' &&
           <button
