@@ -8,8 +8,6 @@ import OrderProducts from '../../../components/OrderProducts';
 import { Context } from '../../../context';
 import "./style.css";
 
-const formatBrl = (value) => value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-
 
 const orderRender = (order, products) => {
   return (
