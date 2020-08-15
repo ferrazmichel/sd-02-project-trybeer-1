@@ -7,6 +7,7 @@ import { Provider } from '../context';
 import Order from '../pages/Client/Order';
 import { orderMock } from './service/mock';
 
+
 jest.mock('axios');
 
 axios.get.mockImplementationOnce(() =>
@@ -23,7 +24,6 @@ afterEach(() => {
   cleanup();
   localStorage.clear();
 });
-
 
 describe('Orders page', () => {
   test('page render', async () => {
