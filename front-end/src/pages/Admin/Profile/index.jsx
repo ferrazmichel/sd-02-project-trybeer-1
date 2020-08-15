@@ -8,13 +8,18 @@ import './style.css';
 const URL = "http://localhost:3001/users/profile";
 
 const AdminProfile = () => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState({ name: '', email: '' });
   const { message, setMessage } = useContext(Context);
 
   useEffect(() => {
     getData(URL)
-      .then(({ data }) => setUser(data))
-      .catch(({ error = {} }) => setMessage({ value: error.status, type: 'ALERT' }));
+      .then(({ data }) => {
+        if (!data) {
+          setMessage({ value: 'Não foi possível carregar a pagina', type: 'ALERT' });
+          return;
+        }
+        setUser(data);
+      })
   }, []);
 
   return (

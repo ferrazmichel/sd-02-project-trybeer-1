@@ -20,7 +20,7 @@ role varchar(100) not null
 create table orders (
 id int primary key auto_increment,
 user_id int,
-order_date DATE,
+order_date VARCHAR(100),
 total_price double,
 address VARCHAR(100) not null,
 number int not null,
