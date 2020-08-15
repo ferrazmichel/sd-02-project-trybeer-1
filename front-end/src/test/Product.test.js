@@ -3,11 +3,12 @@ import '@testing-library/jest-dom/extend-expect';
 
 import renderWithRouter from './service/renderWithRouter';
 import { fireEvent, wait, cleanup } from '@testing-library/react';
+import axios from 'axios';
+import '@testing-library/jest-dom';
+
 import { Provider } from '../context';
 import Products from '../pages/Client/Products';
 import { productsMock } from './service/mock';
-import axios from 'axios';
-
 
 
 jest.mock('axios');
@@ -107,6 +108,6 @@ describe('Products page', () => {
       </Provider>,
     );
     await wait();
-    expect(getByTestId('message')).toBeInTheDocument()
+    expect(getByTestId('message')).toBeInTheDocument();
   });
 });
