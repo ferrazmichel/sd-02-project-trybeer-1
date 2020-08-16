@@ -1,5 +1,10 @@
 import React from "react";
-import { fireEvent, render, waitForDomChange } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  waitForDomChange,
+  cleanup,
+} from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router";
 import { MemoryRouter } from "react-router-dom";
@@ -19,6 +24,22 @@ beforeEach(() => {
   });
 });
 
+afterEach(() => {
+  cleanup();
+});
+
+const renderLogin = () => {
+  const { getByTestId } = render(
+    <Provider>
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  return { getByTestId };
+};
+
 const mockUserAdmin = {
   name: "Ana Rita",
   email: "ana@hotmail.com",
@@ -37,13 +58,7 @@ describe("REGISTER PAGE", () => {
   describe("Valid Fields Format", () => {
     describe("Name Field", () => {
       it("Invalid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("signup-name-feedback").style.display).toBe("none");
 
@@ -55,13 +70,7 @@ describe("REGISTER PAGE", () => {
       });
 
       it("Valid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("signup-name-feedback").style.display).toBe("none");
 
@@ -75,13 +84,7 @@ describe("REGISTER PAGE", () => {
 
     describe("Email Field", () => {
       it("Invalid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("signup-email-feedback").style.display).toBe("none");
 
@@ -95,13 +98,7 @@ describe("REGISTER PAGE", () => {
       });
 
       it("Valid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("signup-email-feedback").style.display).toBe("none");
 
@@ -115,13 +112,7 @@ describe("REGISTER PAGE", () => {
 
     describe("Password Field", () => {
       it("Invalid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("password-invalid").style.display).toBe("none");
 
@@ -133,13 +124,7 @@ describe("REGISTER PAGE", () => {
       });
 
       it("Valid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("password-invalid").style.display).toBe("none");
 
@@ -153,13 +138,7 @@ describe("REGISTER PAGE", () => {
 
     describe("Confirm Field", () => {
       it("Invalid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("confirm-invalid").style.display).toBe("none");
 
@@ -171,13 +150,7 @@ describe("REGISTER PAGE", () => {
       });
 
       it("Differ from password", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("confirm-invalid").style.display).toBe("none");
 
@@ -193,13 +166,7 @@ describe("REGISTER PAGE", () => {
       });
 
       it("Valid Format and Equal Password", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("confirm-invalid").style.display).toBe("none");
 
@@ -219,14 +186,8 @@ describe("REGISTER PAGE", () => {
   describe("Button Subbmit", () => {
     describe("Format Fiels", () => {
       it("Disabled when Invalid", () => {
-        const { getByTestId, debug } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
-        debug();
+        const { getByTestId } = renderLogin();
+
         fireEvent.change(getByTestId("signup-name"), {
           target: { value: "B" },
         });
@@ -247,13 +208,7 @@ describe("REGISTER PAGE", () => {
       });
 
       it("Enabled when Valid", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Register />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         fireEvent.change(getByTestId("signup-name"), {
           target: { value: "Bolivar Lindo" },
@@ -329,7 +284,7 @@ describe("REGISTER PAGE", () => {
           );
 
           axios.post.mockResolvedValueOnce({
-            data: { token: mockToken, user: mockUserAdmin },
+            data: { token: mockToken, user: mockUserClient },
           });
 
           fireEvent.change(getByTestId("signup-name"), {

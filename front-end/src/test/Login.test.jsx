@@ -26,6 +26,18 @@ beforeEach(() => {
   });
 });
 
+const renderLogin = () => {
+  const { getByTestId } = render(
+    <Provider>
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  return { getByTestId };
+};
+
 beforeEach(() => {
   jest.clearAllMocks();
 });
@@ -48,13 +60,7 @@ describe("LOGIN PAGE", () => {
   describe("Valid Fields Format", () => {
     describe("Email Field", () => {
       it("Invalid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Login />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("email-input-feedback").style.display).toBe("none");
 
@@ -66,13 +72,7 @@ describe("LOGIN PAGE", () => {
       });
 
       it("Valid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Login />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("email-input-feedback").style.display).toBe("none");
 
@@ -86,13 +86,7 @@ describe("LOGIN PAGE", () => {
 
     describe("Password Field", () => {
       it("Invalid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Login />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("password-input-feedback").style.display).toBe(
           "none"
@@ -108,13 +102,7 @@ describe("LOGIN PAGE", () => {
       });
 
       it("Valid Format", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Login />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("password-input-feedback").style.display).toBe(
           "none"
@@ -133,13 +121,7 @@ describe("LOGIN PAGE", () => {
   describe("Button Subbmit", () => {
     describe("Format Fiels", () => {
       it("Disabled when Invalid", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Login />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("signin-btn").disabled).toBeTruthy();
 
@@ -155,13 +137,7 @@ describe("LOGIN PAGE", () => {
       });
 
       it("Enabled when Valid", () => {
-        const { getByTestId } = render(
-          <Provider>
-            <MemoryRouter>
-              <Login />
-            </MemoryRouter>
-          </Provider>
-        );
+        const { getByTestId } = renderLogin();
 
         expect(getByTestId("signin-btn").disabled).toBeTruthy();
 
@@ -180,13 +156,7 @@ describe("LOGIN PAGE", () => {
     describe("Event Submit", () => {
       describe("On Success", () => {
         it("Save Token in LocalStorage", async () => {
-          const { getByTestId } = render(
-            <Provider>
-              <MemoryRouter>
-                <Login />
-              </MemoryRouter>
-            </Provider>
-          );
+          const { getByTestId } = renderLogin();
 
           axios.post.mockResolvedValueOnce({
             data: { token: mockToken, user: mockUserAdmin },
@@ -214,13 +184,7 @@ describe("LOGIN PAGE", () => {
 
         describe("Redirect", () => {
           it("Admin should redirect to Admin - Home", async () => {
-            const { getByTestId } = render(
-              <Provider>
-                <MemoryRouter>
-                  <Login />
-                </MemoryRouter>
-              </Provider>
-            );
+            const { getByTestId } = renderLogin();
 
             axios.post.mockResolvedValueOnce({
               data: { token: mockToken, user: mockUserAdmin },
@@ -244,13 +208,7 @@ describe("LOGIN PAGE", () => {
           });
 
           it("Client should redirect to Client - Products", async () => {
-            const { getByTestId } = render(
-              <Provider>
-                <MemoryRouter>
-                  <Login />
-                </MemoryRouter>
-              </Provider>
-            );
+            const { getByTestId } = renderLogin();
 
             axios.post.mockResolvedValueOnce({
               data: { token: mockToken, user: mockUserClient },
@@ -277,13 +235,7 @@ describe("LOGIN PAGE", () => {
 
       describe("On Failure", () => {
         it("Display a message", async () => {
-          const { getByTestId } = render(
-            <Provider>
-              <MemoryRouter>
-                <Login />
-              </MemoryRouter>
-            </Provider>
-          );
+          const { getByTestId } = renderLogin();
 
           axios.post.mockRejectedValueOnce(new Error("Error Message"));
 
