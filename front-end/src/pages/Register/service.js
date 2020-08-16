@@ -3,7 +3,7 @@ import { postData } from "../../services/Request";
 const URL = `http://localhost:3001/users/register`;
 
 const userRoutes = {
-  admin: "/home/admin",
+  admin: "admin/orders",
   client: "/products",
 };
 
@@ -22,9 +22,9 @@ const handleConfirm = ({ value, password, callback }) => {
 };
 
 const postUser = async (body) => {
-  const { error } = await postData({ endpoint: URL, body });
+  const { error, data } = await postData({ endpoint: URL, body });
 
-  console.error(error);
+  if (data && data.token) localStorage.setItem("token", data.token);
 
   return { error };
 };

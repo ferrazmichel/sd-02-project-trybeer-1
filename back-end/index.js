@@ -10,7 +10,7 @@ const path = require('path');
 
 const { error } = require('./middlewares');
 
-const { products, users, orders } = require('./routes');
+const { products, users, orders, admin } = require('./routes');
 
 const app = express();
 
@@ -25,6 +25,8 @@ app.use(cors());
 app.use('/images', express.static(path.join(__dirname, '/images')));
 
 app.use('/orders', orders);
+
+app.use('/admin', admin);
 
 app.use('/products', products);
 

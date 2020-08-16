@@ -1,4 +1,5 @@
-body , .app {
+body,
+.app {
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -19,4 +20,8 @@ body , .app {
 .giphy_not_found {
   height: auto;
   width: 80%;
+}
+
+.btn {
+  font-size: 100%;
 }

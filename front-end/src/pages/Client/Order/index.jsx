@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
+
 import Header from '../../../components/Header';
 import dateFormat from '../../../services/DateFormat';
 import { getOrder } from '../../../services/orders';
-import orderProductsRender from '../../../components/OrderProducts';
+import OrderProducts from '../../../components/OrderProducts';
 import "./style.css";
 
-
-const productsRender = (products) => {
-  return (
-    <React.Fragment>
-      {orderProductsRender(products)}
-    </React.Fragment>
-  )
-};
+const formatBrl = (value) => value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
 const Order = (props) => {
   const { id } = props.match.params;
@@ -35,9 +29,9 @@ const Order = (props) => {
           <p>Pedido <span data-testid="order-number">{order.orderId}</span></p>
           <p data-testid="order-date">{dateFormat(order.orderDate)}</p>
         </div>
-        {productsRender(products)}
+        <OrderProducts products={products} />
         <div className="total">
-          <strong>Total: R$ <span data-testid="order-total-value">{order.totalPrice}</span></strong>
+          <strong>Total: R$ <span data-testid="order-total-value">{formatBrl(order.totalPrice)}</span></strong>
         </div>
       </div>
     </div>

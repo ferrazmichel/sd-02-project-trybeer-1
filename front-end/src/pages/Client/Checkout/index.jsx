@@ -35,7 +35,7 @@ const renderForm = (handleSubmit, street, setStreet, homeNumber, setHomeNumber, 
       required
     />
     <button
-      className={`submit_checkout ${booleanButton ? 'red_background' : 'green_background'}`}
+      className="submit_checkout"
       data-testid="checkout-finish-btn"
       type="submit"
       disabled={booleanButton}
@@ -55,8 +55,10 @@ const Checkout = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     return postSale(URL, { products, address: street, number: homeNumber, totalPrice: total, })
-      .then(() => setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' }))
-      .catch(() => setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT' }));
+      .then(({ error }) => {
+        if (error) return setMessage({ value: 'Não foi possível cadastrar a venda', type: 'ALERT' });
+        setMessage({ value: 'Venda realizada com Sucesso', type: 'SUCCESS' });
+      });
   };
 
   useEffect(() => {
@@ -65,15 +67,12 @@ const Checkout = () => {
       .map((product) => ({ ...product, total: product.count * product.price })));
   }, []);
 
-  useEffect(() => {
-    setTotal(products.reduce((acc, curr) => acc + curr.total, 0));
-  }, [products]);
+  useEffect(() => { setTotal(products.reduce((acc, curr) => acc + curr.total, 0));  }, [products]);
 
   if (message.type === 'SUCCESS') {
     localStorage.removeItem('products');
     return <Redirect to="/products" />;
   }
-
   return (
     <React.Fragment>
       <Header title="Finalizar Pedido" />
@@ -82,11 +81,11 @@ const Checkout = () => {
         <div className="checkout_container_products">
           <h3>Produtos</h3>
           {products.map((product, index) => (
-              <Product
-                key={JSON.stringify(product)}
-                {...{ products, product, index, setProducts }}
-              />
-            ))}
+            <Product
+              key={JSON.stringify(product)}
+              {...{ products, product, index, setProducts }}
+            />
+          ))}
           <div className="contain_total"><p className="total_text" data-testid="order-total-value">Total:{formatBrl(total)}</p></div>
         </div>
         <div className="checkout_container_form">
