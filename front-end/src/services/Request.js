@@ -29,7 +29,6 @@ const validToken = async (endpoint) =>
     headers: headers(),
   });
 
-
 const postData = async ({ endpoint, body }) =>
   axios.post(endpoint, body).catch((error) => handleError({ error }));
 

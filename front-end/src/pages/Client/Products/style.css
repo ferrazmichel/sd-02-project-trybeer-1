@@ -29,7 +29,3 @@
   position: fixed;
   width: 80%;
 }
-
-.products_page > .ver_carrinho > span:nth-child( 2 ) {
-  margin-left: 4%;
-}
