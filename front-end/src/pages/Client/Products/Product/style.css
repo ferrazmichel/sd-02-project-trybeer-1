@@ -11,8 +11,15 @@
   width: 85%;
 }
 
-.product_comp > img {
+.product_comp > .img {
+  height: 20vh;
   width: 80%;
+}
+
+.product_comp img {
+  height: 100%;
+  object-fit: scale-down;
+  width: 100%;
 }
 
 .product_comp > .price {

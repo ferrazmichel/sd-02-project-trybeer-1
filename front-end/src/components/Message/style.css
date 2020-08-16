@@ -2,14 +2,15 @@
   align-items: center;
   background-color: #242423;
   border-radius: 10px;
-  box-shadow: 5px 5px 30px -1px #e71d36;
+  box-sizing: border-box;
   display: flex;
   height: 7%;
   justify-content: flex-start;
+  left: 3vw;
   padding: 0 1%;
   position: absolute;
-  top: 22%;
-  width: 40%;
+  top: 12%;
+  width: 90vw;
   z-index: 2;
 }
 
@@ -17,14 +18,14 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  margin: 0;
-  margin-right: 2%;
+  margin: 0 1%;
   padding: 0;
 }
 
 .message_comp > button > .material-icons {
   color: white;
-  font-size: 0.8em;
+  font-size: 1em;
+  height: 1em;
 }
 
 .message_comp > strong {

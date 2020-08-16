@@ -17,18 +17,20 @@
   display: flex;
   flex-grow: 0;
   margin: 2%;
-  padding: 1%;
-  width: 10%;
+  padding: 0;
 }
 
 .header_comp > .menu > .material-icons {
   color: #fdd692;
+  font-size: 1.4em;
   height: 1em;
-  width: 1em;
+  margin: 10% 0;
+  width: 1.4em;
 }
 
 .header_comp > .title {
   align-items: center;
+  color: #fdd692;
   display: flex;
   flex-grow: 1;
   font-family: Permanent Marker, cursive;
@@ -40,7 +42,7 @@
   color: #fdd692;
   font-size: 2em;
   height: 60%;
-  margin: 0;
+  margin-bottom: 2%;
 }
 
 .lateral {
