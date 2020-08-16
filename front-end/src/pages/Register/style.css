@@ -37,13 +37,15 @@
   width: 60%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and ( max-width : 800px ) {
+
   .register_page > form {
     padding: 5% 1%;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and ( max-width : 500px ) {
+
   .register_page {
     font-size: 0.8em;
   }

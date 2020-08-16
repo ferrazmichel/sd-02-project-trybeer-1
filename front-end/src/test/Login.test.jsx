@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  fireEvent,
-  render,
-  waitForElement,
-  waitForDomChange,
-} from "@testing-library/react";
-import { createMemoryHistory } from "history";
-import { Router } from "react-router";
+import { fireEvent, render, waitForElement } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import axios from "axios";
 import { Provider } from "../context";
