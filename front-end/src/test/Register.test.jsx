@@ -28,18 +28,6 @@ afterEach(() => {
   cleanup();
 });
 
-const renderLogin = () => {
-  const { getByTestId } = render(
-    <Provider>
-      <MemoryRouter>
-        <Register />
-      </MemoryRouter>
-    </Provider>
-  );
-
-  return { getByTestId };
-};
-
 const mockUserAdmin = {
   name: "Ana Rita",
   email: "ana@hotmail.com",
@@ -52,141 +40,143 @@ const mockUserClient = {
   role: "client",
 };
 
+const renderRegister = () => {
+  const { getByTestId } = render(
+    <Provider>
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    </Provider>
+  );
+
+  return { getByTestId };
+};
+
 const mockToken = "a94645eac13f2be0f44acd0487cdfc34";
 
 describe("REGISTER PAGE", () => {
   describe("Valid Fields Format", () => {
-    describe("Name Field", () => {
-      it("Invalid Format", () => {
-        const { getByTestId } = renderLogin();
+    it("Name Field - Invalid Format", () => {
+      const { getByTestId } = renderRegister();
 
-        expect(getByTestId("signup-name-feedback").style.display).toBe("none");
+      expect(getByTestId("signup-name-feedback").style.display).toBe("none");
 
-        fireEvent.change(getByTestId("signup-name"), {
-          target: { value: "N" },
-        });
-
-        expect(getByTestId("signup-name-feedback").style.display).toBe("block");
+      fireEvent.change(getByTestId("signup-name"), {
+        target: { value: "N" },
       });
 
-      it("Valid Format", () => {
-        const { getByTestId } = renderLogin();
-
-        expect(getByTestId("signup-name-feedback").style.display).toBe("none");
-
-        fireEvent.change(getByTestId("signup-name"), {
-          target: { value: "Bolivar Lindo" },
-        });
-
-        expect(getByTestId("signup-name-feedback").style.display).toBe("none");
-      });
+      expect(getByTestId("signup-name-feedback").style.display).toBe("block");
     });
 
-    describe("Email Field", () => {
-      it("Invalid Format", () => {
-        const { getByTestId } = renderLogin();
+    it("Name Field - Valid Format", () => {
+      const { getByTestId } = renderRegister();
 
-        expect(getByTestId("signup-email-feedback").style.display).toBe("none");
+      expect(getByTestId("signup-name-feedback").style.display).toBe("none");
 
-        fireEvent.change(getByTestId("signup-email"), {
-          target: { value: "WrongEmailFormat.com" },
-        });
-
-        expect(getByTestId("signup-email-feedback").style.display).toBe(
-          "block"
-        );
+      fireEvent.change(getByTestId("signup-name"), {
+        target: { value: "Bolivar Lindo" },
       });
 
-      it("Valid Format", () => {
-        const { getByTestId } = renderLogin();
-
-        expect(getByTestId("signup-email-feedback").style.display).toBe("none");
-
-        fireEvent.change(getByTestId("signup-email"), {
-          target: { value: "correct@email.com" },
-        });
-
-        expect(getByTestId("signup-email-feedback").style.display).toBe("none");
-      });
+      expect(getByTestId("signup-name-feedback").style.display).toBe("none");
     });
 
-    describe("Password Field", () => {
-      it("Invalid Format", () => {
-        const { getByTestId } = renderLogin();
+    it("Email Field - Invalid Format", () => {
+      const { getByTestId } = renderRegister();
 
-        expect(getByTestId("password-invalid").style.display).toBe("none");
+      expect(getByTestId("signup-email-feedback").style.display).toBe("none");
 
-        fireEvent.change(getByTestId("signup-password"), {
-          target: { value: "wrongpassword" },
-        });
-
-        expect(getByTestId("password-invalid").style.display).toBe("block");
+      fireEvent.change(getByTestId("signup-email"), {
+        target: { value: "WrongEmailFormat.com" },
       });
 
-      it("Valid Format", () => {
-        const { getByTestId } = renderLogin();
-
-        expect(getByTestId("password-invalid").style.display).toBe("none");
-
-        fireEvent.change(getByTestId("signup-password"), {
-          target: { value: "correct123456password" },
-        });
-
-        expect(getByTestId("password-invalid").style.display).toBe("none");
-      });
+      expect(getByTestId("signup-email-feedback").style.display).toBe("block");
     });
 
-    describe("Confirm Field", () => {
-      it("Invalid Format", () => {
-        const { getByTestId } = renderLogin();
+    it("Email Field - Valid Format", () => {
+      const { getByTestId } = renderRegister();
 
-        expect(getByTestId("confirm-invalid").style.display).toBe("none");
+      expect(getByTestId("signup-email-feedback").style.display).toBe("none");
 
-        fireEvent.change(getByTestId("confirm-password"), {
-          target: { value: "wrongpassword" },
-        });
-
-        expect(getByTestId("confirm-invalid").style.display).toBe("block");
+      fireEvent.change(getByTestId("signup-email"), {
+        target: { value: "correct@email.com" },
       });
 
-      it("Differ from password", () => {
-        const { getByTestId } = renderLogin();
+      expect(getByTestId("signup-email-feedback").style.display).toBe("none");
+    });
 
-        expect(getByTestId("confirm-invalid").style.display).toBe("none");
+    it("Password Field - Invalid Format", () => {
+      const { getByTestId } = renderRegister();
 
-        fireEvent.change(getByTestId("signup-password"), {
-          target: { value: "correct123456password" },
-        });
+      expect(getByTestId("password-invalid").style.display).toBe("none");
 
-        fireEvent.change(getByTestId("confirm-password"), {
-          target: { value: "correct123456passwordDiffer" },
-        });
-
-        expect(getByTestId("confirm-invalid").style.display).toBe("block");
+      fireEvent.change(getByTestId("signup-password"), {
+        target: { value: "wrongpassword" },
       });
 
-      it("Valid Format and Equal Password", () => {
-        const { getByTestId } = renderLogin();
+      expect(getByTestId("password-invalid").style.display).toBe("block");
+    });
 
-        expect(getByTestId("confirm-invalid").style.display).toBe("none");
+    it("Password Field - Valid Format", () => {
+      const { getByTestId } = renderRegister();
 
-        fireEvent.change(getByTestId("signup-password"), {
-          target: { value: "correct123456password" },
-        });
+      expect(getByTestId("password-invalid").style.display).toBe("none");
 
-        fireEvent.change(getByTestId("confirm-password"), {
-          target: { value: "correct123456password" },
-        });
-
-        expect(getByTestId("confirm-invalid").style.display).toBe("none");
+      fireEvent.change(getByTestId("signup-password"), {
+        target: { value: "correct123456password" },
       });
+
+      expect(getByTestId("password-invalid").style.display).toBe("none");
+    });
+
+    it("Confirm Field - Invalid Format", () => {
+      const { getByTestId } = renderRegister();
+
+      expect(getByTestId("confirm-invalid").style.display).toBe("none");
+
+      fireEvent.change(getByTestId("confirm-password"), {
+        target: { value: "wrongpassword" },
+      });
+
+      expect(getByTestId("confirm-invalid").style.display).toBe("block");
+    });
+
+    it("Confirm Field - Differ from password", () => {
+      const { getByTestId } = renderRegister();
+
+      expect(getByTestId("confirm-invalid").style.display).toBe("none");
+
+      fireEvent.change(getByTestId("signup-password"), {
+        target: { value: "correct123456password" },
+      });
+
+      fireEvent.change(getByTestId("confirm-password"), {
+        target: { value: "correct123456passwordDiffer" },
+      });
+
+      expect(getByTestId("confirm-invalid").style.display).toBe("block");
+    });
+
+    it("Confirm Field - Valid Format and Equal Password", () => {
+      const { getByTestId } = renderRegister();
+
+      expect(getByTestId("confirm-invalid").style.display).toBe("none");
+
+      fireEvent.change(getByTestId("signup-password"), {
+        target: { value: "correct123456password" },
+      });
+
+      fireEvent.change(getByTestId("confirm-password"), {
+        target: { value: "correct123456password" },
+      });
+
+      expect(getByTestId("confirm-invalid").style.display).toBe("none");
     });
   });
 
   describe("Button Subbmit", () => {
     describe("Format Fiels", () => {
       it("Disabled when Invalid", () => {
-        const { getByTestId } = renderLogin();
+        const { getByTestId } = renderRegister();
 
         fireEvent.change(getByTestId("signup-name"), {
           target: { value: "B" },
@@ -208,7 +198,7 @@ describe("REGISTER PAGE", () => {
       });
 
       it("Enabled when Valid", () => {
-        const { getByTestId } = renderLogin();
+        const { getByTestId } = renderRegister();
 
         fireEvent.change(getByTestId("signup-name"), {
           target: { value: "Bolivar Lindo" },
