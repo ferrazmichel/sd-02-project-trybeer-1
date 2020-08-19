@@ -24,6 +24,7 @@ const Message = ({ infinity }) => {
   useEffect(() => {
     createTimeout({ infinity, setMessage });
   }, []);
+
   return (
     <div
       className="message_comp"

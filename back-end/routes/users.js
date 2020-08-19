@@ -29,6 +29,5 @@ router
   .route('/admin')
   .get(auth, rescue(users.isAdmin));
 
-
 module.exports = router;
 

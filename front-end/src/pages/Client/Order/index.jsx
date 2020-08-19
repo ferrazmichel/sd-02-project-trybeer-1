@@ -33,7 +33,7 @@ const Order = (props) => {
   useEffect(() => {
     setMessage({ value: 'pedido não encontrado', type: 'ALERT' });
     getOrder(id)
-      .then(({ data,error }) => {
+      .then(({ data, error }) => {
         setMessage({ value: error, type: 'ALERT' });
         setOrder(data);
         setProducts(data.products);
