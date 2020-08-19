@@ -29,7 +29,7 @@ const orderMock = {
     "orderDate": "2020-08-04T00:00:00.000Z",
     "totalPrice": 120,
     "address": "Rua",
-    "number": 9.999999999999998,
+    "number": 10,
     "status": "entregue",
     "products": [
       {

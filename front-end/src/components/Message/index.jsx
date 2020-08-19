@@ -18,9 +18,11 @@ const createTimeout = ({ infinity, setMessage }) => {
 
 const Message = ({ infinity }) => {
   const { setMessage, message: { value, type } } = useContext(Context);
+
   useEffect(() => {
     createTimeout({ infinity, setMessage });
   }, []);
+
   return (
     <div
       className="message_comp"

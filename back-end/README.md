@@ -210,3 +210,52 @@ responses:
     "message": "Produto Entregue!"
 }
 ```
+
+---
+#### GET: localhost:3001/admin/orders ⟶ [Authorization=YES]
+responses:
+**success | status: 200**
+
+```
+{
+    "allOrders": [
+        {
+            "orderId",
+            "userId": 1,
+            "orderDate",
+            "totalPrice",
+            "address",
+            "number",
+            "status",
+        }
+    ]
+}
+```
+
+#### GET: localhost:3001/admin/orders/:id ⟶ [Authorization=YES]
+responses:
+**success | status: 200**
+
+```
+{
+    "order": {
+        "orderId",
+        "userId",
+        "orderDate",
+        "totalPrice",
+        "address",
+        "number",
+        "status",
+        "products": [
+            {
+                "id",
+                "name":,
+                "price",
+                "volume",
+                "urlImage",
+                "quantity",
+            },
+        ]
+    }
+}
+```
