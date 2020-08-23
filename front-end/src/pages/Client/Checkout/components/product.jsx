@@ -9,8 +9,6 @@ const removeToLocal = (id) => {
   localStorage.setItem('products', JSON.stringify(products));
 }
 
-
-
 const Product = ({ product, index, setProducts, products }) => (
   <div className="products_box">
     <div className="product_info"><p data-testid={`${index}-product-qtd-input`} >{product.count}</p></div>

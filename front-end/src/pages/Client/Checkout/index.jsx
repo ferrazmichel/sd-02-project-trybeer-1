@@ -4,9 +4,9 @@ import { Redirect } from "react-router-dom";
 import Header from '../../../components/Header';
 import { postSale } from '../../../services/Request';
 import Message from '../../../components/Message';
-import './style.css';
 import Product from './components/product';
 const URL = 'http://localhost:3001/orders';
+import './style.css';
 
 const getProducts = () => JSON.parse(localStorage.getItem('products')) || {};
 
@@ -73,6 +73,7 @@ const Checkout = () => {
     localStorage.removeItem('products');
     return <Redirect to="/products" />;
   }
+
   return (
     <React.Fragment>
       <Header title="Finalizar Pedido" />

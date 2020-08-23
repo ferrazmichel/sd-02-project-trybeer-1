@@ -88,6 +88,7 @@ describe('Checkout page', () => {
     await wait();
     expect(history.location.pathname).toBe('/products');
   });
+
   test('test submit error', async () => {
     axios.post.mockImplementationOnce(() =>
       Promise.reject(new Error({ error: { message: 'Internal error' } })),
