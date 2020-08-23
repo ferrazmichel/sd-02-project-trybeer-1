@@ -27,7 +27,6 @@ describe('Profile page', () => {
   test('page render', async () => {
     axios.get.mockResolvedValue({ data: userMock });
     axios.patch.mockResolvedValue({});
-    const onSubmit = jest.fn();
 
     const { getByTestId } = renderWithRouter(
       <Provider>
@@ -43,12 +42,8 @@ describe('Profile page', () => {
       target: { value: "Josueldo da Silva Bolivar" },
     });
 
+    expect(getByTestId('signin-btn').disabled).toBeTruthy();
     fireEvent.submit(getByTestId('form-submit'));
-    // fireEvent.click(getByTestId('signin-btn'));
-    await wait();
 
-    expect(onSubmit).toHaveBeenCalled();
-
-    // expect(getByTestId('message').innerHTML).toBe('User Updated');
   });
 });
