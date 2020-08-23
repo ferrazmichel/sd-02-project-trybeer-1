@@ -18,7 +18,6 @@ const Profile = () => {
 
   useEffect(() => {
     getUser().then(({ data, error }) => {
-      console.log(data)
       setName({ ...name, value: data.name, firstName: data.name });
       setEmail({ value: data.email });
       error &&

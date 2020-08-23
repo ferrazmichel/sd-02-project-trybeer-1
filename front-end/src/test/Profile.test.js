@@ -33,7 +33,10 @@ describe('Profile page', () => {
     );
 
     await wait();
-    // expect(getByTestId('profile-name-input')).toHaveTextContent('Josueldo');
-    // expect(getByTestId('profile-email-input')).toHaveTextContent('Josueldo');
+
+    expect(getByTestId('profile-name-input').value).toBe('Josueldo');
+    expect(getByTestId('profile-email-input').value).toBe('josueldo@gmail.com');
+
+    // fireEvent()
   });
 });
