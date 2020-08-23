@@ -6,6 +6,7 @@ import dateFormat from '../../../services/DateFormat';
 import { getOrder } from '../../../services/orders';
 import OrderProducts from '../../../components/OrderProducts';
 import { Context } from '../../../context';
+
 import "./style.css";
 
 
@@ -31,19 +32,19 @@ const Order = (props) => {
   const { setMessage } = useContext(Context);
 
   useEffect(() => {
-    setMessage({ value: 'pedido não encontrado', type: 'ALERT' });
     getOrder(id)
       .then(({ data, error }) => {
-        setMessage({ value: error, type: 'ALERT' });
         setOrder(data);
         setProducts(data.products);
-      });
+        setMessage({ value: error, type: 'ALERT' })
+      })
+      .then(() => setMessage({ value: 'pedido não encontrado', type: 'ALERT' }));
   }, []);
 
   return (
     <div className="order_page">
       <Header title="Detalhes do pedido" />
-      {(!order.orderId) &&  <Message infinity />}
+      {(!order.orderId) && <Message infinity />}
       {(order.orderId) && orderRender(order, products)}
     </div>
   );

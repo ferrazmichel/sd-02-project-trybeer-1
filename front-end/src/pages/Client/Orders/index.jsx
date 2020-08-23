@@ -20,12 +20,12 @@ const Orders = () => {
   const { setMessage } = useContext(Context);
 
   useEffect(() => {
-    setMessage({ value: 'Nenhuma compra foi encontrada', type: 'NEUTRAL' });
     getOrders()
-      .then(({ data, error }) => {
-        setOrders(data);
-        setMessage({ value: error, type: 'ALERT' });
-      });
+    .then(({ data, error }) => {
+      setOrders(data);
+      setMessage({ value: error, type: 'ALERT' });
+      })
+    .then(() => setMessage({ value: 'Nenhuma compra foi encontrada', type: 'NEUTRAL' }));
   }, []);
 
   return (

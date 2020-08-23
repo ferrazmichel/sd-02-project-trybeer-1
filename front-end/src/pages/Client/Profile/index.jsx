@@ -31,7 +31,7 @@ const Profile = () => {
     <div className="profile_page">
       <Header title="Meu perfil" />
       {message.value && <Message infinity />}
-      <Form data-testid="form-submit">
+      <Form>
         <FormGroup
           state={name}
           callback={setName}

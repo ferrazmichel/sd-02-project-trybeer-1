@@ -108,4 +108,20 @@ describe('Checkout page', () => {
     expect(getByTestId('message')).toBeInTheDocument();
     expect(getByTestId('message')).toHaveTextContent('Não foi possível cadastrar a venda');
   });
+
+  test('product remove', async () => {
+    localStorage.setItem('products', JSON.stringify(storageMock.products))
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Checkout />
+      </Provider>
+    );
+
+    fireEvent.click(getByTestId('0-product-click'));
+    fireEvent.click(getByTestId('1-product-click'));
+    fireEvent.click(getByTestId('2-product-click'));
+
+    expect(localStorage.getItem('products'))
+      .toBe(`{"2":{"id":"2","product":"cerva2","price":2.2,"volume":500,"count":2},"4":{"id":"4","product":"cerva4","price":2.2,"volume":500,"count":4}}`);
+  });
 });

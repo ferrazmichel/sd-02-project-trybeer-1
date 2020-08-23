@@ -43,7 +43,5 @@ describe('Profile page', () => {
     });
 
     expect(getByTestId('signin-btn').disabled).toBeTruthy();
-    fireEvent.submit(getByTestId('form-submit'));
-
   });
 });
