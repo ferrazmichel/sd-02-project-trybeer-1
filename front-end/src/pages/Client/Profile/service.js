@@ -2,6 +2,7 @@ import { patchData, getData } from "../../../services/Request";
 
 const URL = `http://localhost:3001/users/profile`;
 
+
 const getUser = async () => {
   const { data, error } = await getData(URL);
 

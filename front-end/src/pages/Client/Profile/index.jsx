@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
+import Form from "react-bootstrap/Form";
+
 import { Context } from "../../../context";
 import { FormGroup, Header, Message, SubmitButton } from "../../../components";
-import Form from "react-bootstrap/Form";
 import { getUser, handleSubmit } from "./service";
+
 import "./style.css";
 
 const Profile = () => {

@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
+
 import { getData } from '../../../services/Request';
 import Message from '../../../components/Message';
 import { Context } from '../../../context';
 import Menu from '../Menu';
+
 import './style.css';
 
 const URL = "http://localhost:3001/users/profile";

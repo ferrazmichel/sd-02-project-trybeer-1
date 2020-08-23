@@ -22,9 +22,12 @@ afterEach(() => {
   localStorage.clear();
 });
 
+
 describe('Profile page', () => {
   test('page render', async () => {
     axios.get.mockResolvedValue({ data: userMock });
+    axios.patch.mockResolvedValue({});
+    const onSubmit = jest.fn();
 
     const { getByTestId } = renderWithRouter(
       <Provider>
@@ -33,10 +36,19 @@ describe('Profile page', () => {
     );
 
     await wait();
-
     expect(getByTestId('profile-name-input').value).toBe('Josueldo');
     expect(getByTestId('profile-email-input').value).toBe('josueldo@gmail.com');
 
-    // fireEvent()
+    fireEvent.change(getByTestId("profile-name-input"), {
+      target: { value: "Josueldo da Silva Bolivar" },
+    });
+
+    fireEvent.submit(getByTestId('form-submit'));
+    // fireEvent.click(getByTestId('signin-btn'));
+    await wait();
+
+    expect(onSubmit).toHaveBeenCalled();
+
+    // expect(getByTestId('message').innerHTML).toBe('User Updated');
   });
 });

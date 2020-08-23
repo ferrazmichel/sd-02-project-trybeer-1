@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+
 import { getData } from '../../../services/Request';
 import { Context } from '../../../context';
 import Card from './components/Card';
-import { Link } from 'react-router-dom';
-import './style.css';
 import Menu from '../Menu';
 import Message from '../../../components/Message';
+
+import './style.css';
 
 const URL = 'http://localhost:3001/admin/orders';
 
