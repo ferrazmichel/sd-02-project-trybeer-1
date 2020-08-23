@@ -1,3 +1,8 @@
+const userMock = {
+  name: 'Josueldo',
+  email: 'josueldo@gmail.com',
+};
+
 const productsMock = {
   products: [
     { id: "1", name: "cerva1", price: 2.2, volume: 500 },
@@ -59,4 +64,5 @@ module.exports = {
   productsMock,
   ordersMock,
   orderMock,
+  userMock,
 };

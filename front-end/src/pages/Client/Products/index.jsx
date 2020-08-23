@@ -47,7 +47,7 @@ const Products = () => {
   useEffect(() => {
     getProducts().then(({ data, error }) => {
       setProducts(data);
-      if(error){
+      if (error) {
         setMessage({ value: error, type: 'ALERT' });
       }
     });
