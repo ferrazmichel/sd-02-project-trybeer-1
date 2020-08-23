@@ -28,11 +28,13 @@ describe('Checkout page', () => {
         <Checkout />
       </Provider>
     );
+
     for (let i = 0; i < 5; i += 1) {
       expect(getByTestId(`${i}-product-qtd-input`)).toBeInTheDocument();
       expect(getByTestId(`${i}-product-name`)).toBeInTheDocument();
       expect(getByTestId(`${i}-product-total-value`)).toBeInTheDocument();
     }
+
     expect(getByTestId('0-product-qtd-input')).toHaveTextContent('1');
     expect(getByTestId('0-product-name')).toHaveTextContent('cerva1');
     expect(getByTestId('0-product-total-value')).toHaveTextContent('R$ 2,20');
@@ -63,6 +65,7 @@ describe('Checkout page', () => {
     expect(getByTestId('checkout-house-number-input')).toHaveValue('');
     expect(getByTestId('checkout-finish-btn')).toBeDisabled();
   });
+
   test('test submit form', async () => {
     axios.post.mockResolvedValue({ data: {} });
     localStorage.setItem('products', JSON.stringify(storageMock.products))

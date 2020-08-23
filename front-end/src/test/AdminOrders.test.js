@@ -36,9 +36,9 @@ describe('Products page Admin', () => {
       expect(getByTestId(`${index}-order-address`)).toBeInTheDocument();
       expect(getByTestId(`${index}-order-total-value`)).toBeInTheDocument();
     });
-    expect(getByTestId('0-order-number')).toHaveTextContent('Pedido:5');
-      expect(getByTestId('0-order-address')).toHaveTextContent('cerva5, 55');
-      expect(getByTestId('0-order-total-value')).toHaveTextContent('R$ 6,20');
+    expect(getByTestId('0-order-number')).toHaveTextContent('Pedido:1');
+      expect(getByTestId('0-order-address')).toHaveTextContent('Rua, 10');
+      expect(getByTestId('0-order-total-value')).toHaveTextContent('R$ 120,00');
   });
   test('error axios', async () => {
     axios.get.mockImplementationOnce(() =>
