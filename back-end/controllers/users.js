@@ -52,7 +52,6 @@ const update = async (req, res) => {
 const validToken = (_req, res) => res.status(200).json();
 
 const isAdmin = (req, res) => {
-  console.log(req.body)
   const { role } = req.user;
   res.status(200).json({ role });
 };
