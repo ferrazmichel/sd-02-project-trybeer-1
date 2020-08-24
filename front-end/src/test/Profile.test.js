@@ -1,31 +1,18 @@
 import React from 'react';
-import '@testing-library/jest-dom/extend-expect';
-
 import renderWithRouter from './service/renderWithRouter';
-import { fireEvent, wait, cleanup } from '@testing-library/react';
+import { wait, fireEvent, cleanup } from '@testing-library/react';
+import { Provider } from '../context';
 import axios from 'axios';
 import '@testing-library/jest-dom';
-
-import { Provider } from '../context';
 import Profile from '../pages/Client/Profile';
-import { userMock } from './service/mock';
 
 jest.mock('axios');
 
-beforeEach(() => {
-  cleanup();
-  localStorage.clear();
-});
+afterEach(() => jest.clearAllMocks);
 
-afterEach(() => {
-  cleanup();
-  localStorage.clear();
-});
-
-
-describe('Profile page', () => {
+describe('Profile test', () => {
   test('page render', async () => {
-    axios.get.mockResolvedValue({ data: userMock });
+    axios.get.mockResolvedValue({ data: { name: "teste123456", email: "teste@gmail.com" } });
     axios.patch.mockResolvedValue({});
 
     const { getByTestId } = renderWithRouter(
@@ -35,14 +22,35 @@ describe('Profile page', () => {
     );
 
     await wait();
-    expect(getByTestId('profile-name-input').value).toBe('Josueldo');
-    expect(getByTestId('profile-email-input').value).toBe('josueldo@gmail.com');
+    const profileNameInput = getByTestId("profile-name-input");
+    const profileEmailInput = getByTestId("profile-email-input");
+    expect(profileNameInput.innerHTML).toBe("");
+    expect(profileNameInput).toBeInTheDocument();
+    fireEvent.change(profileNameInput, { target: { value: 'testetesteteste' } });
+    expect(profileEmailInput).toBeInTheDocument();
+    expect(profileEmailInput).toHaveAttribute("readonly");
+    fireEvent.click(getByTestId("signin-btn"));
+    await wait();
+  });
+  test('error on Profile and Services', async () => {
+    axios.get.mockResolvedValue({ data: { name: "teste123456", email: "teste@gmail.com" } });
+    axios.patch.mockImplementationOnce(() =>
+      Promise.reject(new Error({ error: { message: 'Internal error' } })),
+    );
 
-    fireEvent.change(getByTestId("profile-name-input"), {
-      target: { value: "Josueldo da Silva Bolivar" },
-    });
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Profile />
+      </Provider>
+    );
 
-    expect(getByTestId('signin-btn').disabled).toBeTruthy();
-    fireEvent.click();
+    await wait();
+    const profileNameInput = getByTestId("profile-name-input");
+    fireEvent.change(profileNameInput, { target: { value: 'testetesteteste' } });
+    expect(profileNameInput).toHaveValue('testetesteteste');
+    const profileEmailInput = getByTestId("profile-email-input");
+    expect(profileEmailInput).toBeInTheDocument();
+    fireEvent.click(getByTestId("signin-btn"));
+    await wait();
   });
 });

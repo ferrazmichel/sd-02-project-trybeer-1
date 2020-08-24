@@ -51,7 +51,7 @@ const renderForm = ({
       isDisabled={isDisabled}
       handleSubmit={handleSubmit}
       label="Create User"
-      testId="signin-btn"
+      testId="register-btn"
     />
   </Form>
 );
@@ -90,7 +90,7 @@ const Register = () => {
   return (
     <section className="register_page">
       <header className="title">
-        <h1>Trybeer Masculinahs</h1>
+        <h1>Trybeer</h1>
         <h2>Register</h2>
       </header>
       {message.value && <Message infinity />}
