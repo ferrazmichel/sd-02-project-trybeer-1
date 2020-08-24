@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Context } from "../../context";
 import Form from "react-bootstrap/Form";
+
+import { Context } from "../../context";
 import { FormGroup, Message, SubmitButton } from "../../components";
 import { RegisterButton } from "./components";
 import { handleSubmit } from "./service";
+
 import "./style.css";
 
 const Login = () => {

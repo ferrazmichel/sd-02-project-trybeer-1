@@ -6,6 +6,7 @@ import Header from '../../../components/Header';
 import dateFormat from '../../../services/DateFormat';
 import { getOrders } from '../../../services/orders';
 import { Context } from '../../../context';
+
 import "./style.css";
 
 
@@ -19,12 +20,13 @@ const Orders = () => {
   const { setMessage } = useContext(Context);
 
   useEffect(() => {
-    setMessage({ value: 'Nenhuma compra foi encontrada', type: 'NEUTRAL' });
     getOrders()
-      .then(({ data, error }) => {
-        setOrders(data);
-        setMessage({ value: error, type: 'ALERT' });
-      });
+    .then(({ data, error }) => {
+      setOrders(data);
+      setMessage({ value: error, type: 'ALERT' });
+      })
+    .then(() =>
+      (orders.length === 0) && setMessage({ value: 'Nenhuma compra foi encontrada', type: 'NEUTRAL' }));
   }, []);
 
   return (

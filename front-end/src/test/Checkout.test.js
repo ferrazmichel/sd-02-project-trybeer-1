@@ -28,11 +28,13 @@ describe('Checkout page', () => {
         <Checkout />
       </Provider>
     );
+
     for (let i = 0; i < 5; i += 1) {
       expect(getByTestId(`${i}-product-qtd-input`)).toBeInTheDocument();
       expect(getByTestId(`${i}-product-name`)).toBeInTheDocument();
       expect(getByTestId(`${i}-product-total-value`)).toBeInTheDocument();
     }
+
     expect(getByTestId('0-product-qtd-input')).toHaveTextContent('1');
     expect(getByTestId('0-product-name')).toHaveTextContent('cerva1');
     expect(getByTestId('0-product-total-value')).toHaveTextContent('R$ 2,20');
@@ -63,6 +65,7 @@ describe('Checkout page', () => {
     expect(getByTestId('checkout-house-number-input')).toHaveValue('');
     expect(getByTestId('checkout-finish-btn')).toBeDisabled();
   });
+
   test('test submit form', async () => {
     axios.post.mockResolvedValue({ data: {} });
     localStorage.setItem('products', JSON.stringify(storageMock.products))
@@ -85,6 +88,7 @@ describe('Checkout page', () => {
     await wait();
     expect(history.location.pathname).toBe('/products');
   });
+
   test('test submit error', async () => {
     axios.post.mockImplementationOnce(() =>
       Promise.reject(new Error({ error: { message: 'Internal error' } })),
@@ -103,5 +107,21 @@ describe('Checkout page', () => {
     await wait();
     expect(getByTestId('message')).toBeInTheDocument();
     expect(getByTestId('message')).toHaveTextContent('Não foi possível cadastrar a venda');
+  });
+
+  test('product remove', async () => {
+    localStorage.setItem('products', JSON.stringify(storageMock.products))
+    const { getByTestId } = renderWithRouter(
+      <Provider>
+        <Checkout />
+      </Provider>
+    );
+
+    fireEvent.click(getByTestId('0-product-click'));
+    fireEvent.click(getByTestId('1-product-click'));
+    fireEvent.click(getByTestId('2-product-click'));
+
+    expect(localStorage.getItem('products'))
+      .toBe(`{"2":{"id":"2","product":"cerva2","price":2.2,"volume":500,"count":2},"4":{"id":"4","product":"cerva4","price":2.2,"volume":500,"count":4}}`);
   });
 });

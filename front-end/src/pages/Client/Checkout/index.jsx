@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Context } from "../../../context";
 import { Redirect } from "react-router-dom";
+
+import { Context } from "../../../context";
 import Header from '../../../components/Header';
 import { postSale } from '../../../services/Request';
 import Message from '../../../components/Message';
-import './style.css';
 import Product from './components/product';
+
+import './style.css';
+
 const URL = 'http://localhost:3001/orders';
+
 
 const getProducts = () => JSON.parse(localStorage.getItem('products')) || {};
 
@@ -73,6 +77,7 @@ const Checkout = () => {
     localStorage.removeItem('products');
     return <Redirect to="/products" />;
   }
+
   return (
     <React.Fragment>
       <Header title="Finalizar Pedido" />

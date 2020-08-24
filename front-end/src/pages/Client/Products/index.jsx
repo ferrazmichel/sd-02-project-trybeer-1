@@ -6,6 +6,7 @@ import Message from '../../../components/Message';
 import Header from "../../../components/Header";
 import Product from "./Product";
 import { getProducts, calculeTotal } from "./service";
+
 import "./style.css";
 
 const buttonRender = ({ total, history }) => {
@@ -47,7 +48,7 @@ const Products = () => {
   useEffect(() => {
     getProducts().then(({ data, error }) => {
       setProducts(data);
-      if(error){
+      if (error) {
         setMessage({ value: error, type: 'ALERT' });
       }
     });
