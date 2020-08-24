@@ -61,3 +61,7 @@
 .product_comp > .counter > button > .material-icons {
   font-size: 2em;
 }
+
+.product_comp > .counter > button {
+  background-color: #fdd692;
+}
