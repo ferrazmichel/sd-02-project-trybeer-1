@@ -43,5 +43,6 @@ describe('Profile page', () => {
     });
 
     expect(getByTestId('signin-btn').disabled).toBeTruthy();
+    fireEvent.click();
   });
 });

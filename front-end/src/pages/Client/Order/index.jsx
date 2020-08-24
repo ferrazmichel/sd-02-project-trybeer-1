@@ -38,7 +38,7 @@ const Order = (props) => {
         setProducts(data.products);
         setMessage({ value: error, type: 'ALERT' })
       })
-      .then(() => setMessage({ value: 'pedido não encontrado', type: 'ALERT' }));
+      .then(() => (!order.orderId) && setMessage({ value: 'pedido não encontrado', type: 'ALERT' }));
   }, []);
 
   return (

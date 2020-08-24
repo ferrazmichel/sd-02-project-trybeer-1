@@ -25,7 +25,8 @@ const Orders = () => {
       setOrders(data);
       setMessage({ value: error, type: 'ALERT' });
       })
-    .then(() => setMessage({ value: 'Nenhuma compra foi encontrada', type: 'NEUTRAL' }));
+    .then(() =>
+      (orders.length === 0) && setMessage({ value: 'Nenhuma compra foi encontrada', type: 'NEUTRAL' }));
   }, []);
 
   return (
