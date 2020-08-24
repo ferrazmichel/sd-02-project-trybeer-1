@@ -24,7 +24,7 @@ describe('Profile test', () => {
     await wait();
     const profileNameInput = getByTestId("profile-name-input");
     const profileEmailInput = getByTestId("profile-email-input");
-    expect(profileNameInput.innerHTML).toBe("");
+    expect(profileNameInput).toHaveValue("teste123456");
     expect(profileNameInput).toBeInTheDocument();
     fireEvent.change(profileNameInput, { target: { value: 'testetesteteste' } });
     expect(profileEmailInput).toBeInTheDocument();

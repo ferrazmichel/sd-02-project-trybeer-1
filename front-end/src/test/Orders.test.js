@@ -69,6 +69,6 @@ describe('Orders page', () => {
 
     await wait();
 
-    expect(getByTestId('message-text').innerHTML).toBe('erro');
+    expect(getByTestId('message-text').innerHTML).toBe('Nenhuma compra foi encontrada');
   });
 });

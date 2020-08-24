@@ -17,7 +17,6 @@ const patchUser = async ({ name, email }) => {
 
 const handleSubmit = async ({ event, body: { name, email }, setMessage }) => {
   event.preventDefault();
-  console.log('handle')
   const { error } = await patchUser({ name, email });
   if (error) {
     setMessage({ value: error.message || error.status, type: "ALERT" });
