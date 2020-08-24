@@ -8,8 +8,8 @@ const AdminRoute = ({ component: Component, ...rest }) => {
 
   useEffect(() => {
     isAdmin('http://localhost:3001/users/admin')
-      .then(({ role }) => {
-        if (role === 'admin') setAuth(true);
+      .then(({ data }) => {
+        if (data.role === 'admin') setAuth(true);
         setIsTokenValidated(true);
       })
       .catch(()=> setIsTokenValidated(true));

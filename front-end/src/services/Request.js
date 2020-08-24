@@ -38,9 +38,7 @@ const postSale = async (endpoint, body) =>
 const isAdmin = async (endpoint) =>
   axios.get(endpoint, {
     headers: headers(),
-  })
-    .then(({ data }) => data)
-    .catch((error) => error);
+  });
 
 
 export { getData, patchData, postData, validToken, isAdmin, postSale };
