@@ -24,6 +24,7 @@ describe("Private route Component", () => {
 
     expect(fakeComponent).toBeCalledTimes(1);
     expect(getByTestId('testComponent')).toBeInTheDocument();
+    expect(getByTestId('testComponent')).toHaveTextContent('Hello')
   });
 
   test("page render correct", async () => {
@@ -39,6 +40,7 @@ describe("Private route Component", () => {
     await wait();
 
     expect(fakeComponent).toBeCalledTimes(0);
+
     
   });
 });
