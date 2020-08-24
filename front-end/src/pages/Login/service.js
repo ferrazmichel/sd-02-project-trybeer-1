@@ -29,11 +29,8 @@ async function handleSubmit({ event, body, history, setMessage }) {
 
   if (error) {
     setMessage({ value: error.message || error.status, type: "ALERT" });
-    return;
-  }
-
-  if (user) {
-    history.push(userRoutes[user.role]);
+  } else {
+    user && history.push(userRoutes[user.role]);
   }
 }
 

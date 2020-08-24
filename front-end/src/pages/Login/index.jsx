@@ -20,7 +20,10 @@ const Login = () => {
 
   return (
     <section className="login_page">
-      <p className="title">Trybeer</p>
+      <header className="title">
+        <h1>Trybeer</h1>
+        <h2>Login</h2>
+      </header>
       {message.value && <Message infinity />}
       <Form>
         <FormGroup

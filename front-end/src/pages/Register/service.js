@@ -23,12 +23,13 @@ const handleConfirm = ({ value, password, callback }) => {
 
 const postUser = async (body) => {
   const { error, data } = await postData({ endpoint: URL, body });
-  if (data.token) localStorage.setItem('token', data.token);
-  
+
+  if (data && data.token) localStorage.setItem("token", data.token);
+
   return { error };
 };
 
-async function handleSubmit ({ event, body, history, setMessage }) {
+async function handleSubmit({ event, body, history, setMessage }) {
   event.preventDefault();
 
   const { error } = await postUser(body);

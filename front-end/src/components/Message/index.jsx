@@ -17,8 +17,10 @@ const createTimeout = ({ infinity, setMessage }) => {
 };
 
 const Message = ({ infinity }) => {
-  const { setMessage, message: { value, type } } = useContext(Context);
-
+  const {
+    setMessage,
+    message: { value, type },
+  } = useContext(Context);
   useEffect(() => {
     createTimeout({ infinity, setMessage });
   }, []);
@@ -26,12 +28,15 @@ const Message = ({ infinity }) => {
   return (
     <div
       className="message_comp"
-      style={{ display: (value) ? "flex" : "none" }}
+      data-testid="message"
+      style={{ display: value ? "flex" : "none" }}
     >
       <button type="button" onClick={() => setMessage({ value: "", type: "" })}>
         <span className="material-icons">close</span>
       </button>
-      <strong data-testid="message" style={{ color: `${types[type]}` }}>{value}</strong>
+      <strong data-testid="message-text" style={{ color: `${types[type]}` }}>
+        {value}
+      </strong>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Context } from '../../context';
+import { Context } from "../../context";
 import Form from "react-bootstrap/Form";
 import { FormGroup, Message, SubmitButton } from "../../components";
 import { ConfirmField, PasswordField, RoleField } from "./components";
@@ -50,7 +50,7 @@ const renderForm = ({
       isDisabled={isDisabled}
       handleSubmit={handleSubmit}
       label="Create User"
-      testId="signin-btn"
+      testId="register-btn"
     />
   </Form>
 );
@@ -89,7 +89,7 @@ const Register = () => {
   return (
     <section className="register_page">
       <header className="title">
-        <h1>Trybeer Masculinahs</h1>
+        <h1>Trybeer</h1>
         <h2>Register</h2>
       </header>
       {message.value && <Message infinity />}

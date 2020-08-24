@@ -87,7 +87,7 @@ describe('Products page', () => {
     history.push('/products');
 
     fireEvent.click(getByTestId('side-menu-item-logout'));
-    expect(history.location.pathname).toBe('/');
+    expect(history.location.pathname).toBe('/login');
   });
   test('test empty data', async () => {
     axios.get.mockResolvedValue({});

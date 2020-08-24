@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 50px;
+  margin: 1% 0.5%;
   width: 60%;
 }
 
@@ -28,7 +28,7 @@
   border: 5px double #ff9f1c;
   border-radius: 5px;
   color: #242423;
-  font-size: 30%;
+  font-size: 100%;
   font-weight: 600;
   letter-spacing: 2px;
   padding: 0.5%;
