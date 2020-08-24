@@ -17,22 +17,23 @@ const details = (history, orderId) => {
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const history = useHistory();
-  const { setMessage } = useContext(Context);
+  const { message, setMessage } = useContext(Context);
 
   useEffect(() => {
     getOrders()
     .then(({ data, error }) => {
+      if (error) {
+        return setMessage({ value: error, type: 'ALERT' });
+      }
       setOrders(data);
       setMessage({ value: error, type: 'ALERT' });
-      })
-    .then(() =>
-      (orders.length === 0) && setMessage({ value: 'Nenhuma compra foi encontrada', type: 'NEUTRAL' }));
+      });
   }, []);
 
   return (
     <div className="orders_page">
       <Header title="Meus Pedidos" />
-      {(orders.length === 0) && <Message infinity />}
+      {(message.value) && <Message />}
       <div className="orders">
         {orders.map((order, index) => {
           const { orderId, orderDate, totalPrice } = order;

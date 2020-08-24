@@ -21,8 +21,13 @@ const Message = ({ infinity }) => {
     setMessage,
     message: { value, type },
   } = useContext(Context);
+
   useEffect(() => {
     createTimeout({ infinity, setMessage });
+
+    return () => {
+      setMessage({ value: '', type: '' });
+    };
   }, []);
 
   return (
