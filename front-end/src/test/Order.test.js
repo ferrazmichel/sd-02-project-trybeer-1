@@ -75,6 +75,6 @@ describe('Orders page', () => {
 
     await wait();
 
-    expect(getByTestId('message-text').innerHTML).toBe('pedido não encontrado');
+    expect(getByTestId('message-text').innerHTML).toBe('erro');
   });
 });

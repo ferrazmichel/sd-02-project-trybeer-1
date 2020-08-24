@@ -29,22 +29,23 @@ const Order = (props) => {
   const { id } = props.match.params;
   const [order, setOrder] = useState({ orderDate: '', totalPrice: 0.0 });
   const [products, setProducts] = useState([]);
-  const { setMessage } = useContext(Context);
+  const { message, setMessage } = useContext(Context);
 
   useEffect(() => {
     getOrder(id)
       .then(({ data, error }) => {
+        if (error) {
+          return setMessage({ value: error, type: 'ALERT' });
+        }
         setOrder(data);
         setProducts(data.products);
-        setMessage({ value: error, type: 'ALERT' })
       })
-      .then(() => (!order.orderId) && setMessage({ value: 'pedido não encontrado', type: 'ALERT' }));
   }, []);
 
   return (
     <div className="order_page">
       <Header title="Detalhes do pedido" />
-      {(!order.orderId) && <Message infinity />}
+      {(message.value) && <Message />}
       {(order.orderId) && orderRender(order, products)}
     </div>
   );
